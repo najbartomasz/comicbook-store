@@ -2,7 +2,12 @@
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
-        "production": ["default"],
+        "production": [
+            "default",
+            "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+            "!{projectRoot}/.storybook/**/*",
+            "!{projectRoot}/tsconfig.storybook.json"
+        ],
         "sharedGlobals": []
     },
     "targetDefaults": {
@@ -24,6 +29,15 @@
             "options": {
                 "targetName": "e2e"
             }
+        },
+        {
+            "plugin": "@nx/storybook/plugin",
+            "options": {
+                "buildStorybookTargetName": "build-storybook",
+                "serveStorybookTargetName": "storybook",
+                "testStorybookTargetName": "test-storybook",
+                "staticStorybookTargetName": "static-storybook"
+            }
         }
     ],
     "generators": {
@@ -32,6 +46,13 @@
             "linter": "eslint",
             "style": "scss",
             "unitTestRunner": "jest"
+        }
+    },
+    "tasksRunnerOptions": {
+        "default": {
+            "options": {
+                "cacheableOperations": ["build-storybook"]
+            }
         }
     }
 }
