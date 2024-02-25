@@ -45,5 +45,5 @@ Thumbs.db
 .nx/cache
 .angular
 
-
+# storybook
 storybook-static

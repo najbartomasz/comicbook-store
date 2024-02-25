@@ -78,6 +78,14 @@
             ],
             "options": {
                 "jestConfig": "apps/gui/jest.config.ts"
+            },
+            "configurations": {
+                "coverage": {
+                    "codeCoverage": true
+                },
+                "watch": {
+                    "watch": true
+                }
             }
         }
     }
