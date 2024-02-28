@@ -6,5 +6,7 @@ module.exports = {
     fakeTimers: {
         enableGlobally: true
     },
-    resetMocks: true
+    resetMocks: true,
+    restoreMocks: true,
+    randomize: true
 };

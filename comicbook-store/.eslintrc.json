@@ -18,6 +18,42 @@
                             }
                         ]
                     }
+                ],
+                "array-bracket-spacing": "error",
+                "eqeqeq": "error",
+                "max-len": [
+                    "error",
+                    140
+                ],
+                "no-console": "error",
+                "object-curly-spacing": "error",
+                "semi": "error",
+                "semi-spacing": [
+                    "error",
+                    {
+                        "after": true,
+                        "before": false
+                    }
+                ],
+                "semi-style": [
+                    "error",
+                    "last"
+                ],
+                "space-before-blocks": [
+                    "error",
+                    "always"
+                ],
+                "space-before-function-paren": [
+                    "error",
+                    {
+                        "anonymous": "always",
+                        "asyncArrow": "always",
+                        "named": "never"
+                    }
+                ],
+                "space-in-parens": [
+                    "error",
+                    "never"
                 ]
             }
         },
