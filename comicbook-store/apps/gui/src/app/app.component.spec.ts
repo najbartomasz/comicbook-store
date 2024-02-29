@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [AppComponent, RouterTestingModule],
+            imports: [AppComponent, RouterTestingModule]
         }).compileComponents();
     });
 
-    it('should be created', () => {
+    test('should be created', () => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         expect(fixture.componentInstance).toBeTruthy();
