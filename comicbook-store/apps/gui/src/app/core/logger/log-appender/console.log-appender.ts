@@ -15,15 +15,15 @@ const formatErrorLogEntry = (errorLogEntry: Readonly<ErrorLogEntry>): string => 
 };
 
 export const consoleLogAppender: LogAppender = {
-    info: (logEntry: Readonly<LogEntry>): void => {
+    info: (logEntry: LogEntry): void => {
         // eslint-disable-next-line no-console
         console.info(formatLogEntry(LogLevel.Info, logEntry));
     },
-    warn: (logEntry: Readonly<LogEntry>): void => {
+    warn: (logEntry: LogEntry): void => {
         // eslint-disable-next-line no-console
         console.warn(formatLogEntry(LogLevel.Warn, logEntry));
     },
-    error: (errorLogEntry: Readonly<ErrorLogEntry>): void => {
+    error: (errorLogEntry: ErrorLogEntry): void => {
         // eslint-disable-next-line no-console
         console.error(formatErrorLogEntry(errorLogEntry));
     }
