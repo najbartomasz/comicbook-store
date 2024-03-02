@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { LoggerFactoryService } from './logger-factory.service';
+import { LoggerFactoryService } from '.';
 
 describe('Logger', () => {
     test('prints messages on debug console', () => {

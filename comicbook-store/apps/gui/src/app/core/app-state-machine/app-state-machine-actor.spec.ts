@@ -10,18 +10,18 @@ describe('AppStateMachineActor', () => {
 
     test('is initially in start state', () => {
         // Given, When
-        const stateTags = appStateMachineActor.getSnapshot().tags;
+        const initialState = appStateMachineActor.getSnapshot().value;
 
         // Then
-        expect(stateTags).toContain('start');
+        expect(initialState).toBe('start');
     });
 
     test('transitions from start to login state on unauthenticated event', () => {
         // Given, When
         appStateMachineActor.send({ type: AppStateTransitionEvent.Unauthenticated });
-        const stateTags = appStateMachineActor.getSnapshot().tags;
+        const currentState = appStateMachineActor.getSnapshot().value;
 
         // Then
-        expect(stateTags).toContain('login');
+        expect(currentState).toBe('login');
     });
 });

@@ -14,14 +14,11 @@ export const createAppStateMachineActor = () => createActor(
         initial: 'start',
         states: {
             start: {
-                tags: ['start'],
                 on: {
                     unauthenticated: 'login'
                 }
             },
-            login: {
-                tags: ['login']
-            }
+            login: {}
         }
     })
 );
