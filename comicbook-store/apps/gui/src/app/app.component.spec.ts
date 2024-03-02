@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
 import { MockProxy, mock } from 'jest-mock-extended';
-import * as appStateMachieModule from './core/app-state-machine/app-state-machine';
+import { AppComponent } from './app.component';
+import * as appStateMachieModule from './core/app-state-machine';
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
     });
 
     test('starts app state machine on init', () => {
-        // Given, Whe
+        // Given, When
         fixture.detectChanges();
 
         // Then

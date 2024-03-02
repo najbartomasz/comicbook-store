@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { createAppStateMachine } from './core/app-state-machine/app-state-machine';
+import { createAppStateMachine } from './core/app-state-machine';
+import { LoggerFactoryService } from './core/logger';
 
 @Component({
     standalone: true,
@@ -10,7 +11,8 @@ import { createAppStateMachine } from './core/app-state-machine/app-state-machin
     styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit, OnDestroy {
-    readonly #appStateMachine = createAppStateMachine();
+    readonly #loggerFactoryService = inject(LoggerFactoryService);
+    readonly #appStateMachine = createAppStateMachine(this.#loggerFactoryService);
 
     public ngOnInit(): void {
         this.#appStateMachine.start();

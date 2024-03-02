@@ -704,6 +704,17 @@
                             "regex": "^[a-zA-Z0-9$]",
                             "match": false
                           }
+                    },
+                    {
+                        "selector": [
+                            "variable"
+                        ],
+                        "modifiers": [
+                            "const"
+                        ],
+                        "format": ["camelCase", "UPPER_CASE", "PascalCase"],
+                        "leadingUnderscore": "forbid",
+                        "trailingUnderscore": "forbid"
                     }
                 ],
                 "@typescript-eslint/no-base-to-string": "off",
