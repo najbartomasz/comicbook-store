@@ -923,7 +923,7 @@
             "rules": {}
         },
         {
-            "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+            "files": ["*.test.ts"],
             "env": {
                 "jest": true
             },

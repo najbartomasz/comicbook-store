@@ -87,10 +87,10 @@
                     "watch": true
                 },
                 "unit": {
-                    "testMatch": ["**/?(*.)(spec|test).[jt]s?(x)", "!**/?(*.)(integration.)(spec|test).[jt]s?(x)"]
+                    "testMatch": ["**/?(*.)test.ts", "!**/?(*.)integration.test.ts"]
                 },
                 "integration": {
-                    "testMatch": ["**/?(*.)(integration.)(spec|test).[jt]s?(x)"]
+                    "testMatch": ["**/?(*.)integration.test.ts"]
                 }
             }
         }

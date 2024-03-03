@@ -17,7 +17,7 @@ export const createAppStateMachine = (loggerFactoryService: LoggerFactoryService
                     tap((event) => {
                         const currentState = actor.getSnapshot().value;
                         actor.send({ type: event });
-                        logger.info(`Changed state from ${currentState} to ${actor.getSnapshot().value} on ${event}.`);
+                        logger.info(`Changed state from ${currentState} to ${actor.getSnapshot().value} on ${event} event.`);
                     })
                 );
             const unsupportedTransition$ = unsupportedEvent$
