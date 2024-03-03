@@ -8,25 +8,16 @@
     "targets": {
         "build": {
             "executor": "@angular-devkit/build-angular:application",
-            "outputs": [
-                "{options.outputPath}"
-            ],
+            "outputs": ["{options.outputPath}"],
             "options": {
                 "outputPath": "dist/apps/gui",
                 "index": "apps/gui/src/index.html",
                 "browser": "apps/gui/src/main.ts",
-                "polyfills": [
-                    "zone.js"
-                ],
+                "polyfills": ["zone.js"],
                 "tsConfig": "apps/gui/tsconfig.app.json",
                 "inlineStyleLanguage": "scss",
-                "assets": [
-                    "apps/gui/src/favicon.ico",
-                    "apps/gui/src/assets"
-                ],
-                "styles": [
-                    "apps/gui/src/styles.scss"
-                ],
+                "assets": ["apps/gui/src/favicon.ico", "apps/gui/src/assets"],
+                "styles": ["apps/gui/src/styles.scss"],
                 "scripts": []
             },
             "configurations": {
@@ -63,7 +54,10 @@
                     "buildTarget": "gui:build:development"
                 }
             },
-            "defaultConfiguration": "development"
+            "defaultConfiguration": "development",
+            "options": {
+                "proxyConfig": "apps/gui/proxy.conf.json"
+            }
         },
         "extract-i18n": {
             "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -73,9 +67,7 @@
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": [
-                "{workspaceRoot}/coverage/{projectRoot}"
-            ],
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
             "options": {
                 "jestConfig": "apps/gui/jest.config.ts"
             },
@@ -87,10 +79,13 @@
                     "watch": true
                 },
                 "unit": {
-                    "testMatch": ["**/?(*.)test.ts", "!**/?(*.)integration.test.ts"]
+                    "testMatch": [
+                        "**/?(*.)spec.ts",
+                        "!**/?(*.)integration.spec.ts"
+                    ]
                 },
                 "integration": {
-                    "testMatch": ["**/?(*.)integration.test.ts"]
+                    "testMatch": ["**/?(*.)integration.spec.ts"]
                 }
             }
         }
