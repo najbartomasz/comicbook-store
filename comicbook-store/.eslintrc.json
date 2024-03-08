@@ -930,6 +930,7 @@
             "rules": {
                 "@typescript-eslint/no-magic-numbers": "off",
                 "@typescript-eslint/unbound-method": "off",
+                "max-lines-per-function": "off",
                 "jest/consistent-test-it": [
                     "error",
                     {

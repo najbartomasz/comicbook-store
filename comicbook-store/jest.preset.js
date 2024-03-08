@@ -3,6 +3,7 @@ const nxPreset = require('@nx/jest/preset').default;
 module.exports = {
     ...nxPreset,
     coverageReporters: ['text', 'lcov', 'html'],
+    collectCoverageFrom: ['src/**'],
     fakeTimers: {
         enableGlobally: true
     },

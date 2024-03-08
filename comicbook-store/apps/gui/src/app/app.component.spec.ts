@@ -2,19 +2,24 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockProxy, mock } from 'jest-mock-extended';
 import { AppComponent } from './app.component';
-import * as appStateMachieModule from './core/app-state-machine';
+import { AppStateMachineService } from './core/app-state-machine';
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
 
-    let appStateMachineMock: MockProxy<ReturnType<typeof appStateMachieModule.createAppStateMachine>>;
+    let appStateMachineMock: MockProxy<AppStateMachineService>;
 
     beforeEach(async () => {
-        appStateMachineMock = mock<ReturnType<typeof appStateMachieModule.createAppStateMachine>>();
-        jest.spyOn(appStateMachieModule, 'createAppStateMachine').mockReturnValueOnce(appStateMachineMock);
+        appStateMachineMock = mock<AppStateMachineService>();
 
         await TestBed.configureTestingModule({
-            imports: [AppComponent, RouterTestingModule]
+            imports: [
+                AppComponent,
+                RouterTestingModule
+            ],
+            providers: [
+                { provide: AppStateMachineService, useValue: appStateMachineMock }
+            ]
         }).compileComponents();
 
         fixture = TestBed.createComponent(AppComponent);

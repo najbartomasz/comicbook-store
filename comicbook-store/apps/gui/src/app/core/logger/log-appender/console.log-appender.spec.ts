@@ -1,7 +1,13 @@
 /* eslint-disable no-console */
-import { consoleLogAppender } from './console.log-appender';
+import { ConsoleLogAppender } from './console-log-appender.';
 
-describe('ConsoleLogAppender', () => {
+describe('ConsoleLogAppenderService', () => {
+    let consoleLogAppender: ConsoleLogAppender;
+
+    beforeEach(() => {
+        consoleLogAppender = new ConsoleLogAppender();
+    });
+
     test('prints info log to debug console', () => {
         // Given
         jest.spyOn(console, 'info').mockImplementationOnce(jest.fn());

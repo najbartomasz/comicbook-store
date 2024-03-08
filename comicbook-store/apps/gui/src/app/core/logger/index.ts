@@ -1,2 +1,2 @@
-export { Logger } from './logger.model';
-export { LoggerFactoryService } from './logger-factory.service';
+export type { Logger } from './logger';
+export { injectLogger } from './logger.injector';

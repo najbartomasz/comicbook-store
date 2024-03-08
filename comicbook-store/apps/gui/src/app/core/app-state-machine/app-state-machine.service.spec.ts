@@ -1,21 +1,30 @@
+import { TestBed } from '@angular/core/testing';
 import { Matcher, MockProxy, mock } from 'jest-mock-extended';
-import { createAppStateMachine } from './app-state-machine';
+import { LoggerMockFixture } from '../../../../test/fixtures/logger-mock/logger-mock.fixture';
+import { LoggerFactoryService } from '../logger/logger-factory.service';
 import * as appStateMachineActorModule from './app-state-machine-actor';
+import { AppStateMachineService } from './app-state-machine.service';
 import { AppStateTransitionEvent } from './app-state-transition-event';
-import { createAppStateTransitionEventBus } from './transition-event-bus/app-state-transition-event-bus';
-import { Logger, LoggerFactoryService } from '../logger';
+import { AppStateTransitionEventBusService } from './transition-event-bus/app-state-transition-event-bus.service';
 
-describe('AppStateMachine', () => {
-    let appStateMachine: ReturnType<typeof createAppStateMachine>;
+describe('AppStateMachineService', () => {
+    let appStateMachine: AppStateMachineService;
 
+    let appStateTrasitionEventBus: AppStateTransitionEventBusService;
     let appStateMachineActorMock: MockProxy<ReturnType<typeof appStateMachineActorModule.createAppStateMachineActor>>;
 
     beforeEach(() => {
         appStateMachineActorMock = mock<ReturnType<typeof appStateMachineActorModule.createAppStateMachineActor>>();
         jest.spyOn(appStateMachineActorModule, 'createAppStateMachineActor').mockReturnValueOnce(appStateMachineActorMock);
-        const loggerFactoryServiceMock = mock<LoggerFactoryService>();
-        loggerFactoryServiceMock.createLogger.calledWith('AppStateMachine').mockReturnValueOnce(mock<Logger>());
-        appStateMachine = createAppStateMachine(loggerFactoryServiceMock);
+
+        TestBed.configureTestingModule({
+            providers: [
+                { provide: LoggerFactoryService, useValue: LoggerMockFixture.loggerFactory('AppStateMachineService') }
+            ]
+        });
+
+        appStateTrasitionEventBus = TestBed.inject(AppStateTransitionEventBusService);
+        appStateMachine = TestBed.inject(AppStateMachineService);
     });
 
     test('transitions to next state when received event is supported for current state', () => {
@@ -28,7 +37,6 @@ describe('AppStateMachine', () => {
             .mockReturnValue(true);
         appStateMachineActorMock.getSnapshot.calledWith().mockReturnValue(getSnapshotMock);
         appStateMachine.start();
-        const appStateTrasitionEventBus = createAppStateTransitionEventBus();
 
         // When
         appStateTrasitionEventBus.dispatch(AppStateTransitionEvent.Unauthenticated);
@@ -41,7 +49,6 @@ describe('AppStateMachine', () => {
     test('does not transition to next state when received event is supported for current state but machine is stopped', () => {
         // Given
         appStateMachine.start();
-        const appStateTrasitionEventBus = createAppStateTransitionEventBus();
         appStateMachine.stop();
 
         // When
@@ -61,7 +68,6 @@ describe('AppStateMachine', () => {
             .mockReturnValue(false);
         appStateMachineActorMock.getSnapshot.calledWith().mockReturnValue(getSnapshotMock);
         appStateMachine.start();
-        const appStateTrasitionEventBus = createAppStateTransitionEventBus();
 
         // When
         appStateTrasitionEventBus.dispatch(AppStateTransitionEvent.Unauthenticated);

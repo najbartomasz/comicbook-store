@@ -1,7 +1,20 @@
 /* eslint-disable no-console */
-import { LoggerFactoryService } from '.';
+import { TestBed } from '@angular/core/testing';
+import { Logger, injectLogger } from '.';
 
 describe('Logger', () => {
+    let logger1: Logger;
+    let logger2: Logger;
+    let logger3: Logger;
+
+    beforeEach(() => {
+        TestBed.runInInjectionContext(() => {
+            logger1 = injectLogger('TestLogger1');
+            logger2 = injectLogger('TestLogger2');
+            logger3 = injectLogger('TestLogger3');
+        });
+    });
+
     test('prints messages on debug console', () => {
         // Given
         jest.spyOn(console, 'info').mockImplementationOnce(jest.fn());
@@ -14,10 +27,6 @@ describe('Logger', () => {
             .mockReturnValueOnce(dateMock1)
             .mockReturnValueOnce(dateMock2)
             .mockReturnValueOnce(dateMock3);
-        const loggerFactoryService = new LoggerFactoryService();
-        const logger1 = loggerFactoryService.createLogger('TestLogger1');
-        const logger2 = loggerFactoryService.createLogger('TestLogger2');
-        const logger3 = loggerFactoryService.createLogger('TestLogger3');
 
         // When
         logger1.info('First: test info message.');

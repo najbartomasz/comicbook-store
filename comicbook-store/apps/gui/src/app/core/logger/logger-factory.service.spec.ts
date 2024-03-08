@@ -1,17 +1,32 @@
-import { LoggerFactoryService } from './logger-factory.service';
+import { TestBed } from '@angular/core/testing';
+import { mock } from 'jest-mock-extended';
+import * as consoleLogAppenderModule from './log-appender/console-log-appender.';
 import * as loggerModule from './logger';
+import { LoggerFactoryService } from './logger-factory.service';
 
 describe('LoggerFactoryService', () => {
+    let loggerFactoryService: LoggerFactoryService;
+
+    let consoleLogAppenderMock: consoleLogAppenderModule.ConsoleLogAppender;
+
+    beforeEach(() => {
+        consoleLogAppenderMock = mock<consoleLogAppenderModule.ConsoleLogAppender>();
+        jest.spyOn(consoleLogAppenderModule, 'ConsoleLogAppender').mockReturnValueOnce(consoleLogAppenderMock);
+
+        loggerFactoryService = TestBed.inject(LoggerFactoryService);
+    });
+
     test('creates logger new instance', () => {
         // Given
-        const loggerMock = loggerModule.createLogger('TestLogger');
-        jest.spyOn(loggerModule, 'createLogger').mockReturnValueOnce(loggerMock);
-        const loggerFactoryService = new LoggerFactoryService();
+        const expectedLogger = new loggerModule.Logger('TestLogger', [consoleLogAppenderMock]);
+        const loggerSpy = jest.spyOn(loggerModule, 'Logger').mockReturnValueOnce(expectedLogger);
 
         // When
         const logger = loggerFactoryService.createLogger('TestLogger');
 
         // Then
-        expect(logger).toBe(loggerMock);
+        expect(logger).toStrictEqual(expectedLogger);
+        expect(loggerSpy).toHaveBeenCalledTimes(1);
+        expect(loggerSpy).toHaveBeenCalledWith('TestLogger', [consoleLogAppenderMock]);
     });
 });

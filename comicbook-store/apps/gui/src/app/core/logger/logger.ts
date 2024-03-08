@@ -1,27 +1,33 @@
-import { ErrorLogEntry } from './error-log-entry.model';
-import { consoleLogAppender } from './log-appender/console.log-appender';
-import { LogEntry } from './log-entry.model';
-import { Logger } from './logger.model';
+import { LogAppender } from './log-appender/log-appender.model';
+import { createErrorLogEntry, createLogEntry } from './log-entry-provider/log-entry-provider';
 
-const createLogEntry = (loggerName: string, message: string): LogEntry => ({
-    timestamp: new Date().toISOString(),
-    loggerName,
-    message
-});
+export class Logger {
+    readonly #name: string;
+    readonly #appenders: readonly LogAppender[];
 
-const createErrorLogEntry = (loggerName: string, message: string, error: unknown): ErrorLogEntry => ({
-    ...createLogEntry(loggerName, message),
-    error
-});
-
-export const createLogger = (name: string): Logger => ({
-    info: (message: string): void => {
-        consoleLogAppender.info(createLogEntry(name, message));
-    },
-    warn: (message: string): void => {
-        consoleLogAppender.warn(createLogEntry(name, message));
-    },
-    error: (message: string, error: unknown): void => {
-        consoleLogAppender.error(createErrorLogEntry(name, message, error));
+    public constructor(name: string, appenders: readonly [LogAppender, ...LogAppender[]]) {
+        this.#name = name;
+        this.#appenders = appenders;
     }
-});
+
+    public info(message: string): void {
+        const logEntry = createLogEntry(this.#name, message);
+        this.#appenders.forEach((appender) => {
+            appender.info(logEntry);
+        });
+    }
+
+    public warn(message: string): void {
+        const logEntry = createLogEntry(this.#name, message);
+        this.#appenders.forEach((appender) => {
+            appender.warn(logEntry);
+        });
+    }
+
+    public error(message: string, error: unknown): void {
+        const errorLogEntry = createErrorLogEntry(this.#name, message, error);
+        this.#appenders.forEach((appender) => {
+            appender.error(errorLogEntry);
+        });
+    }
+}

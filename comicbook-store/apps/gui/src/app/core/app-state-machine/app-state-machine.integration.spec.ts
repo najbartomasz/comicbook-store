@@ -1,23 +1,32 @@
-import { mock } from 'jest-mock-extended';
+import { TestBed } from '@angular/core/testing';
 import * as xstate from 'xstate';
-import { AppStateTransitionEvent, createAppStateMachine, createAppStateTransitionEventBus } from '.';
-import { Logger, LoggerFactoryService } from '../logger';
+import {
+    AppStateMachineService, AppStateTransitionEvent, AppStateTransitionEventDispatcher, AppStateTransitionEventDispatcherToken
+} from '.';
+import { LoggerMockFixture } from '../../../../test/fixtures/logger-mock/logger-mock.fixture';
+import { LoggerFactoryService } from '../logger/logger-factory.service';
 
-describe('AppStateMachine', () => {
-    const eventBus = createAppStateTransitionEventBus();
+describe('AppStateMachineService', () => {
+    let appStateMachine: AppStateMachineService;
 
-    let appStateMachine: ReturnType<typeof createAppStateMachine>;
+    let eventBus: AppStateTransitionEventDispatcher;
     let xStateActor: ReturnType<typeof xstate.createActor>;
 
     beforeEach(() => {
-        const loggerFactoryServiceMock = mock<LoggerFactoryService>();
-        loggerFactoryServiceMock.createLogger.calledWith('AppStateMachine').mockReturnValueOnce(mock<Logger>());
         const xstateCreateActor = xstate.createActor;
         jest.spyOn(xstate, 'createActor').mockImplementation((args) => {
             xStateActor = xstateCreateActor(args);
             return xStateActor;
         });
-        appStateMachine = createAppStateMachine(loggerFactoryServiceMock);
+
+        TestBed.configureTestingModule({
+            providers: [
+                { provide: LoggerFactoryService, useValue: LoggerMockFixture.loggerFactory('AppStateMachineService') }
+            ]
+        });
+        eventBus = TestBed.inject(AppStateTransitionEventDispatcherToken);
+
+        appStateMachine = TestBed.inject(AppStateMachineService);
         appStateMachine.start();
     });
 
