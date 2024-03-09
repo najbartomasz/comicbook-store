@@ -1,9 +1,12 @@
+import { Injectable } from '@angular/core';
 import { ErrorLogEntry } from '../error-log-entry.model';
 import { LogEntry } from '../log-entry.model';
-import { LogAppender } from './log-appender.model';
 import { LogLevel } from './log-level';
 
-export class ConsoleLogAppender implements LogAppender {
+@Injectable({
+    providedIn: 'root'
+})
+export class ConsoleLogAppenderService {
     public info(logEntry: LogEntry): void {
         // eslint-disable-next-line no-console
         console.info(this.#formatLogEntry(LogLevel.Info, logEntry));
@@ -15,18 +18,12 @@ export class ConsoleLogAppender implements LogAppender {
     }
 
     public error(errorLogEntry: ErrorLogEntry): void {
+        const errorDescription = (errorLogEntry.error instanceof Error) ? errorLogEntry.error.message : errorLogEntry.error;
         // eslint-disable-next-line no-console
-        console.error(this.#formatErrorLogEntry(errorLogEntry));
+        console.error(this.#formatLogEntry(LogLevel.Error, errorLogEntry), errorDescription);
     }
 
     #formatLogEntry(logLevel: LogLevel, logEntry: LogEntry): string {
         return `${logEntry.timestamp} ${logEntry.loggerName} ${logLevel}: ${logEntry.message}`;
-    }
-
-    #formatErrorLogEntry(errorLogEntry: ErrorLogEntry): string {
-        const { error, ...logEntry } = errorLogEntry;
-        const message = this.#formatLogEntry(LogLevel.Error, logEntry);
-        const errorDescription = (error instanceof Error) ? error.message : JSON.stringify(error);
-        return `${message} Caused by: ${errorDescription}`;
     }
 }

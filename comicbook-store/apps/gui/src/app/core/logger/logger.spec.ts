@@ -1,33 +1,27 @@
 import { MockProxy, mock } from 'jest-mock-extended';
-import { LogAppender } from './log-appender/log-appender.model';
+import { ConsoleLogAppenderService } from './log-appender/console-log-appender.service';
 import { Logger } from './logger';
 
 describe('Logger', () => {
     let logger: Logger;
 
-    let logAppender1Mock: MockProxy<LogAppender>;
-    let logAppender2Mock: MockProxy<LogAppender>;
+    let consoleLogAppenderMock: MockProxy<ConsoleLogAppenderService>;
 
     beforeEach(() => {
         const dateMock = new Date('2024-02-28T09:21:06.090Z');
         jest.spyOn(global, 'Date').mockReturnValueOnce(dateMock);
 
-        logAppender1Mock = mock<LogAppender>();
-        logAppender2Mock = mock<LogAppender>();
-        logger = new Logger('TestLogger', [logAppender1Mock, logAppender2Mock]);
+        consoleLogAppenderMock = mock<ConsoleLogAppenderService>();
+        logger = new Logger('TestLogger', consoleLogAppenderMock);
     });
 
-    test('triggers log appenders info', () => {
+    test('triggers console log appenders info', () => {
         // Given, When
         logger.info('Test info message.');
 
         // Then
-        expect(logAppender1Mock.info).toHaveBeenCalledTimes(1);
-        expect(logAppender1Mock.info).toHaveBeenCalledWith(
-            { timestamp: '2024-02-28T09:21:06.090Z', loggerName: 'TestLogger', message: 'Test info message.' }
-        );
-        expect(logAppender2Mock.info).toHaveBeenCalledTimes(1);
-        expect(logAppender2Mock.info).toHaveBeenCalledWith(
+        expect(consoleLogAppenderMock.info).toHaveBeenCalledTimes(1);
+        expect(consoleLogAppenderMock.info).toHaveBeenCalledWith(
             { timestamp: '2024-02-28T09:21:06.090Z', loggerName: 'TestLogger', message: 'Test info message.' }
         );
     });
@@ -37,12 +31,8 @@ describe('Logger', () => {
         logger.warn('Test warn message.');
 
         // Then
-        expect(logAppender1Mock.warn).toHaveBeenCalledTimes(1);
-        expect(logAppender1Mock.warn).toHaveBeenCalledWith(
-            { timestamp: '2024-02-28T09:21:06.090Z', loggerName: 'TestLogger', message: 'Test warn message.' }
-        );
-        expect(logAppender2Mock.warn).toHaveBeenCalledTimes(1);
-        expect(logAppender2Mock.warn).toHaveBeenCalledWith(
+        expect(consoleLogAppenderMock.warn).toHaveBeenCalledTimes(1);
+        expect(consoleLogAppenderMock.warn).toHaveBeenCalledWith(
             { timestamp: '2024-02-28T09:21:06.090Z', loggerName: 'TestLogger', message: 'Test warn message.' }
         );
     });
@@ -55,12 +45,8 @@ describe('Logger', () => {
         logger.error('Test error message.', error);
 
         // Then
-        expect(logAppender1Mock.error).toHaveBeenCalledTimes(1);
-        expect(logAppender1Mock.error).toHaveBeenCalledWith(
-            { timestamp: '2024-02-28T09:21:06.090Z', loggerName: 'TestLogger', message: 'Test error message.', error }
-        );
-        expect(logAppender2Mock.error).toHaveBeenCalledTimes(1);
-        expect(logAppender2Mock.error).toHaveBeenCalledWith(
+        expect(consoleLogAppenderMock.error).toHaveBeenCalledTimes(1);
+        expect(consoleLogAppenderMock.error).toHaveBeenCalledWith(
             { timestamp: '2024-02-28T09:21:06.090Z', loggerName: 'TestLogger', message: 'Test error message.', error }
         );
     });

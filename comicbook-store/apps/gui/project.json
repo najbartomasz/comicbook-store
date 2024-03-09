@@ -69,7 +69,13 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
             "options": {
-                "jestConfig": "apps/gui/jest.config.ts"
+                "jestConfig": "apps/gui/jest.config.ts",
+                "coveragePathIgnorePatterns": [
+                    "src/main.ts",
+                    "src/index.html",
+                    "src/app/app.config.ts",
+                    "src/app/app.routes.ts"
+                ]
             },
             "configurations": {
                 "coverage": {

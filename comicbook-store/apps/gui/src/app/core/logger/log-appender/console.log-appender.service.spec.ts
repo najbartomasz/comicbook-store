@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
-import { ConsoleLogAppender } from './console-log-appender.';
+import { TestBed } from '@angular/core/testing';
+import { ConsoleLogAppenderService } from './console-log-appender.service';
 
 describe('ConsoleLogAppenderService', () => {
-    let consoleLogAppender: ConsoleLogAppender;
+    let consoleLogAppender: ConsoleLogAppenderService;
 
     beforeEach(() => {
-        consoleLogAppender = new ConsoleLogAppender();
+        consoleLogAppender = TestBed.inject(ConsoleLogAppenderService);
     });
 
     test('prints info log to debug console', () => {
@@ -47,7 +48,7 @@ describe('ConsoleLogAppenderService', () => {
         // Then
         expect(console.error).toHaveBeenCalledTimes(1);
         expect(console.error).toHaveBeenCalledWith(
-            '2024-02-28T09:07:16.880Z TestLogger ERROR: Test console error message. Caused by: Test error.'
+            '2024-02-28T09:07:16.880Z TestLogger ERROR: Test console error message.', 'Test error.'
         );
     });
 
@@ -66,7 +67,7 @@ describe('ConsoleLogAppenderService', () => {
         // Then
         expect(console.error).toHaveBeenCalledTimes(1);
         expect(console.error).toHaveBeenCalledWith(
-            '2024-02-28T09:07:16.880Z TestLogger ERROR: Test console error message. Caused by: {"message":"Test error."}'
+            '2024-02-28T09:07:16.880Z TestLogger ERROR: Test console error message.', { message: 'Test error.' }
         );
     });
 });
