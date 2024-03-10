@@ -3,19 +3,20 @@ import { AppStateTransitionEvent } from '../app-state-transition-event';
 import { AppStateTransitionEventBusService } from './app-state-transition-event-bus.service';
 
 describe('AppStateTransitionEventBusService', () => {
-    test('dispatches app state transition events to subscribers', () => {
+    test('dispatches app state transition events to subscriber', () => {
         // Given
-        const eventBusInstance1 = TestBed.inject(AppStateTransitionEventBusService);
-        const eventBusInstance2 = TestBed.inject(AppStateTransitionEventBusService);
-        let receivedEvent: AppStateTransitionEvent | undefined;
-        eventBusInstance2.transitionEvent$.subscribe((event) => {
-            receivedEvent = event;
+        const dispatcher = TestBed.inject(AppStateTransitionEventBusService);
+        const subscriber = TestBed.inject(AppStateTransitionEventBusService);
+        const receivedEvents: AppStateTransitionEvent[] = [];
+        subscriber.transitionEvent$.subscribe((event) => {
+            receivedEvents.push(event);
         });
 
         // When
-        eventBusInstance1.dispatch(AppStateTransitionEvent.Unauthenticated);
+        dispatcher.dispatch(AppStateTransitionEvent.Unauthenticated);
+        dispatcher.dispatch(AppStateTransitionEvent.Unauthenticated);
 
         // Then
-        expect(receivedEvent).toBe(AppStateTransitionEvent.Unauthenticated);
+        expect(receivedEvents).toStrictEqual([AppStateTransitionEvent.Unauthenticated, AppStateTransitionEvent.Unauthenticated]);
     });
 });

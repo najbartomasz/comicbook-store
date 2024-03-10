@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import * as xstate from 'xstate';
 import {
-    AppStateMachineService, AppStateTransitionEvent, AppStateTransitionEventDispatcher, AppStateTransitionEventDispatcherToken
+    AppStateMachineService, AppStateTransitionEvent, AppStateTransitionEventBusService
 } from '.';
 import { LoggerMockFixture } from '../../../../test/fixtures/logger-mock/logger-mock.fixture';
 import { LoggerFactoryService } from '../logger/logger-factory.service';
@@ -9,7 +9,7 @@ import { LoggerFactoryService } from '../logger/logger-factory.service';
 describe('AppStateMachineService', () => {
     let appStateMachine: AppStateMachineService;
 
-    let eventBus: AppStateTransitionEventDispatcher;
+    let eventBus: AppStateTransitionEventBusService;
     let xStateActor: ReturnType<typeof xstate.createActor>;
 
     beforeEach(() => {
@@ -24,7 +24,7 @@ describe('AppStateMachineService', () => {
                 { provide: LoggerFactoryService, useValue: LoggerMockFixture.loggerFactory('AppStateMachineService') }
             ]
         });
-        eventBus = TestBed.inject(AppStateTransitionEventDispatcherToken);
+        eventBus = TestBed.inject(AppStateTransitionEventBusService);
 
         appStateMachine = TestBed.inject(AppStateMachineService);
         appStateMachine.start();

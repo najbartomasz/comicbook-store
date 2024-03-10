@@ -27,15 +27,15 @@ describe('AppStateMachineService', () => {
         appStateMachine = TestBed.inject(AppStateMachineService);
     });
 
-    test('transitions to next state when received event is supported for current state', () => {
+    test('transitions to next state when received event is supported in current state', () => {
         // Given
-        const getSnapshotMock = mock<ReturnType<typeof appStateMachineActorMock.getSnapshot>>();
-        getSnapshotMock.can
+        const snapshotMock = mock<ReturnType<typeof appStateMachineActorMock.getSnapshot>>({ value: 'start', status: 'active' });
+        snapshotMock.can
             .calledWith(
                 expect.objectContaining({ type: AppStateTransitionEvent.Unauthenticated }) as Matcher<{ type: AppStateTransitionEvent }>
             )
             .mockReturnValue(true);
-        appStateMachineActorMock.getSnapshot.calledWith().mockReturnValue(getSnapshotMock);
+        appStateMachineActorMock.getSnapshot.calledWith().mockReturnValue(snapshotMock);
         appStateMachine.start();
 
         // When
@@ -46,8 +46,10 @@ describe('AppStateMachineService', () => {
         expect(appStateMachineActorMock.send).toHaveBeenCalledWith({ type: AppStateTransitionEvent.Unauthenticated });
     });
 
-    test('does not transition to next state when received event is supported for current state but machine is stopped', () => {
+    test('does not transition to next state when received event is supported in current state but machine is stopped', () => {
         // Given
+        const snapshotMock = mock<ReturnType<typeof appStateMachineActorMock.getSnapshot>>({ value: 'start', status: 'active' });
+        appStateMachineActorMock.getSnapshot.calledWith().mockReturnValue(snapshotMock);
         appStateMachine.start();
         appStateMachine.stop();
 
@@ -58,15 +60,15 @@ describe('AppStateMachineService', () => {
         expect(appStateMachineActorMock.send).not.toHaveBeenCalled();
     });
 
-    test('does not transition to next state when received event is unsupported for current state', () => {
+    test('does not transition to next state when received event is unsupported in current state', () => {
         // Given
-        const getSnapshotMock = mock<ReturnType<typeof appStateMachineActorMock.getSnapshot>>();
-        getSnapshotMock.can
+        const snapshotMock = mock<ReturnType<typeof appStateMachineActorMock.getSnapshot>>({ value: 'start', status: 'active' });
+        snapshotMock.can
             .calledWith(
                 expect.objectContaining({ type: AppStateTransitionEvent.Unauthenticated }) as Matcher<{ type: AppStateTransitionEvent }>
             )
             .mockReturnValue(false);
-        appStateMachineActorMock.getSnapshot.calledWith().mockReturnValue(getSnapshotMock);
+        appStateMachineActorMock.getSnapshot.calledWith().mockReturnValue(snapshotMock);
         appStateMachine.start();
 
         // When
@@ -74,5 +76,29 @@ describe('AppStateMachineService', () => {
 
         // Then
         expect(appStateMachineActorMock.send).not.toHaveBeenCalled();
+    });
+
+    test('does not start the machine when it is already started', () => {
+        // Given
+        const snapshotMock = mock<ReturnType<typeof appStateMachineActorMock.getSnapshot>>({ value: 'login', status: 'active' });
+        appStateMachineActorMock.getSnapshot.calledWith().mockReturnValueOnce(snapshotMock);
+
+        // When
+        appStateMachine.start();
+
+        // Then
+        expect(appStateMachineActorMock.start).not.toHaveBeenCalled();
+    });
+
+    test('starts the machine when it has been started but is not active', () => {
+        // Given
+        const snapshotMock = mock<ReturnType<typeof appStateMachineActorMock.getSnapshot>>({ value: 'login', status: 'done' });
+        appStateMachineActorMock.getSnapshot.calledWith().mockReturnValueOnce(snapshotMock);
+
+        // When
+        appStateMachine.start();
+
+        // Then
+        expect(appStateMachineActorMock.start).toHaveBeenCalledTimes(1);
     });
 });

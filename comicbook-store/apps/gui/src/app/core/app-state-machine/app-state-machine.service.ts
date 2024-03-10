@@ -3,7 +3,7 @@ import { Subject, merge, partition, takeUntil, tap } from 'rxjs';
 import { injectLogger } from '../logger/logger.injector';
 import { createAppStateMachineActor } from './app-state-machine-actor';
 import { AppStateTransitionEventBusService } from './transition-event-bus/app-state-transition-event-bus.service';
-import { UnsupportedTransitionEventError } from './unsupported-transition-event.error';
+import { UnsupportedAppStateTransitionEventError } from './transition-error/unsupported-app-state-transition-event.error';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +15,11 @@ export class AppStateMachineService {
     readonly #actorStopped = new Subject<void>();
 
     public start(): void {
+        if (this.#isStarted) {
+            this.#logger.warn('State machine is already started.');
+            return;
+        }
+
         const [supportedEvent$, unsupportedEvent$] = partition(
             this.#transitionEventBus.transitionEvent$,
             (event) => this.#actor.getSnapshot().can({ type: event })
@@ -31,7 +36,7 @@ export class AppStateMachineService {
             .pipe(
                 tap((event) => {
                     this.#logger.error(
-                        `Cannot change state from ${this.#actor.getSnapshot().value}.`, new UnsupportedTransitionEventError(event)
+                        `Cannot change state from ${this.#actor.getSnapshot().value}.`, new UnsupportedAppStateTransitionEventError(event)
                     );
                 })
             );
@@ -48,5 +53,10 @@ export class AppStateMachineService {
         this.#actor.stop();
         this.#actorStopped.next();
         this.#logger.info('State machine stopped.');
+    }
+
+    get #isStarted(): boolean {
+        const { value: currentState, status } = this.#actor.getSnapshot();
+        return currentState !== 'start' && status === 'active';
     }
 }
