@@ -19,6 +19,7 @@ describe('AppComponent', () => {
         }).compileComponents();
 
         fixture = TestBed.createComponent(AppComponent);
+        fixture.detectChanges();
     });
 
     test('is created', () => {

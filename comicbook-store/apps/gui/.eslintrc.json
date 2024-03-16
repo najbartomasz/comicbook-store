@@ -37,6 +37,12 @@
                         "patterns": [
                             {
                                 "group": [
+                                    "../*"
+                                ],
+                                "message": "Relative imports are no allowed."
+                            },
+                            {
+                                "group": [
                                     "@test/*"
                                 ],
                                 "message": "Test files cannot be imported in production code."
@@ -55,6 +61,24 @@
             "files": ["*.spec.ts"],
             "rules": {
                 "no-restricted-imports": "off"
+            }
+        },
+        {
+            "files": ["src/app/lib/**/*.ts"],
+            "rules": {
+                "no-restricted-imports": [
+                    "error",
+                    {
+                        "patterns": [
+                            {
+                                "group": [
+                                    "@ui/*"
+                                ],
+                                "message": "Lib files cannot be depended on application code."
+                            }
+                        ]
+                    }
+                ]
             }
         }
     ]

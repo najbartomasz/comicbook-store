@@ -73,11 +73,12 @@
                 "coveragePathIgnorePatterns": [
                     "src/main.ts",
                     "src/index.html",
-                    "src/app/app.config.ts",
-                    "src/app/app.routes.ts"
+                    "src/app/infrastructure/ui/app.config.ts",
+                    "src/app/infrastructure/ui/app.routes.ts"
                 ],
                 "moduleNameMapper": {
                     "@lib/(.*)": "src/app/lib/$1",
+                    "@ui/(.*)": "src/app/infrastructure/ui/$1",
                     "@test/(.*)": "test/lib/$1"
                 }
             },

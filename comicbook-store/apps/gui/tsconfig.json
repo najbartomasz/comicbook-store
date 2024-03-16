@@ -5,6 +5,9 @@
             "@lib/*": [
                 "app/lib/*"
             ],
+            "@ui/*": [
+                "app/infrastructure/ui/*"
+            ],
             "@test/*": [
                 "../test/*"
             ]
