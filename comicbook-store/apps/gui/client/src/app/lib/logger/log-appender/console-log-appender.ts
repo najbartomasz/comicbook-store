@@ -14,7 +14,7 @@ export class ConsoleLogAppender {
     }
 
     public error(errorLogEntry: ErrorLogEntry): void {
-        const errorDescription = (errorLogEntry.error instanceof Error) ? errorLogEntry.error.message : errorLogEntry.error;
+        const errorDescription = errorLogEntry.error instanceof Error ? errorLogEntry.error.message : errorLogEntry.error;
         // eslint-disable-next-line no-console
         console.error(this.#formatLogEntry(LogLevel.Error, errorLogEntry), errorDescription);
     }

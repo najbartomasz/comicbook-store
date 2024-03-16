@@ -21,7 +21,9 @@ describe('LoggerFactoryService', () => {
     test('creates logger new instance', () => {
         // Given
         const expectedLogger = new loggerModule.Logger('TestLogger', consoleLogAppenderMock);
-        const loggerSpy = jest.spyOn(loggerModule, 'Logger').mockReturnValueOnce(expectedLogger);
+        const loggerSpy = jest
+            .spyOn(loggerModule, 'Logger')
+            .mockReturnValueOnce(expectedLogger);
 
         // When
         const logger = loggerFactoryService.createLogger('TestLogger');

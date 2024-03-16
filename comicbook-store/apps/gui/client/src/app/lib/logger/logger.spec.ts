@@ -21,9 +21,11 @@ describe('Logger', () => {
 
         // Then
         expect(consoleLogAppenderMock.info).toHaveBeenCalledTimes(1);
-        expect(consoleLogAppenderMock.info).toHaveBeenCalledWith(
-            { timestamp: '2024-02-28T09:21:06.090Z', loggerName: 'TestLogger', message: 'Test info message.' }
-        );
+        expect(consoleLogAppenderMock.info).toHaveBeenCalledWith({
+            timestamp: '2024-02-28T09:21:06.090Z',
+            loggerName: 'TestLogger',
+            message: 'Test info message.'
+        });
     });
 
     test('triggers console log appender warn', () => {
@@ -32,9 +34,11 @@ describe('Logger', () => {
 
         // Then
         expect(consoleLogAppenderMock.warn).toHaveBeenCalledTimes(1);
-        expect(consoleLogAppenderMock.warn).toHaveBeenCalledWith(
-            { timestamp: '2024-02-28T09:21:06.090Z', loggerName: 'TestLogger', message: 'Test warn message.' }
-        );
+        expect(consoleLogAppenderMock.warn).toHaveBeenCalledWith({
+            timestamp: '2024-02-28T09:21:06.090Z',
+            loggerName: 'TestLogger',
+            message: 'Test warn message.'
+        });
     });
 
     test('triggers console log appender error', () => {
@@ -46,8 +50,11 @@ describe('Logger', () => {
 
         // Then
         expect(consoleLogAppenderMock.error).toHaveBeenCalledTimes(1);
-        expect(consoleLogAppenderMock.error).toHaveBeenCalledWith(
-            { timestamp: '2024-02-28T09:21:06.090Z', loggerName: 'TestLogger', message: 'Test error message.', error }
-        );
+        expect(consoleLogAppenderMock.error).toHaveBeenCalledWith({
+            timestamp: '2024-02-28T09:21:06.090Z',
+            loggerName: 'TestLogger',
+            message: 'Test error message.',
+            error
+        });
     });
 });

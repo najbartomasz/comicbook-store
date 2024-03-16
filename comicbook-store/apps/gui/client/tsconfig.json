@@ -2,15 +2,9 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "@lib/*": [
-                "app/lib/*"
-            ],
-            "@ui/*": [
-                "app/infrastructure/ui/*"
-            ],
-            "@test/*": [
-                "../test/*"
-            ]
+            "@lib/*": ["app/lib/*"],
+            "@ui/*": ["app/infrastructure/ui/*"],
+            "@test/*": ["../test/*"]
         },
         "target": "es2022",
         "useDefineForClassFields": false,
@@ -35,10 +29,10 @@
             "path": "./tsconfig.editor.json"
         },
         {
-            "path": "./.storybook/tsconfig.json"
+            "path": "./.storybook/tsconfig.base.json"
         }
     ],
-    "extends": "../../tsconfig.base.json",
+    "extends": "../../../tsconfig.base.json",
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,

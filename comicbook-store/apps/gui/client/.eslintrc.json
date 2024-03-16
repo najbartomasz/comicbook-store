@@ -1,13 +1,11 @@
 {
-    "extends": ["../../.eslintrc.json"],
+    "extends": ["../../../.eslintrc.json"],
     "ignorePatterns": ["!**/*"],
     "overrides": [
         {
             "files": ["*.ts"],
             "parserOptions": {
-                "project": [
-                    "apps/gui/tsconfig.*?.json"
-                ],
+                "project": ["apps/gui/client/tsconfig.*?.json"],
                 "createDefaultProgram": true
             },
             "extends": [
@@ -36,9 +34,7 @@
                     {
                         "patterns": [
                             {
-                                "group": [
-                                    "@test/*"
-                                ],
+                                "group": ["@test/*"],
                                 "message": "Test files cannot be imported in production code."
                             }
                         ]
@@ -65,10 +61,7 @@
                     {
                         "patterns": [
                             {
-                                "group": [
-                                    "../**/infrastructure/*",
-                                    "@ui/*"
-                                ],
+                                "group": ["../**/infrastructure/*", "@ui/*"],
                                 "message": "Lib files cannot be depended on application code."
                             }
                         ]

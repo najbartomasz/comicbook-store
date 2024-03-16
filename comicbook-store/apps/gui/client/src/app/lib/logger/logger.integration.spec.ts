@@ -39,8 +39,6 @@ describe('Logger', () => {
         expect(console.error).toHaveBeenCalledTimes(1);
         expect(console.info).toHaveBeenCalledWith('2024-02-29T08:01:59.326Z TestLogger1 INFO: First: test info message.');
         expect(console.warn).toHaveBeenCalledWith('2024-02-29T08:02:14.430Z TestLogger2 WARN: Second: test warn message.');
-        expect(console.error).toHaveBeenCalledWith(
-            '2024-02-29T08:02:25.252Z TestLogger3 ERROR: Third: test error message.', 'Test error.'
-        );
+        expect(console.error).toHaveBeenCalledWith('2024-02-29T08:02:25.252Z TestLogger3 ERROR: Third: test error message.', 'Test error.');
     });
 });

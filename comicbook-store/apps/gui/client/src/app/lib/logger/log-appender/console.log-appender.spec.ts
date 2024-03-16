@@ -13,7 +13,11 @@ describe('ConsoleLogAppenderService', () => {
         jest.spyOn(console, 'info').mockImplementationOnce(jest.fn());
 
         // When
-        consoleLogAppender.info({ timestamp: '2024-02-28T09:07:16.880Z', loggerName: 'TestLogger', message: 'Test console info message.' });
+        consoleLogAppender.info({
+            timestamp: '2024-02-28T09:07:16.880Z',
+            loggerName: 'TestLogger',
+            message: 'Test console info message.'
+        });
 
         // Then
         expect(console.info).toHaveBeenCalledTimes(1);
@@ -25,7 +29,11 @@ describe('ConsoleLogAppenderService', () => {
         jest.spyOn(console, 'warn').mockImplementationOnce(jest.fn());
 
         // When
-        consoleLogAppender.warn({ timestamp: '2024-02-28T09:07:16.880Z', loggerName: 'TestLogger', message: 'Test console warn message.' });
+        consoleLogAppender.warn({
+            timestamp: '2024-02-28T09:07:16.880Z',
+            loggerName: 'TestLogger',
+            message: 'Test console warn message.'
+        });
 
         // Then
         expect(console.warn).toHaveBeenCalledTimes(1);
@@ -46,9 +54,7 @@ describe('ConsoleLogAppenderService', () => {
 
         // Then
         expect(console.error).toHaveBeenCalledTimes(1);
-        expect(console.error).toHaveBeenCalledWith(
-            '2024-02-28T09:07:16.880Z TestLogger ERROR: Test console error message.', 'Test error.'
-        );
+        expect(console.error).toHaveBeenCalledWith('2024-02-28T09:07:16.880Z TestLogger ERROR: Test console error message.', 'Test error.');
     });
 
     test('prints error log to debug console when error is of unknown type', () => {

@@ -35,7 +35,11 @@ describe('createErrorLogEntry', () => {
         };
 
         // When
-        const logEntry = createErrorLogEntry('TestLogger', 'Test message.', error);
+        const logEntry = createErrorLogEntry(
+            'TestLogger',
+            'Test message.',
+            error
+        );
 
         // Then
         expect(logEntry).toStrictEqual(expectedErrorLogEntry);

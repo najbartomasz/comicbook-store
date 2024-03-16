@@ -9,7 +9,9 @@ export class LoggerMockFixture {
         this.loggerFactory = mock<LoggerFactoryService>();
         this.logger = mock<Logger>();
         if (loggerName) {
-            this.loggerFactory.createLogger.calledWith(loggerName).mockReturnValueOnce(this.logger);
+            this.loggerFactory.createLogger
+                .calledWith(loggerName)
+                .mockReturnValueOnce(this.logger);
         } else {
             this.loggerFactory.createLogger.mockReturnValue(this.logger);
         }
