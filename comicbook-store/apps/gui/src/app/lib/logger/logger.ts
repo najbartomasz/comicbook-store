@@ -1,11 +1,11 @@
-import { ConsoleLogAppenderService } from './log-appender/console-log-appender.service';
+import { ConsoleLogAppender } from './log-appender/console-log-appender';
 import { createErrorLogEntry, createLogEntry } from './log-entry-provider/log-entry-provider';
 
 export class Logger {
     readonly #name: string;
-    readonly #logAppender: ConsoleLogAppenderService;
+    readonly #logAppender: ConsoleLogAppender;
 
-    public constructor(name: string, logAppender: ConsoleLogAppenderService) {
+    public constructor(name: string, logAppender: ConsoleLogAppender) {
         this.#name = name;
         this.#logAppender = logAppender;
     }

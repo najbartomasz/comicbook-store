@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
-import { TestBed } from '@angular/core/testing';
-import { ConsoleLogAppenderService } from './console-log-appender.service';
+import { ConsoleLogAppender } from './console-log-appender';
 
 describe('ConsoleLogAppenderService', () => {
-    let consoleLogAppender: ConsoleLogAppenderService;
+    let consoleLogAppender: ConsoleLogAppender;
 
     beforeEach(() => {
-        consoleLogAppender = TestBed.inject(ConsoleLogAppenderService);
+        consoleLogAppender = new ConsoleLogAppender();
     });
 
     test('prints info log to debug console', () => {

@@ -1,12 +1,8 @@
-import { Injectable } from '@angular/core';
 import { ErrorLogEntry } from '../error-log-entry.model';
 import { LogEntry } from '../log-entry.model';
 import { LogLevel } from './log-level';
 
-@Injectable({
-    providedIn: 'root'
-})
-export class ConsoleLogAppenderService {
+export class ConsoleLogAppender {
     public info(logEntry: LogEntry): void {
         // eslint-disable-next-line no-console
         console.info(this.#formatLogEntry(LogLevel.Info, logEntry));

@@ -37,12 +37,6 @@
                         "patterns": [
                             {
                                 "group": [
-                                    "../*"
-                                ],
-                                "message": "Relative imports are no allowed."
-                            },
-                            {
-                                "group": [
                                     "@test/*"
                                 ],
                                 "message": "Test files cannot be imported in production code."
@@ -72,6 +66,7 @@
                         "patterns": [
                             {
                                 "group": [
+                                    "../**/infrastructure/*",
                                     "@ui/*"
                                 ],
                                 "message": "Lib files cannot be depended on application code."

@@ -1,17 +1,17 @@
 import { MockProxy, mock } from 'jest-mock-extended';
-import { ConsoleLogAppenderService } from './log-appender/console-log-appender.service';
+import { ConsoleLogAppender } from './log-appender/console-log-appender';
 import { Logger } from './logger';
 
 describe('Logger', () => {
     let logger: Logger;
 
-    let consoleLogAppenderMock: MockProxy<ConsoleLogAppenderService>;
+    let consoleLogAppenderMock: MockProxy<ConsoleLogAppender>;
 
     beforeEach(() => {
         const dateMock = new Date('2024-02-28T09:21:06.090Z');
         jest.spyOn(global, 'Date').mockReturnValueOnce(dateMock);
 
-        consoleLogAppenderMock = mock<ConsoleLogAppenderService>();
+        consoleLogAppenderMock = mock<ConsoleLogAppender>();
         logger = new Logger('TestLogger', consoleLogAppenderMock);
     });
 

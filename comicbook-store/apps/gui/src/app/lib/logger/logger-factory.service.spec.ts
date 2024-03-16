@@ -1,22 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { MockProxy, mock } from 'jest-mock-extended';
-import { ConsoleLogAppenderService } from './log-appender/console-log-appender.service';
+import * as consoleLogAppenderModule from './log-appender/console-log-appender';
 import * as loggerModule from './logger';
 import { LoggerFactoryService } from './logger-factory.service';
+
+jest.mock('./log-appender/console-log-appender');
 
 describe('LoggerFactoryService', () => {
     let loggerFactoryService: LoggerFactoryService;
 
-    let consoleLogAppenderMock: MockProxy<ConsoleLogAppenderService>;
+    let consoleLogAppenderMock: MockProxy<consoleLogAppenderModule.ConsoleLogAppender>;
 
     beforeEach(() => {
-        consoleLogAppenderMock = mock<ConsoleLogAppenderService>();
+        consoleLogAppenderMock = mock<consoleLogAppenderModule.ConsoleLogAppender>();
+        jest.spyOn(consoleLogAppenderModule, 'ConsoleLogAppender').mockReturnValueOnce(consoleLogAppenderMock);
 
-        TestBed.configureTestingModule({
-            providers: [
-                { provide: ConsoleLogAppenderService, useValue: consoleLogAppenderMock }
-            ]
-        });
         loggerFactoryService = TestBed.inject(LoggerFactoryService);
     });
 
