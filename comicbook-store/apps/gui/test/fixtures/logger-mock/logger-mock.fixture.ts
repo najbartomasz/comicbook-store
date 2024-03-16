@@ -1,6 +1,6 @@
 import { MockProxy, mock } from 'jest-mock-extended';
-import { LoggerFactoryService } from '../../../src/app/core/logger/logger-factory.service';
-import { Logger } from '../../../src/app/core/logger';
+import { LoggerFactoryService } from '../../../src/app/lib/logger/logger-factory.service';
+import { Logger } from '../../../src/app/lib/logger';
 
 export class LoggerMockFixture {
     public loggerFactory: MockProxy<LoggerFactoryService>;
@@ -16,7 +16,7 @@ export class LoggerMockFixture {
         }
     }
 
-    public static loggerFactory(loggerName?: string): MockProxy<LoggerFactoryService> {
-        return new LoggerMockFixture(loggerName).loggerFactory;
+    public static get loggerFactory(): MockProxy<LoggerFactoryService> {
+        return new LoggerMockFixture().loggerFactory;
     }
 }

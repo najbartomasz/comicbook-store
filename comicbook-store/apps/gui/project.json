@@ -75,7 +75,11 @@
                     "src/index.html",
                     "src/app/app.config.ts",
                     "src/app/app.routes.ts"
-                ]
+                ],
+                "moduleNameMapper": {
+                    "@lib/(.*)": "src/app/lib/$1",
+                    "@test/(.*)": "test/lib/$1"
+                }
             },
             "configurations": {
                 "coverage": {

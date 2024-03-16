@@ -30,6 +30,19 @@
                         "prefix": "cbs",
                         "style": "kebab-case"
                     }
+                ],
+                "no-restricted-imports": [
+                    "error",
+                    {
+                        "patterns": [
+                            {
+                                "group": [
+                                    "@test/*"
+                                ],
+                                "message": "Test files cannot be imported in production code."
+                            }
+                        ]
+                    }
                 ]
             }
         },
@@ -37,6 +50,12 @@
             "files": ["*.html"],
             "extends": ["plugin:@nx/angular-template"],
             "rules": {}
+        },
+        {
+            "files": ["*.spec.ts"],
+            "rules": {
+                "no-restricted-imports": "off"
+            }
         }
     ]
 }

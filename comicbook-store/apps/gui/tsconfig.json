@@ -1,5 +1,14 @@
 {
     "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "@lib/*": [
+                "app/lib/*"
+            ],
+            "@test/*": [
+                "../test/*"
+            ]
+        },
         "target": "es2022",
         "useDefineForClassFields": false,
         "esModuleInterop": true,
