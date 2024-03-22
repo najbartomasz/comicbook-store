@@ -2,8 +2,12 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "@lib/*": ["app/lib/*"],
+            "@infrastructure/*": ["app/infrastructure/*"],
             "@ui/*": ["app/infrastructure/ui/*"],
+            "@api/*": ["app/infrastructure/api/*"],
+            "@feature/*": ["app/feature/*"],
+            "@core/*": ["app/core/*"],
+            "@lib/*": ["app/lib/*"],
             "@test/*": ["../test/*"]
         },
         "target": "es2022",

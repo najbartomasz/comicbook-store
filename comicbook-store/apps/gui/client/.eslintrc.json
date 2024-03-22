@@ -54,6 +54,43 @@
             }
         },
         {
+            "files": ["src/app/core/**/*.ts"],
+            "rules": {
+                "no-restricted-imports": [
+                    "error",
+                    {
+                        "patterns": [
+                            {
+                                "group": [
+                                    "../**/infrastructure/*", "@infrastructure/*", "@ui/*", "@api/*"
+                                ],
+                                "message": "Core files cannot be depended on any other layer."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "files": ["src/app/core/**/*.ts"],
+            "rules": {
+                "no-restricted-imports": [
+                    "error",
+                    {
+                        "patterns": [
+                            {
+                                "group": [
+                                    "../**/infrastructure/*", "@infrastructure/*", "@ui/*", "@api/*",
+                                    "../**/feature/*", "@feature/*"
+                                ],
+                                "message": "Core files cannot be depended on any other layer."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "files": ["src/app/lib/**/*.ts"],
             "rules": {
                 "no-restricted-imports": [
@@ -61,7 +98,11 @@
                     {
                         "patterns": [
                             {
-                                "group": ["../**/infrastructure/*", "@ui/*"],
+                                "group": [
+                                    "../**/infrastructure/*", "@infrastructure/*", "@ui/*", "@api/*",
+                                    "../**/feature/*", "@feature/*",
+                                    "../**/core/*", "@core/*"
+                                ],
                                 "message": "Lib files cannot be depended on application code."
                             }
                         ]

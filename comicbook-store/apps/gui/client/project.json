@@ -80,8 +80,12 @@
                     "src/app/infrastructure/ui/app.routes.ts"
                 ],
                 "moduleNameMapper": {
-                    "@lib/(.*)": "src/app/lib/$1",
+                    "@infrastructure/(.*)": "src/app/infrastructure/$1",
                     "@ui/(.*)": "src/app/infrastructure/ui/$1",
+                    "@api/(.*)": "src/app/infrastructure/api/$1",
+                    "@feature/(.*)": "src/app/feature/$1",
+                    "@core/(.*)": "src/app/core/$1",
+                    "@lib/(.*)": "src/app/lib/$1",
                     "@test/(.*)": "test/lib/$1"
                 }
             },
