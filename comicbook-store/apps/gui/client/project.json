@@ -76,8 +76,7 @@
                 "coveragePathIgnorePatterns": [
                     "src/main.ts",
                     "src/index.html",
-                    "src/app/infrastructure/ui/app.config.ts",
-                    "src/app/infrastructure/ui/app.routes.ts"
+                    "src/app/infrastructure/ui/app.config.ts"
                 ],
                 "moduleNameMapper": {
                     "@infrastructure/(.*)": "src/app/infrastructure/$1",
