@@ -1,36 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-import { MockProxy, mock } from 'jest-mock-extended';
-import * as consoleLogAppenderModule from './log-appender/console-log-appender';
+import { ConsoleLogAppender } from './log-appender/console-log-appender';
 import * as loggerModule from './logger';
 import { LoggerFactoryService } from './logger-factory.service';
 
-jest.mock('./log-appender/console-log-appender');
-
 describe('LoggerFactoryService', () => {
-    let loggerFactoryService: LoggerFactoryService;
-
-    let consoleLogAppenderMock: MockProxy<consoleLogAppenderModule.ConsoleLogAppender>;
-
-    beforeEach(() => {
-        consoleLogAppenderMock = mock<consoleLogAppenderModule.ConsoleLogAppender>();
-        jest.spyOn(consoleLogAppenderModule, 'ConsoleLogAppender').mockReturnValueOnce(consoleLogAppenderMock);
-
-        loggerFactoryService = TestBed.inject(LoggerFactoryService);
-    });
-
-    test('creates logger new instance', () => {
+    test('creates new logger instance', () => {
         // Given
-        const expectedLogger = new loggerModule.Logger('TestLogger', consoleLogAppenderMock);
-        const loggerSpy = jest
-            .spyOn(loggerModule, 'Logger')
-            .mockReturnValueOnce(expectedLogger);
+        const consoleLogAppender = new ConsoleLogAppender();
+        const expectedLogger = new loggerModule.Logger('TestLogger', consoleLogAppender);
+        const loggerSpy = jest.spyOn(loggerModule, 'Logger').mockReturnValueOnce(expectedLogger);
+        const loggerFactoryService = TestBed.inject(LoggerFactoryService);
 
         // When
         const logger = loggerFactoryService.createLogger('TestLogger');
 
         // Then
-        expect(logger).toStrictEqual(expectedLogger);
+        expect(logger).toBe(expectedLogger);
         expect(loggerSpy).toHaveBeenCalledTimes(1);
-        expect(loggerSpy).toHaveBeenCalledWith('TestLogger', consoleLogAppenderMock);
+        expect(loggerSpy).toHaveBeenCalledWith('TestLogger', consoleLogAppender);
     });
 });

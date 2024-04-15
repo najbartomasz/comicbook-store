@@ -1,24 +1,24 @@
 import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { Route, provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { appRoutes } from './app.routes';
 import { HomePageComponent } from './pages/home/home-page.component';
 
 describe('AppRoutes', () => {
-    let routerHarness: RouterTestingHarness;
-
-    beforeEach(async () => {
+    const setup = async (routes: Route[]) => {
         TestBed.configureTestingModule({
             providers: [
-                provideRouter(appRoutes)
+                provideRouter(routes)
             ]
         });
-
-        routerHarness = await RouterTestingHarness.create();
-    });
+        return RouterTestingHarness.create();
+    };
 
     test('navigates to / by default', async () => {
-        // Given, When
+        // Given
+        const routerHarness = await setup(appRoutes);
+
+        // When
         const activatedComponent = await routerHarness.navigateByUrl('/');
 
         // Then
@@ -27,7 +27,10 @@ describe('AppRoutes', () => {
     });
 
     test('navigates back to / when navigated to unsupported path', async () => {
-        // Given, When
+        // Given
+        const routerHarness = await setup(appRoutes);
+
+        // When
         const activatedComponent = await routerHarness.navigateByUrl('/path');
 
         // Then

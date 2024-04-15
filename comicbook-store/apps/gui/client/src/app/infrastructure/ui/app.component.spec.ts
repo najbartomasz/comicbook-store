@@ -1,38 +1,36 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Logger, LoggerFactoryService } from '@lib/logger';
+import { TestBed } from '@angular/core/testing';
+import { LoggerFactoryService } from '@lib/logger';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
-import { MockProxy } from 'jest-mock-extended';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-    let fixture: ComponentFixture<AppComponent>;
-
-    let loggerMock: MockProxy<Logger>;
-
-    beforeEach(async () => {
-        const loggerMockFixture = new LoggerMockFixture('AppComponent');
-        loggerMock = loggerMockFixture.logger;
-
+    const setup = async (loggerFactoryMock: LoggerFactoryService) => {
         await TestBed.configureTestingModule({
             imports: [
                 AppComponent
             ],
             providers: [
-                { provide: LoggerFactoryService, useValue: loggerMockFixture.loggerFactory }
+                { provide: LoggerFactoryService, useValue: loggerFactoryMock }
             ]
         }).compileComponents();
-
-        fixture = TestBed.createComponent(AppComponent);
+        const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
-    });
+        return fixture;
+    };
 
-    test('is up and running', () => {
-        // Given, When, Then
+    test('is up and running', async () => {
+        // Given
+        const { logger: loggerMock, loggerFactory } = new LoggerMockFixture('AppComponent');
+        await setup(loggerFactory);
+
+        // When, Then
         expect(loggerMock.info).toHaveBeenCalledWith('Up and running.');
     });
 
-    test('is closed', () => {
+    test('is closed', async () => {
         // Given
+        const { logger: loggerMock, loggerFactory } = new LoggerMockFixture('AppComponent');
+        const fixture = await setup(loggerFactory);
         fixture.destroy();
 
         // When, Then

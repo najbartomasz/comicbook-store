@@ -2,15 +2,10 @@
 import { ConsoleLogAppender } from './console-log-appender';
 
 describe('ConsoleLogAppenderService', () => {
-    let consoleLogAppender: ConsoleLogAppender;
-
-    beforeEach(() => {
-        consoleLogAppender = new ConsoleLogAppender();
-    });
-
     test('prints info log to debug console', () => {
         // Given
         jest.spyOn(console, 'info').mockImplementationOnce(jest.fn());
+        const consoleLogAppender = new ConsoleLogAppender();
 
         // When
         consoleLogAppender.info({
@@ -27,6 +22,7 @@ describe('ConsoleLogAppenderService', () => {
     test('prints warn log to debug console', () => {
         // Given
         jest.spyOn(console, 'warn').mockImplementationOnce(jest.fn());
+        const consoleLogAppender = new ConsoleLogAppender();
 
         // When
         consoleLogAppender.warn({
@@ -43,6 +39,7 @@ describe('ConsoleLogAppenderService', () => {
     test('prints error log to debug console when error is of Error type', () => {
         // Given
         jest.spyOn(console, 'error').mockImplementationOnce(jest.fn());
+        const consoleLogAppender = new ConsoleLogAppender();
 
         // When
         consoleLogAppender.error({
@@ -60,6 +57,7 @@ describe('ConsoleLogAppenderService', () => {
     test('prints error log to debug console when error is of unknown type', () => {
         // Given
         jest.spyOn(console, 'error').mockImplementationOnce(jest.fn());
+        const consoleLogAppender = new ConsoleLogAppender();
 
         // When
         consoleLogAppender.error({
