@@ -1,20 +1,15 @@
-import { TestBed } from '@angular/core/testing';
 import { LoggerFactoryService } from '@lib/logger';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
+import { render } from '@testing-library/angular';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
     const setup = async (loggerFactoryMock: LoggerFactoryService) => {
-        await TestBed.configureTestingModule({
-            imports: [
-                AppComponent
-            ],
+        const { fixture } = await render(AppComponent, {
             providers: [
                 { provide: LoggerFactoryService, useValue: loggerFactoryMock }
             ]
-        }).compileComponents();
-        const fixture = TestBed.createComponent(AppComponent);
-        fixture.detectChanges();
+        });
         return fixture;
     };
 
@@ -31,9 +26,11 @@ describe('AppComponent', () => {
         // Given
         const { logger: loggerMock, loggerFactory } = new LoggerMockFixture('AppComponent');
         const fixture = await setup(loggerFactory);
+
+        // When
         fixture.destroy();
 
-        // When, Then
+        // Then
         expect(loggerMock.info).toHaveBeenCalledWith('Closed.');
     });
 });
