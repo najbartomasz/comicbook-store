@@ -15,8 +15,8 @@ describe('AppComponent', () => {
 
     test('is up and running', async () => {
         // Given
-        const { logger: loggerMock, loggerFactory } = new LoggerMockFixture('AppComponent');
-        await setup(loggerFactory);
+        const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('AppComponent');
+        await setup(loggerFactoryMock);
 
         // When, Then
         expect(loggerMock.info).toHaveBeenCalledWith('Up and running.');
@@ -24,8 +24,8 @@ describe('AppComponent', () => {
 
     test('is closed', async () => {
         // Given
-        const { logger: loggerMock, loggerFactory } = new LoggerMockFixture('AppComponent');
-        const fixture = await setup(loggerFactory);
+        const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('AppComponent');
+        const fixture = await setup(loggerFactoryMock);
 
         // When
         fixture.destroy();
