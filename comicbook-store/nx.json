@@ -3,10 +3,7 @@
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
         "production": [
-            "default",
-            "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-            "!{projectRoot}/.storybook/**/*",
-            "!{projectRoot}/tsconfig.storybook.json"
+            "default"
         ],
         "sharedGlobals": []
     },
@@ -31,15 +28,6 @@
             }
         },
         {
-            "plugin": "@nx/storybook/plugin",
-            "options": {
-                "buildStorybookTargetName": "build-storybook",
-                "serveStorybookTargetName": "storybook",
-                "testStorybookTargetName": "test-storybook",
-                "staticStorybookTargetName": "static-storybook"
-            }
-        },
-        {
             "plugin": "@nx/webpack/plugin",
             "options": {
                 "buildTargetName": "build",
@@ -57,13 +45,6 @@
         },
         "@nx/angular:component": {
             "style": "scss"
-        }
-    },
-    "tasksRunnerOptions": {
-        "default": {
-            "options": {
-                "cacheableOperations": ["build-storybook"]
-            }
         }
     }
 }

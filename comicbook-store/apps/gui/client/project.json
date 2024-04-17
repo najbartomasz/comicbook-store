@@ -104,7 +104,8 @@
                 "integration": {
                     "testMatch": ["**/?(*.)integration.spec.ts"]
                 }
-            }
+            },
+            "defaultConfiguration": "coverage"
         }
     }
 }
