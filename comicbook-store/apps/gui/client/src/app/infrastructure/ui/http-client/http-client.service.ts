@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, of } from 'rxjs';
-import { HttpClient } from '@api/http-client/http-client.interface';
+import { HttpClient } from '@api/interfaces/http-client.interface';
 import brandings from './brandings.json';
 
 @Injectable({

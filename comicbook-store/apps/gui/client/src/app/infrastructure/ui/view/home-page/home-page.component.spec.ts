@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/angular';
-import { HomePageComponent } from './home-page.component';
 import { BrandingFeature } from '@features/branding/branding.feature';
+import { render, screen } from '@testing-library/angular';
 import { mock } from 'jest-mock-extended';
 import { of } from 'rxjs';
+import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {
     const setup = async (brandingFeatureMock: BrandingFeature) => {
@@ -18,11 +18,16 @@ describe('HomePageComponent', () => {
         const brandingFeatureMock = mock<BrandingFeature>();
         brandingFeatureMock.getBrandings.calledWith().mockReturnValueOnce(of([
             { name: 'MARVEL NOW!' },
-            { name: 'DC BLACK LABEL' }
+            { name: 'DC BLACK LABEL' },
+            { name: 'J. P. FANTASTICA' }
         ]));
         await setup(brandingFeatureMock);
 
         // When, Then
-        expect(screen.getAllByTestId('branding')).toHaveLength(2);
+        const brandings = screen.getAllByTestId('branding');
+        expect(brandings).toHaveLength(3);
+        expect(brandings[0]).toHaveTextContent('MARVEL NOW!');
+        expect(brandings[1]).toHaveTextContent('DC BLACK LABEL');
+        expect(brandings[2]).toHaveTextContent('J. P. FANTASTICA');
     });
 });

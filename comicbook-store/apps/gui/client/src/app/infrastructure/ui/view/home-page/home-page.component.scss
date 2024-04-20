@@ -1,8 +1,17 @@
-.container {
-    padding: 0 15%;
+.branding-list-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15%;
 }
 
-mat-grid-tile {
+.branding-list {
+    width: 100%;
+}
+
+.branding {
     border: solid 1px #000;
     border-radius: 5px;
+    font-size: 2vw;
 }
