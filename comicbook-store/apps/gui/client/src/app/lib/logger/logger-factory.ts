@@ -1,11 +1,7 @@
-import { Injectable } from '@angular/core';
 import { ConsoleLogAppender } from './log-appender/console-log-appender';
 import { Logger } from './logger';
 
-@Injectable({
-    providedIn: 'root'
-})
-export class LoggerFactoryService {
+export class LoggerFactory {
     readonly #consoleLogAppender = new ConsoleLogAppender();
 
     public createLogger(loggerName: string): Logger {

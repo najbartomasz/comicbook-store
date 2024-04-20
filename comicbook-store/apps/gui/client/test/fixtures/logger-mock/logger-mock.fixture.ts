@@ -1,12 +1,12 @@
 import { MockProxy, mock } from 'jest-mock-extended';
-import { LoggerFactoryService, Logger } from '@lib/logger';
+import { LoggerFactory, Logger } from '@lib/logger';
 
 export class LoggerMockFixture {
-    public loggerFactoryMock: MockProxy<LoggerFactoryService>;
+    public loggerFactoryMock: MockProxy<LoggerFactory>;
     public loggerMock: MockProxy<Logger>;
 
     public constructor(loggerName?: string) {
-        this.loggerFactoryMock = mock<LoggerFactoryService>();
+        this.loggerFactoryMock = mock<LoggerFactory>();
         this.loggerMock = mock<Logger>();
         if (loggerName) {
             this.loggerFactoryMock.createLogger
@@ -17,7 +17,7 @@ export class LoggerMockFixture {
         }
     }
 
-    public static get loggerFactory(): MockProxy<LoggerFactoryService> {
+    public static get loggerFactory(): MockProxy<LoggerFactory> {
         return new LoggerMockFixture().loggerFactoryMock;
     }
 }

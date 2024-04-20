@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-import { TestBed } from '@angular/core/testing';
-import { injectLogger } from '.';
+import { LoggerFactory } from '.';
 
 describe('Logger', () => {
     test('prints messages on debug console', () => {
@@ -8,11 +7,10 @@ describe('Logger', () => {
         jest.spyOn(console, 'info').mockImplementationOnce(jest.fn());
         jest.spyOn(console, 'warn').mockImplementationOnce(jest.fn());
         jest.spyOn(console, 'error').mockImplementationOnce(jest.fn());
-        const { logger1, logger2, logger3 } = TestBed.runInInjectionContext(() => ({
-            logger1: injectLogger('TestLogger1'),
-            logger2: injectLogger('TestLogger2'),
-            logger3: injectLogger('TestLogger3')
-        }));
+        const loggerFactory = new LoggerFactory();
+        const logger1 = loggerFactory.createLogger('TestLogger1');
+        const logger2 = loggerFactory.createLogger('TestLogger2');
+        const logger3 = loggerFactory.createLogger('TestLogger3');
 
         // When
         jest.setSystemTime(new Date('2024-02-29T08:01:59.326Z'));
