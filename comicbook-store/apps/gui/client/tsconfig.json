@@ -2,9 +2,11 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "@infrastructure/*": ["app/infrastructure/*"],
             "@ui/*": ["app/infrastructure/ui/*"],
             "@api/*": ["app/infrastructure/api/*"],
+            "@providers/*": ["app/infrastructure/providers/*"],
+            "@infrastructure/*": ["app/infrastructure/*"],
+            "@features/*": ["app/feature/features/*"],
             "@feature/*": ["app/feature/*"],
             "@core/*": ["app/core/*"],
             "@lib/*": ["app/lib/*"],
@@ -18,7 +20,8 @@
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
         "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "resolveJsonModule": true
     },
     "files": [],
     "include": [],

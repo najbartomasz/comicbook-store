@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { injectLogger } from '@lib/logger';
-
 @Component({
     standalone: true,
     imports: [RouterModule],

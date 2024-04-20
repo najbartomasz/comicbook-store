@@ -74,14 +74,17 @@
             "options": {
                 "jestConfig": "apps/gui/client/jest.config.ts",
                 "coveragePathIgnorePatterns": [
-                    "src/main.ts",
                     "src/index.html",
-                    "src/app/infrastructure/ui/app.config.ts"
+                    "src/main.ts",
+                    "src/config/",
+                    "src/app/infrastructure/ui/http-client/http-client.service.ts"
                 ],
                 "moduleNameMapper": {
-                    "@infrastructure/(.*)": "src/app/infrastructure/$1",
                     "@ui/(.*)": "src/app/infrastructure/ui/$1",
                     "@api/(.*)": "src/app/infrastructure/api/$1",
+                    "@providers/(.*)": "app/infrastructure/providers/$1",
+                    "@infrastructure/(.*)": "src/app/infrastructure/$1",
+                    "@features/(.*)": "src/app/feature/features/$1",
                     "@feature/(.*)": "src/app/feature/$1",
                     "@core/(.*)": "src/app/core/$1",
                     "@lib/(.*)": "src/app/lib/$1",

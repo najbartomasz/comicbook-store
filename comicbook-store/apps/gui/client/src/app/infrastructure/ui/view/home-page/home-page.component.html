@@ -1,0 +1,7 @@
+<div class="container">
+    <mat-grid-list cols="3" rowHeight="6:2" gutterSize="10px">
+        @for (branding of brandings(); track branding.name) {
+            <mat-grid-tile data-testid="branding"></mat-grid-tile>
+        }
+    </mat-grid-list>
+</div>
