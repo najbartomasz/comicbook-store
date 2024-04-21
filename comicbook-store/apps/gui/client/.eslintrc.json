@@ -54,7 +54,7 @@
             }
         },
         {
-            "files": ["src/app/core/**/*.ts"],
+            "files": ["src/app/feature/**/*.ts"],
             "rules": {
                 "no-restricted-imports": [
                     "error",
@@ -64,7 +64,7 @@
                                 "group": [
                                     "../**/infrastructure/*", "@infrastructure/*", "@ui/*", "@api/*"
                                 ],
-                                "message": "Core files cannot be depended on any other layer."
+                                "message": "Feature files cannot be depended on any other layer."
                             }
                         ]
                     }
@@ -81,7 +81,7 @@
                             {
                                 "group": [
                                     "../**/infrastructure/*", "@infrastructure/*", "@ui/*", "@api/*",
-                                    "../**/feature/*", "@feature/*"
+                                    "../**/feature/*", "@feature/*", "@features/*"
                                 ],
                                 "message": "Core files cannot be depended on any other layer."
                             }

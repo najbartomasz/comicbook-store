@@ -82,7 +82,6 @@
                 "moduleNameMapper": {
                     "@ui/(.*)": "src/app/infrastructure/ui/$1",
                     "@api/(.*)": "src/app/infrastructure/api/$1",
-                    "@providers/(.*)": "app/infrastructure/providers/$1",
                     "@infrastructure/(.*)": "src/app/infrastructure/$1",
                     "@features/(.*)": "src/app/feature/features/$1",
                     "@feature/(.*)": "src/app/feature/$1",
