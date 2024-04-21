@@ -2,7 +2,7 @@ import { ErrorLogEntry } from '../error-log-entry.model';
 import { LogEntry } from '../log-entry.model';
 
 export const createLogEntry = (loggerName: string, message: string): LogEntry => ({
-    timestamp: new Date().toISOString(),
+    timestamp: new Date(),
     loggerName,
     message
 });

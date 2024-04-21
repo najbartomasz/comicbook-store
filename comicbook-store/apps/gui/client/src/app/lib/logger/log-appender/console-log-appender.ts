@@ -20,6 +20,13 @@ export class ConsoleLogAppender {
     }
 
     #formatLogEntry(logLevel: LogLevel, logEntry: LogEntry): string {
-        return `${logEntry.timestamp} ${logEntry.loggerName} ${logLevel}: ${logEntry.message}`;
+        return `${this.#mapTimestampToLocalISOString(logEntry.timestamp)} ${logEntry.loggerName} ${logLevel}: ${logEntry.message}`;
+    }
+
+    #mapTimestampToLocalISOString(timestamp: Date): string {
+        const minuteInMs = 60000;
+        const date = new Date(timestamp);
+        date.setTime(timestamp.getTime() - (date.getTimezoneOffset() * minuteInMs));
+        return date.toISOString();
     }
 }

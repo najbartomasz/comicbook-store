@@ -9,7 +9,7 @@ describe('ConsoleLogAppenderService', () => {
 
         // When
         consoleLogAppender.info({
-            timestamp: '2024-02-28T09:07:16.880Z',
+            timestamp: new Date('2024-02-28T09:07:16.880Z'),
             loggerName: 'TestLogger',
             message: 'Test console info message.'
         });
@@ -26,7 +26,7 @@ describe('ConsoleLogAppenderService', () => {
 
         // When
         consoleLogAppender.warn({
-            timestamp: '2024-02-28T09:07:16.880Z',
+            timestamp: new Date('2024-02-28T09:07:16.880Z'),
             loggerName: 'TestLogger',
             message: 'Test console warn message.'
         });
@@ -43,7 +43,7 @@ describe('ConsoleLogAppenderService', () => {
 
         // When
         consoleLogAppender.error({
-            timestamp: '2024-02-28T09:07:16.880Z',
+            timestamp: new Date('2024-02-28T09:07:16.880Z'),
             loggerName: 'TestLogger',
             message: 'Test console error message.',
             error: new Error('Test error.')
@@ -61,7 +61,7 @@ describe('ConsoleLogAppenderService', () => {
 
         // When
         consoleLogAppender.error({
-            timestamp: '2024-02-28T09:07:16.880Z',
+            timestamp: new Date('2024-02-28T09:07:16.880Z'),
             loggerName: 'TestLogger',
             message: 'Test console error message.',
             error: { message: 'Test error.' }

@@ -7,3 +7,5 @@ globalThis.ngJest = {
 };
 import 'jest-preset-angular/setup-jest';
 import '@testing-library/jest-dom';
+
+process.env.TZ = 'UTC';

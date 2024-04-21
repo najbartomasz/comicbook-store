@@ -10,7 +10,7 @@ describe('createLogEntry', () => {
 
         // Then
         expect(logEntry).toStrictEqual({
-            timestamp: '2024-03-08T18:30:48.904Z',
+            timestamp: new Date('2024-03-08T18:30:48.904Z'),
             loggerName: 'TestLogger',
             message: 'Test message.'
         });
@@ -32,7 +32,7 @@ describe('createErrorLogEntry', () => {
 
         // Then
         expect(logEntry).toStrictEqual({
-            timestamp: '2024-03-08T18:30:48.904Z',
+            timestamp: new Date('2024-03-08T18:30:48.904Z'),
             loggerName: 'TestLogger',
             message: 'Test message.',
             error
