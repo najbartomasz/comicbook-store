@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { ComicBookBranding } from '@core/models/comicbook-branding.model';
 import { GetBrandingsUseCaseToken } from '@ui/injection-tokens/use-case/branding/branding.use-case.injection-token';
-import { tap } from 'rxjs';
 
 @Component({
     selector: 'cbs-home-page',
@@ -12,18 +12,6 @@ import { tap } from 'rxjs';
     styleUrl: './home-page.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomePageComponent implements OnInit {
-    protected readonly brandings = signal<ComicBookBranding[]>([]);
-
-    readonly #brandingFeature = inject(GetBrandingsUseCaseToken);
-
-    public ngOnInit(): void {
-        this.#brandingFeature.getBrandings()
-            .pipe(
-                tap((brandings) => {
-                    this.brandings.set(brandings);
-                })
-            )
-            .subscribe();
-    }
+export class HomePageComponent {
+    protected readonly brandings = toSignal<ComicBookBranding[]>(inject(GetBrandingsUseCaseToken).getBrandings());
 }
