@@ -76,7 +76,6 @@
                 "coveragePathIgnorePatterns": [
                     "src/index.html",
                     "src/main.ts",
-                    "src/config/",
                     "src/app/infrastructure/ui/http-client/http-client.service.ts"
                 ],
                 "moduleNameMapper": {

@@ -1,13 +1,14 @@
 import { LoggerFactory } from '@lib/logger';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 import { render } from '@testing-library/angular';
+import { LoggerFactoryToken } from '@ui/injection-tokens/lib/logger-factory.injection-token';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
     const setup = async (loggerFactoryMock: LoggerFactory) => {
         const { fixture } = await render(AppComponent, {
             providers: [
-                { provide: LoggerFactory, useValue: loggerFactoryMock }
+                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
             ]
         });
         return fixture;

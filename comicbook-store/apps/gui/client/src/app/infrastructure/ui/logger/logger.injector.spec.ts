@@ -1,24 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-import { Logger, LoggerFactory } from '@lib/logger';
-import { mock } from 'jest-mock-extended';
+import { LoggerFactory } from '@lib/logger';
 import { injectLogger } from './logger.injector';
 
 describe('injectLogger', () => {
     test('creates logger', () => {
         // Given
-        const loggerFactoryMock = mock<LoggerFactory>();
-        const loggerMock = mock<Logger>();
-        loggerFactoryMock.createLogger.calledWith('TestLogger').mockReturnValueOnce(loggerMock);
-        TestBed.configureTestingModule({
-            providers: [
-                { provide: LoggerFactory, useValue: loggerFactoryMock }
-            ]
-        });
+        const expectedLogger = new LoggerFactory().createLogger('TestLogger');
 
         // When
         const logger = TestBed.runInInjectionContext(() => injectLogger('TestLogger'));
 
         // Then
-        expect(logger).toBe(loggerMock);
+        expect(logger).toStrictEqual(expectedLogger);
     });
 });

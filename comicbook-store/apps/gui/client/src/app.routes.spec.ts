@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingHarness } from '@angular/router/testing';
-import { LoggerFactory } from '@lib/logger';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
+import { LoggerFactoryToken } from '@ui/injection-tokens/lib/logger-factory.injection-token';
 import { HomePageComponent } from '@ui/view/home-page/home-page.component';
-import { appConfig } from 'config/app.config';
+import { appConfig } from 'app.config';
 
 describe('Router', () => {
     const setup = async () => {
         TestBed.configureTestingModule(appConfig)
-            .overrideProvider(LoggerFactory, { useValue: LoggerMockFixture.loggerFactory });
+            .overrideProvider(LoggerFactoryToken, { useValue: LoggerMockFixture.loggerFactory });
         return RouterTestingHarness.create('/');
     };
 

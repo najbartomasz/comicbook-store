@@ -1,21 +1,22 @@
-import { BrandingFeature } from '@features/branding/branding.feature';
+import { GetBrandingsUseCase } from '@feature/interfaces/use-case/get-brandings.use-case';
 import { render, screen } from '@testing-library/angular';
+import { GetBrandingsUseCaseToken } from '@ui/injection-tokens/use-case/branding/branding.use-case.injection-token';
 import { mock } from 'jest-mock-extended';
 import { of } from 'rxjs';
 import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {
-    const setup = async (brandingFeatureMock: BrandingFeature) => {
+    const setup = async (getBrandingsUseCase: GetBrandingsUseCase) => {
         await render(HomePageComponent, {
             providers: [
-                { provide: BrandingFeature, useValue: brandingFeatureMock }
+                { provide: GetBrandingsUseCaseToken, useValue: getBrandingsUseCase }
             ]
         });
     };
 
     test('displays brandings', async () => {
         // Given
-        const brandingFeatureMock = mock<BrandingFeature>();
+        const brandingFeatureMock = mock<GetBrandingsUseCase>();
         brandingFeatureMock.getBrandings.calledWith().mockReturnValueOnce(of([
             { name: 'MARVEL NOW!' },
             { name: 'DC BLACK LABEL' },

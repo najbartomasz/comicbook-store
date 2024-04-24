@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { ComicBookBranding } from '@core/models/comicbook-branding.model';
-import { BrandingFeature } from '@features/branding/branding.feature';
+import { GetBrandingsUseCaseToken } from '@ui/injection-tokens/use-case/branding/branding.use-case.injection-token';
 import { tap } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ import { tap } from 'rxjs';
 export class HomePageComponent implements OnInit {
     protected readonly brandings = signal<ComicBookBranding[]>([]);
 
-    readonly #brandingFeature = inject(BrandingFeature);
+    readonly #brandingFeature = inject(GetBrandingsUseCaseToken);
 
     public ngOnInit(): void {
         this.#brandingFeature.getBrandings()
