@@ -1,16 +1,19 @@
 import { HttpClient } from '@api/interfaces/http-client.interface';
+import { ComicBookBrandingDetails } from '@core/models/comicbook-branding-details.model';
 import { ComicBookBranding } from '@core/models/comicbook-branding.model';
 import { mock } from 'jest-mock-extended';
 import { of } from 'rxjs';
 import { BrandingNetworkService } from './branding-network-service';
-import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 
 describe('BrandingNetworkService', () => {
     test('provides list of all comicbook brandings', () => {
         // Given
         const httpClientMock = mock<HttpClient>();
-        httpClientMock.get.calledWith('/brandings').mockReturnValueOnce(of([{ name: 'MARVEL NOW!' }, { name: 'MARVEL CLASSIC' }]));
-        const brandingNetworkService = new BrandingNetworkService(LoggerMockFixture.loggerFactory, httpClientMock);
+        httpClientMock.get.calledWith('/brandings').mockReturnValueOnce(of([
+            { id: 1, name: 'MARVEL NOW!' },
+            { id: 2, name: 'MARVEL CLASSIC' }
+        ]));
+        const brandingNetworkService = new BrandingNetworkService(httpClientMock);
 
         // When
         let receivedComicbookBrandings: ComicBookBranding[] | undefined;
@@ -20,8 +23,26 @@ describe('BrandingNetworkService', () => {
 
         // Then
         expect(receivedComicbookBrandings).toStrictEqual([
-            { name: 'MARVEL NOW!' },
-            { name: 'MARVEL CLASSIC' }
+            { id: 1, name: 'MARVEL NOW!' },
+            { id: 2, name: 'MARVEL CLASSIC' }
+        ]);
+    });
+
+    test('provide comicbook branding details', () => {
+        // Given
+        const httpClientMock = mock<HttpClient>();
+        httpClientMock.get.calledWith('/brandings/2').mockReturnValueOnce(of([{ id: 2, name: 'MARVEL CLASSIC' }]));
+        const brandingNetworkService = new BrandingNetworkService(httpClientMock);
+
+        // When
+        let receivedComicbookBrandingDetails: ComicBookBrandingDetails | undefined;
+        brandingNetworkService.getBrandingDetails(2).subscribe((brandingDetails) => {
+            receivedComicbookBrandingDetails = brandingDetails;
+        });
+
+        // Then
+        expect(receivedComicbookBrandingDetails).toStrictEqual([
+            { id: 2, name: 'MARVEL CLASSIC' }
         ]);
     });
 });

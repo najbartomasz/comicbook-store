@@ -4,25 +4,26 @@ import { GetBrandingsUseCaseToken } from '@ui/injection-tokens/use-case/branding
 import { mock } from 'jest-mock-extended';
 import { of } from 'rxjs';
 import { HomePageComponent } from './home-page.component';
+import { ComicBookBranding } from '@core/models/comicbook-branding.model';
 
 describe('HomePageComponent', () => {
-    const setup = async (getBrandingsUseCase: GetBrandingsUseCase) => {
+    const setup = async (brandings: ComicBookBranding[]) => {
+        const getBrandingsUseCaseMock = mock<GetBrandingsUseCase>();
+        getBrandingsUseCaseMock.getBrandings.calledWith().mockReturnValueOnce(of(brandings));
         await render(HomePageComponent, {
             providers: [
-                { provide: GetBrandingsUseCaseToken, useValue: getBrandingsUseCase }
+                { provide: GetBrandingsUseCaseToken, useValue: getBrandingsUseCaseMock }
             ]
         });
     };
 
     test('displays brandings', async () => {
         // Given
-        const brandingFeatureMock = mock<GetBrandingsUseCase>();
-        brandingFeatureMock.getBrandings.calledWith().mockReturnValueOnce(of([
-            { name: 'MARVEL NOW!' },
-            { name: 'DC BLACK LABEL' },
-            { name: 'J. P. FANTASTICA' }
-        ]));
-        await setup(brandingFeatureMock);
+        await setup([
+            { id: 1, name: 'MARVEL NOW!' },
+            { id: 2, name: 'DC BLACK LABEL' },
+            { id: 3, name: 'J. P. FANTASTICA' }
+        ]);
 
         // When, Then
         const brandings = screen.getAllByTestId('branding');
