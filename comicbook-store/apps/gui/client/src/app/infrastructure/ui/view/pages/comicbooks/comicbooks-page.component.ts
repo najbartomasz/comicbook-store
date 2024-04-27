@@ -8,7 +8,6 @@ import { tap } from 'rxjs';
     selector: 'cbs-comicbooks-page',
     standalone: true,
     templateUrl: './comicbooks-page.component.html',
-    styleUrl: './comicbooks-page.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComicbooksPageComponent implements OnInit {
@@ -24,9 +23,9 @@ export class ComicbooksPageComponent implements OnInit {
             .pipe(
                 tap((brandingDetails) => {
                     this.brandingDetails.set(brandingDetails);
+                    this.#logger.info(`Initialized with ${JSON.stringify(this.brandingDetails())}.`);
                 })
             )
             .subscribe();
-        this.#logger.info(`Initialized with ${JSON.stringify(this.brandingDetails())}.`);
     }
 }

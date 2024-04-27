@@ -76,7 +76,7 @@
                 "coveragePathIgnorePatterns": [
                     "src/index.html",
                     "src/main.ts",
-                    "src/app/infrastructure/ui/http-client/http-client.service.ts"
+                    "src/app/infrastructure/ui/http-client/in-memory-web-api/"
                 ],
                 "moduleNameMapper": {
                     "@ui/(.*)": "src/app/infrastructure/ui/$1",
