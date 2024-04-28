@@ -1,0 +1,13 @@
+[
+    { "id": 1, "name": "X-MEN" },
+    { "id": 2, "name": "SPIDER-MAN" },
+    { "id": 3, "name": "MOON KNIGHT" },
+    { "id": 4, "name": "DEADPOOL" },
+    { "id": 5, "name": "WOLVERINE" },
+    { "id": 6, "name": "AVENGERS" },
+    { "id": 7, "name": "MARUDERS" },
+    { "id": 8, "name": "THANOS" },
+    { "id": 9, "name": "VENOM" },
+    { "id": 10, "name": "SANDMAN" },
+    { "id": 11, "name": "USAGI-YOJIMBO" }
+]

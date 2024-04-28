@@ -1,17 +1,18 @@
-.branding-list-container {
+.page-container {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 15%;
+    padding: 0 15%;
 }
 
-.branding-list {
+.list {
     width: 100%;
 }
 
-.branding {
+.item {
     border: solid 1px #000;
     border-radius: 5px;
     font-size: 2vw;
+    cursor: pointer;
 }

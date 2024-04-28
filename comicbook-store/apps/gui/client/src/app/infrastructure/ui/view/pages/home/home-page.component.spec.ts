@@ -26,7 +26,7 @@ describe('HomePageComponent', () => {
         ]);
 
         // When, Then
-        const brandings = screen.getAllByTestId('branding');
+        const brandings = screen.getAllByTestId('category-list-item');
         expect(brandings).toHaveLength(3);
         expect(brandings[0]).toHaveTextContent('MARVEL NOW!');
         expect(brandings[1]).toHaveTextContent('DC BLACK LABEL');

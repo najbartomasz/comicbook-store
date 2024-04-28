@@ -9,6 +9,7 @@ import { tap } from 'rxjs';
     selector: 'cbs-comicbooks-page',
     standalone: true,
     templateUrl: './comicbooks-page.component.html',
+    styleUrl: './comicbooks-page.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComicbooksPageComponent implements OnInit {

@@ -1,5 +1,7 @@
-@if (brandingDetails(); as brandingDetails) {
-    <p>{{ brandingDetails.name }}</p>
-} @else {
-    <p>Loading...</p>
-}
+<div class="page-container">
+    @if (brandingDetails(); as brandingDetails) {
+        <p>{{ brandingDetails.name }}</p>
+    } @else {
+        <p>Loading...</p>
+    }
+</div>
