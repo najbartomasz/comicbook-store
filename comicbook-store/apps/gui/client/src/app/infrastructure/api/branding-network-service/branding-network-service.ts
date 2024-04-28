@@ -17,7 +17,7 @@ export class BrandingNetworkService implements BrandingRepository {
         return this.#httpClient.get<ComicBookBrandingDto[]>('/brandings');
     }
 
-    public getBrandingDetails(id: number): Observable<ComicBookBrandingDetails> {
+    public getBrandingDetails(id: ComicBookBranding['id']): Observable<ComicBookBrandingDetails> {
         return this.#httpClient.get<ComicBookBrandingDetailsDto>(`/brandings/${id}`);
     }
 }

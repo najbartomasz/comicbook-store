@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, input, signal } from '@angular/core';
 import { ComicBookBrandingDetails } from '@core/models/comicbook-branding-details.model';
+import { ComicBookBranding } from '@core/models/comicbook-branding.model';
 import { GetBrandingDetailsUseCaseToken } from '@ui/injection-tokens/use-case/branding/branding.use-case.injection-token';
 import { injectLogger } from '@ui/logger/logger.injector';
 import { tap } from 'rxjs';
@@ -11,7 +12,7 @@ import { tap } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComicbooksPageComponent implements OnInit {
-    public id = input.required<number>();
+    public id = input.required<ComicBookBranding['id']>();
 
     protected readonly brandingDetails = signal<ComicBookBrandingDetails | undefined>(undefined);
 

@@ -4,5 +4,5 @@ import { Observable } from 'rxjs';
 
 export interface BrandingRepository {
     getBrandings(): Observable<ComicBookBranding[]>;
-    getBrandingDetails(id: number): Observable<ComicBookBrandingDetails>;
+    getBrandingDetails(id: ComicBookBranding['id']): Observable<ComicBookBrandingDetails>;
 }

@@ -7,9 +7,10 @@ import { GetBrandingDetailsUseCase } from '@feature/interfaces/use-case/get-bran
 import { GetBrandingDetailsUseCaseToken } from '@ui/injection-tokens/use-case/branding/branding.use-case.injection-token';
 import { mock } from 'jest-mock-extended';
 import { Subject, of } from 'rxjs';
+import { ComicBookBranding } from '@core/models/comicbook-branding.model';
 
 describe('ComicbooksPageComponent', () => {
-    const setup = async (id: number, getBrandingDetailsUseCaseMock: GetBrandingDetailsUseCase) => {
+    const setup = async (id: ComicBookBranding['id'], getBrandingDetailsUseCaseMock: GetBrandingDetailsUseCase) => {
         await render(ComicbooksPageComponent, {
             componentInputs: {
                 id
