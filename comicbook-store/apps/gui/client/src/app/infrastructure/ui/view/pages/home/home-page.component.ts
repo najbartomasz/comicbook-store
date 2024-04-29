@@ -4,7 +4,6 @@ import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { RouterModule } from '@angular/router';
 import { ComicBookBranding } from '@core/models/comicbook-branding.model';
 import { GetBrandingsUseCaseToken } from '@ui/injection-tokens/use-case/branding/branding.use-case.injection-token';
-
 @Component({
     selector: 'cbs-home-page',
     standalone: true,
