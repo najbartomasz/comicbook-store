@@ -1,9 +1,7 @@
-<div class="page-container">
-    <mat-grid-list class="list" cols="3" rowHeight="6:2" gutterSize="10px">
-        @for (branding of brandings(); track branding.name) {
-            <mat-grid-tile class="item" data-testid="category-list-item" [routerLink]="['/comicbooks', branding.id]">
-                {{ branding.name }}
-            </mat-grid-tile>
-        }
-    </mat-grid-list>
-</div>
+<mat-grid-list class="list" cols="3" rowHeight="5:2" gutterSize="10px">
+    @for (branding of brandings(); track branding.name) {
+        <mat-grid-tile class="item" data-testid="category-list-item" [routerLink]="['/comicbooks', branding.id]">
+            {{ branding.name }}
+        </mat-grid-tile>
+    }
+</mat-grid-list>
