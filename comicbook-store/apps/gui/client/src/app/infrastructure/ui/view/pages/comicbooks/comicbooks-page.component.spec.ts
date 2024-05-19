@@ -11,12 +11,13 @@ import { ComicbooksPageComponent } from './comicbooks-page.component';
 
 describe('ComicbooksPageComponent', () => {
     const setup = async (id: ComicBookCategoryItem['id'], getBrandingDetailsUseCaseMock: GetBrandingDetailsUseCase) => {
+        const loggerMockFixture = new LoggerMockFixture('ComicbooksPageComponent');
         await render(ComicbooksPageComponent, {
             componentInputs: {
                 id
             },
             providers: [
-                { provide: LoggerFactoryToken, useValue: LoggerMockFixture.loggerFactory },
+                { provide: LoggerFactoryToken, useValue: loggerMockFixture.loggerFactoryMock },
                 { provide: GetBrandingDetailsUseCaseToken, useValue: getBrandingDetailsUseCaseMock }
             ]
         });

@@ -10,8 +10,9 @@ import { mock } from 'jest-mock-extended';
 
 describe('Router', () => {
     const setup = async (navigationMock = mock<Navigation>()) => {
+        const loggerMockFixture = new LoggerMockFixture('LoggingInterceptor');
         TestBed.configureTestingModule(appConfig)
-            .overrideProvider(LoggerFactoryToken, { useValue: LoggerMockFixture.loggerFactory });
+            .overrideProvider(LoggerFactoryToken, { useValue: loggerMockFixture.loggerFactoryMock });
         const router = TestBed.inject(Router);
         jest.spyOn(router, 'getCurrentNavigation').mockReturnValueOnce(navigationMock);
         return RouterTestingHarness.create('/');
