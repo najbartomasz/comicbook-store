@@ -740,7 +740,12 @@
                         "allowAsThisParameter": false
                     }
                 ],
-                "@typescript-eslint/no-magic-numbers": "error",
+                "@typescript-eslint/no-magic-numbers": [
+                    "error",
+                    {
+                        "ignoreDefaultValues": true
+                    }
+                ],
                 "@typescript-eslint/no-misused-new": "error",
                 "@typescript-eslint/no-misused-promises": [
                     "error",
@@ -931,6 +936,7 @@
                 "@typescript-eslint/no-magic-numbers": "off",
                 "@typescript-eslint/unbound-method": "off",
                 "max-lines-per-function": "off",
+                "max-nested-callbacks": "off",
                 "jest/consistent-test-it": [
                     "error",
                     {

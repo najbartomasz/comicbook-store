@@ -3,12 +3,6 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(10px, 400px));
     grid-gap: 10px;
-    // max-width: 2500px;
-    // @for $i from 1 through 3 {
-    //     &.grid-cols- {
-    //         grid-template-columns: repeat($i, minmax(10px, 400px));
-    //     }
-    // }
 }
 
 .grid-item {
