@@ -1,5 +1,5 @@
-import { ComicBookBrandingDetails } from '@core/models/comicbook-branding-details.model';
-import { ComicBookBranding } from '@core/models/comicbook-branding.model';
+import { ComicBookCategoryItemDetails } from '@core/models/comicbook-category-item-details.model';
+import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 import { BrandingRepository } from '@feature/interfaces/api/branding-repository.interface';
 import { GetBrandingDetailsUseCase } from '@feature/interfaces/use-case/get-branding-details.use-case';
 import { GetBrandingsUseCase } from '@feature/interfaces/use-case/get-brandings.use-case';
@@ -12,11 +12,11 @@ export class BrandingFeature implements GetBrandingsUseCase, GetBrandingDetailsU
         this.#brandingRepository = brandingRepository;
     }
 
-    public getBrandings(): Observable<ComicBookBranding[]> {
+    public getBrandings(): Observable<ComicBookCategoryItem[]> {
         return this.#brandingRepository.getBrandings();
     }
 
-    public getBrandingDetails(id: ComicBookBranding['id']): Observable<ComicBookBrandingDetails> {
+    public getBrandingDetails(id: ComicBookCategoryItem['id']): Observable<ComicBookCategoryItemDetails> {
         return this.#brandingRepository.getBrandingDetails(id);
     }
 }

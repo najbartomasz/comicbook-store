@@ -1,13 +1,13 @@
+import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 import { GetBrandingsUseCase } from '@feature/interfaces/use-case/get-brandings.use-case';
-import { render, screen } from '@testing-library/angular';
+import { render, screen, within } from '@testing-library/angular';
 import { GetBrandingsUseCaseToken } from '@ui/injection-tokens/use-case/branding/branding.use-case.injection-token';
 import { mock } from 'jest-mock-extended';
 import { of } from 'rxjs';
 import { HomePageComponent } from './home-page.component';
-import { ComicBookBranding } from '@core/models/comicbook-branding.model';
 
 describe('HomePageComponent', () => {
-    const setup = async (brandings: ComicBookBranding[]) => {
+    const setup = async (brandings: ComicBookCategoryItem[]) => {
         const getBrandingsUseCaseMock = mock<GetBrandingsUseCase>();
         getBrandingsUseCaseMock.getBrandings.calledWith().mockReturnValueOnce(of(brandings));
         await render(HomePageComponent, {
@@ -26,10 +26,9 @@ describe('HomePageComponent', () => {
         ]);
 
         // When, Then
-        const brandings = screen.getAllByTestId('category-list-item');
-        expect(brandings).toHaveLength(3);
-        expect(brandings[0]).toHaveTextContent('MARVEL NOW!');
-        expect(brandings[1]).toHaveTextContent('DC BLACK LABEL');
-        expect(brandings[2]).toHaveTextContent('J. P. FANTASTICA');
+        const brandings = within(screen.getByTestId('category-item-listing'));
+        expect(brandings.queryByText('MARVEL NOW!')).toBeVisible();
+        expect(brandings.queryByText('DC BLACK LABEL')).toBeVisible();
+        expect(brandings.queryByText('J. P. FANTASTICA')).toBeVisible();
     });
 });

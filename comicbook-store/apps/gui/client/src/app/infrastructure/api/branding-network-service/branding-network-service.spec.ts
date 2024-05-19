@@ -1,6 +1,6 @@
 import { HttpClient } from '@api/interfaces/http-client.interface';
-import { ComicBookBrandingDetails } from '@core/models/comicbook-branding-details.model';
-import { ComicBookBranding } from '@core/models/comicbook-branding.model';
+import { ComicBookCategoryItemDetails } from '@core/models/comicbook-category-item-details.model';
+import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 import { mock } from 'jest-mock-extended';
 import { of } from 'rxjs';
 import { BrandingNetworkService } from './branding-network-service';
@@ -16,7 +16,7 @@ describe('BrandingNetworkService', () => {
         const brandingNetworkService = new BrandingNetworkService(httpClientMock);
 
         // When
-        let receivedComicbookBrandings: ComicBookBranding[] | undefined;
+        let receivedComicbookBrandings: ComicBookCategoryItem[] | undefined;
         brandingNetworkService.getBrandings().subscribe((brandings) => {
             receivedComicbookBrandings = brandings;
         });
@@ -35,7 +35,7 @@ describe('BrandingNetworkService', () => {
         const brandingNetworkService = new BrandingNetworkService(httpClientMock);
 
         // When
-        let receivedComicbookBrandingDetails: ComicBookBrandingDetails | undefined;
+        let receivedComicbookBrandingDetails: ComicBookCategoryItemDetails | undefined;
         brandingNetworkService.getBrandingDetails(2).subscribe((brandingDetails) => {
             receivedComicbookBrandingDetails = brandingDetails;
         });

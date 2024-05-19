@@ -1,8 +1,7 @@
-import { ComicBookBrandingDetailsDto } from '@api/dtos/comicbook-branding-details.dto';
 import { ComicBookBrandingDto } from '@api/dtos/comicbook-branding.dto';
 import { HttpClient } from '@api/interfaces/http-client.interface';
-import { ComicBookBrandingDetails } from '@core/models/comicbook-branding-details.model';
-import { ComicBookBranding } from '@core/models/comicbook-branding.model';
+import { ComicBookCategoryItemDetails } from '@core/models/comicbook-category-item-details.model';
+import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 import { BrandingRepository } from '@feature/interfaces/api/branding-repository.interface';
 import { Observable } from 'rxjs';
 
@@ -13,11 +12,11 @@ export class BrandingNetworkService implements BrandingRepository {
         this.#httpClient = httpClient;
     }
 
-    public getBrandings(): Observable<ComicBookBranding[]> {
+    public getBrandings(): Observable<ComicBookCategoryItem[]> {
         return this.#httpClient.get<ComicBookBrandingDto[]>('/brandings');
     }
 
-    public getBrandingDetails(id: ComicBookBranding['id']): Observable<ComicBookBrandingDetails> {
-        return this.#httpClient.get<ComicBookBrandingDetailsDto>(`/brandings/${id}`);
+    public getBrandingDetails(id: ComicBookCategoryItem['id']): Observable<ComicBookCategoryItemDetails> {
+        return this.#httpClient.get<ComicBookCategoryItemDetails>(`/brandings/${id}`);
     }
 }

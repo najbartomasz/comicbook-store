@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, input, signal } from '@angular/core';
-import { ComicBookBrandingDetails } from '@core/models/comicbook-branding-details.model';
-import { ComicBookBranding } from '@core/models/comicbook-branding.model';
+import { ComicBookCategoryItemDetails } from '@core/models/comicbook-category-item-details.model';
+import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 import { GetBrandingDetailsUseCaseToken } from '@ui/injection-tokens/use-case/branding/branding.use-case.injection-token';
 import { injectLogger } from '@ui/logger/logger.injector';
 import { tap } from 'rxjs';
@@ -13,9 +13,9 @@ import { tap } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComicbooksPageComponent implements OnInit {
-    public id = input.required<ComicBookBranding['id']>();
+    public id = input.required<ComicBookCategoryItem['id']>();
 
-    protected readonly brandingDetails = signal<ComicBookBrandingDetails | undefined>(undefined);
+    protected readonly categoryItemDetails = signal<ComicBookCategoryItemDetails | undefined>(undefined);
 
     readonly #logger = injectLogger('ComicbooksPageComponent');
     readonly #getBenefitDetailsUseCase = inject(GetBrandingDetailsUseCaseToken);
@@ -23,9 +23,9 @@ export class ComicbooksPageComponent implements OnInit {
     public ngOnInit(): void {
         this.#getBenefitDetailsUseCase.getBrandingDetails(this.id())
             .pipe(
-                tap((brandingDetails) => {
-                    this.brandingDetails.set(brandingDetails);
-                    this.#logger.info(`Initialized with ${JSON.stringify(this.brandingDetails())}.`);
+                tap((categoryItemDetails) => {
+                    this.categoryItemDetails.set(categoryItemDetails);
+                    this.#logger.info(`Initialized with ${JSON.stringify(this.categoryItemDetails())}.`);
                 })
             )
             .subscribe();

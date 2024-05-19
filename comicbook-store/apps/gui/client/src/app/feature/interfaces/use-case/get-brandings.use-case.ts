@@ -1,6 +1,6 @@
-import { ComicBookBranding } from '@core/models/comicbook-branding.model';
+import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 import { Observable } from 'rxjs';
 
 export interface GetBrandingsUseCase {
-    getBrandings(): Observable<ComicBookBranding[]>;
+    getBrandings(): Observable<ComicBookCategoryItem[]>;
 }

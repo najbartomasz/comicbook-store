@@ -1,16 +1,16 @@
-import { ComicBookBrandingDetails } from '@core/models/comicbook-branding-details.model';
+import { ComicBookCategoryItemDetails } from '@core/models/comicbook-category-item-details.model';
+import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
+import { GetBrandingDetailsUseCase } from '@feature/interfaces/use-case/get-branding-details.use-case';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 import { render, screen } from '@testing-library/angular';
 import { LoggerFactoryToken } from '@ui/injection-tokens/lib/logger-factory.injection-token';
-import { ComicbooksPageComponent } from './comicbooks-page.component';
-import { GetBrandingDetailsUseCase } from '@feature/interfaces/use-case/get-branding-details.use-case';
 import { GetBrandingDetailsUseCaseToken } from '@ui/injection-tokens/use-case/branding/branding.use-case.injection-token';
 import { mock } from 'jest-mock-extended';
 import { Subject, of } from 'rxjs';
-import { ComicBookBranding } from '@core/models/comicbook-branding.model';
+import { ComicbooksPageComponent } from './comicbooks-page.component';
 
 describe('ComicbooksPageComponent', () => {
-    const setup = async (id: ComicBookBranding['id'], getBrandingDetailsUseCaseMock: GetBrandingDetailsUseCase) => {
+    const setup = async (id: ComicBookCategoryItem['id'], getBrandingDetailsUseCaseMock: GetBrandingDetailsUseCase) => {
         await render(ComicbooksPageComponent, {
             componentInputs: {
                 id
@@ -24,7 +24,7 @@ describe('ComicbooksPageComponent', () => {
 
     test('displays list of comicbooks for a given branding', async () => {
         // Given
-        const comicbookBrandingDetails: ComicBookBrandingDetails = { id: 1, name: 'MARVEL NOW!' };
+        const comicbookBrandingDetails: ComicBookCategoryItemDetails = { id: 1, name: 'MARVEL NOW!' };
         const getBrandingDetailsUseCaseMock = mock<GetBrandingDetailsUseCase>();
         getBrandingDetailsUseCaseMock.getBrandingDetails.calledWith(comicbookBrandingDetails.id)
             .mockReturnValueOnce(of(comicbookBrandingDetails));
@@ -36,10 +36,10 @@ describe('ComicbooksPageComponent', () => {
 
     test('displays loading indication when comicboobs are not yet available', async () => {
         // Given
-        const comicbookBrandingDetails: ComicBookBrandingDetails = { id: 1, name: 'MARVEL NOW!' };
+        const comicbookBrandingDetails: ComicBookCategoryItemDetails = { id: 1, name: 'MARVEL NOW!' };
         const getBrandingDetailsUseCaseMock = mock<GetBrandingDetailsUseCase>();
         getBrandingDetailsUseCaseMock.getBrandingDetails.calledWith(comicbookBrandingDetails.id)
-            .mockReturnValueOnce(new Subject<ComicBookBrandingDetails>());
+            .mockReturnValueOnce(new Subject<ComicBookCategoryItemDetails>());
         await setup(comicbookBrandingDetails.id, getBrandingDetailsUseCaseMock);
 
         // When, Then

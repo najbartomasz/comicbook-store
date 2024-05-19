@@ -1,8 +1,8 @@
-import { ComicBookBrandingDetails } from '@core/models/comicbook-branding-details.model';
-import { ComicBookBranding } from '@core/models/comicbook-branding.model';
+import { ComicBookCategoryItemDetails } from '@core/models/comicbook-category-item-details.model';
+import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 import { Observable } from 'rxjs';
 
 export interface BrandingRepository {
-    getBrandings(): Observable<ComicBookBranding[]>;
-    getBrandingDetails(id: ComicBookBranding['id']): Observable<ComicBookBrandingDetails>;
+    getBrandings(): Observable<ComicBookCategoryItem[]>;
+    getBrandingDetails(id: ComicBookCategoryItem['id']): Observable<ComicBookCategoryItemDetails>;
 }
