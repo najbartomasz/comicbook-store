@@ -1,10 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { Navigation, Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
+import { LoggerFactory as LoggerFactoryToken } from '@lib/logger/logger-factory.injection-token';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
-import { LoggerFactoryToken } from '@ui/injection-tokens/lib/logger-factory.injection-token';
-import { ComicbooksPageComponent } from '@ui/view/pages/comicbooks/comicbooks-page.component';
-import { HomePageComponent } from '@ui/view/pages/home/home-page.component';
+import { HomePageComponent } from '@ui/pages/home/home-page.component';
 import { appConfig } from 'app.config';
 import { mock } from 'jest-mock-extended';
 
@@ -38,17 +37,5 @@ describe('Router', () => {
 
         // Then
         expect(activatedComponent).toBeInstanceOf(HomePageComponent);
-    });
-
-    test('navigates to comicbook branding details page', async () => {
-        // Given
-        const branding = { name: 'MARVEL FRESH' };
-        const routerHarness = await setup(mock<Navigation>({ extras: { state: branding } }));
-
-        // When
-        const activatedComponent = await routerHarness.navigateByUrl('/comicbooks/4');
-
-        // Then
-        expect(activatedComponent).toBeInstanceOf(ComicbooksPageComponent);
     });
 });

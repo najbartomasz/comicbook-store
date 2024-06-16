@@ -62,7 +62,7 @@
                         "patterns": [
                             {
                                 "group": [
-                                    "../**/infrastructure/*", "@infrastructure/*", "@ui/*", "@api/*"
+                                    "../**/infrastructure/*", "@ui/*", "@api/*"
                                 ],
                                 "message": "Feature files cannot be depended on any other layer."
                             }
@@ -80,8 +80,8 @@
                         "patterns": [
                             {
                                 "group": [
-                                    "../**/infrastructure/*", "@infrastructure/*", "@ui/*", "@api/*",
-                                    "../**/feature/*", "@feature/*", "@features/*"
+                                    "../**/infrastructure/*", "@ui/*", "@api/*",
+                                    "../**/feature/*", "@feature/*"
                                 ],
                                 "message": "Core files cannot be depended on any other layer."
                             }
@@ -99,7 +99,7 @@
                         "patterns": [
                             {
                                 "group": [
-                                    "../**/infrastructure/*", "@infrastructure/*", "@ui/*", "@api/*",
+                                    "../**/infrastructure/*", "@ui/*", "@api/*",
                                     "../**/feature/*", "@feature/*",
                                     "../**/core/*", "@core/*"
                                 ],

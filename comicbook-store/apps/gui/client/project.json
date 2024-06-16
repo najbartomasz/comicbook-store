@@ -62,12 +62,6 @@
                 "proxyConfig": "apps/gui/client/proxy.conf.json"
             }
         },
-        "extract-i18n": {
-            "executor": "@angular-devkit/build-angular:extract-i18n",
-            "options": {
-                "buildTarget": "gui-client:build"
-            }
-        },
         "test": {
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -76,17 +70,15 @@
                 "coveragePathIgnorePatterns": [
                     "src/index.html",
                     "src/main.ts",
-                    "src/app/infrastructure/ui/http-client/in-memory-web-api/"
+                    "src/app/infrastructure/api/http-client/in-memory-web-api/"
                 ],
                 "moduleNameMapper": {
-                    "@ui/(.*)": "src/app/infrastructure/ui/$1",
-                    "@api/(.*)": "src/app/infrastructure/api/$1",
-                    "@infrastructure/(.*)": "src/app/infrastructure/$1",
-                    "@features/(.*)": "src/app/feature/features/$1",
-                    "@feature/(.*)": "src/app/feature/$1",
-                    "@core/(.*)": "src/app/core/$1",
-                    "@lib/(.*)": "src/app/lib/$1",
-                    "@test/(.*)": "test/lib/$1"
+                    "@ui/(.*)": ["src/app/infrastructure/ui/$1"],
+                    "@api/(.*)": ["src/app/infrastructure/api/$1", "src/app/dependency-injection/api/$1"],
+                    "@feature/(.*)": ["src/app/feature/$1", "src/app/dependency-injection/feature/$1"],
+                    "@core/(.*)": ["src/app/core/$1"],
+                    "@lib/(.*)": ["src/app/lib/$1", "src/app/dependency-injection/lib/$1"],
+                    "@test/(.*)": ["test/lib/$1"]
                 }
             },
             "configurations": {

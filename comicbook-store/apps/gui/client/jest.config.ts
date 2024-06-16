@@ -1,8 +1,7 @@
 export default {
     displayName: 'gui-client',
     preset: '../../../jest.preset.js',
-    setupFilesAfterEnv: ['<rootDir>/src/jest.test-setup.ts'],
-    globalSetup: '<rootDir>/src/jest.global-setup.ts',
+    setupFilesAfterEnv: ['<rootDir>/jest.test-setup.ts'],
     coverageDirectory: '../../../coverage/apps/gui/client',
     transform: {
         '^.+\\.(ts|mjs|js|html)$': [

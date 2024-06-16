@@ -3,12 +3,10 @@
         "baseUrl": "src",
         "paths": {
             "@ui/*": ["app/infrastructure/ui/*"],
-            "@api/*": ["app/infrastructure/api/*"],
-            "@infrastructure/*": ["app/infrastructure/*"],
-            "@features/*": ["app/feature/features/*"],
-            "@feature/*": ["app/feature/*"],
+            "@api/*": ["app/infrastructure/api/*", "app/dependency-injection/api/*"],
+            "@feature/*": ["app/feature/*", "app/dependency-injection/feature/*"],
             "@core/*": ["app/core/*"],
-            "@lib/*": ["app/lib/*"],
+            "@lib/*": ["app/lib/*", "app/dependency-injection/lib/*"],
             "@test/*": ["../test/*"]
         },
         "target": "es2022",
