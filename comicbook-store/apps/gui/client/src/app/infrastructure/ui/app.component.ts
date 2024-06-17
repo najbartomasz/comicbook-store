@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { injectLogger } from '@lib/logger/logger.injector';
 @Component({
     standalone: true,
-    imports: [RouterModule],
+    imports: [RouterOutlet],
     selector: 'cbs-root',
     templateUrl: './app.component.html'
 })

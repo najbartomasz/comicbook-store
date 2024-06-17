@@ -1,16 +1,16 @@
 import { HttpErrorResponse, HttpEventType, HttpHandlerFn, HttpRequest, HttpResponse, HttpSentEvent } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { LoggerFactory } from '@lib/logger';
+import { LoggerFactory } from '@comicbook-store/logger';
 import { LoggerFactory as LoggerFactoryToken } from '@lib/logger/logger-factory.injection-token';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 import { Subject, of, throwError } from 'rxjs';
 import { withLoggingInterceptor } from './logging.interceptor';
 
 describe('loggingInterceptor', () => {
-    const setup = (loggerFactoryMock: LoggerFactory) => {
+    const setup = (loggerFactory: LoggerFactory) => {
         TestBed.configureTestingModule({
             providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
+                { provide: LoggerFactoryToken, useValue: loggerFactory }
             ]
         });
         return { loggingInterceptor: withLoggingInterceptor() };

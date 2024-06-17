@@ -1,4 +1,4 @@
-import { Logger, LoggerFactory } from '@lib/logger';
+import { Logger, LoggerFactory } from '@comicbook-store/logger';
 import { mock } from 'jest-mock-extended';
 
 export class LoggerMockFixture {

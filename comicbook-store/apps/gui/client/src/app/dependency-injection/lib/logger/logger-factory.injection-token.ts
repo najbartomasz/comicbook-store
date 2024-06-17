@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { LoggerFactory as LoggerFactoryLib } from '@lib/logger';
+import { LoggerFactory as LoggerFactoryLib } from '@comicbook-store/logger';
 
 export const LoggerFactory = new InjectionToken<LoggerFactoryLib>('LoggerFactory', {
     providedIn: 'root',

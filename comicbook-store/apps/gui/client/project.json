@@ -71,15 +71,7 @@
                     "src/index.html",
                     "src/main.ts",
                     "src/app/infrastructure/api/http-client/in-memory-web-api/"
-                ],
-                "moduleNameMapper": {
-                    "@ui/(.*)": ["src/app/infrastructure/ui/$1"],
-                    "@api/(.*)": ["src/app/infrastructure/api/$1", "src/app/dependency-injection/api/$1"],
-                    "@feature/(.*)": ["src/app/feature/$1", "src/app/dependency-injection/feature/$1"],
-                    "@core/(.*)": ["src/app/core/$1"],
-                    "@lib/(.*)": ["src/app/lib/$1", "src/app/dependency-injection/lib/$1"],
-                    "@test/(.*)": ["test/lib/$1"]
-                }
+                ]
             },
             "configurations": {
                 "coverage": {

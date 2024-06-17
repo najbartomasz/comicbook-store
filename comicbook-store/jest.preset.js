@@ -9,6 +9,5 @@ module.exports = {
     },
     resetMocks: true,
     restoreMocks: true,
-    randomize: true,
-    globalSetup: './jest.global-setup.ts'
+    randomize: true
 };

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { LoggerFactory } from '@lib/logger';
+import { LoggerFactory } from '@comicbook-store/logger';
 import { injectLogger } from './logger.injector';
 
 describe('injectLogger', () => {
