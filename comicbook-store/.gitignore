@@ -43,6 +43,7 @@ sonar-scanner.sh
 Thumbs.db
 
 .nx/cache
+.nx/workspace-data
 .angular
 
 # designs
