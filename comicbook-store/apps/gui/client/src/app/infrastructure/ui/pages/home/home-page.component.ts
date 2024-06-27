@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 import { GetBrandingsFeature } from '@feature/brandings/get-brandings.feature.injection-token';
-import { CategoryItemListingComponent } from '@ui/components/category-listing/category-item-listing.component';
+import { CategoryItemListingComponent } from '@ui/components/category-item-listing/category-item-listing.component';
 
 @Component({
     selector: 'cbs-home-page',
@@ -13,8 +12,5 @@ import { CategoryItemListingComponent } from '@ui/components/category-listing/ca
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
-    protected readonly categoryItems = toSignal<ComicBookCategoryItem[], ComicBookCategoryItem[]>(
-        inject(GetBrandingsFeature).getBrandings(),
-        { initialValue: [] }
-    );
+    protected readonly categoryItems = toSignal(inject(GetBrandingsFeature).getBrandings());
 }

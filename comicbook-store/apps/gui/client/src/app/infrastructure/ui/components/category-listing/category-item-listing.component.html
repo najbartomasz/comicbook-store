@@ -1,7 +1,0 @@
-<div class="grid-container">
-    @for (item of categoryItems(); track item.name) {
-        <div class="grid-item" [routerLink]="['/comicbooks', item.id]" data-testid="category-item">
-            <span class="grid-item-text">{{item.name}}</span>
-        </div>
-    }
-</div>

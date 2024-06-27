@@ -1,25 +1,21 @@
 import { TestBed } from '@angular/core/testing';
-import { Navigation, Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { LoggerFactory as LoggerFactoryToken } from '@lib/logger/logger-factory.injection-token';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 import { HomePageComponent } from '@ui/pages/home/home-page.component';
 import { appConfig } from 'app.config';
-import { mock } from 'jest-mock-extended';
 
 describe('Router', () => {
-    const setup = async (navigationMock = mock<Navigation>()) => {
+    const setup = async () => {
         const loggerMockFixture = new LoggerMockFixture('LoggingInterceptor');
         TestBed.configureTestingModule(appConfig)
             .overrideProvider(LoggerFactoryToken, { useValue: loggerMockFixture.loggerFactoryMock });
-        const router = TestBed.inject(Router);
-        jest.spyOn(router, 'getCurrentNavigation').mockReturnValueOnce(navigationMock);
-        return RouterTestingHarness.create('/');
+        return { routerHarness: await RouterTestingHarness.create('/') };
     };
 
     test('navigates to home page by default', async () => {
         // Given
-        const routerHarness = await setup();
+        const { routerHarness } = await setup();
 
         // When
         const activatedComponent = await routerHarness.navigateByUrl('/');
@@ -30,7 +26,7 @@ describe('Router', () => {
 
     test('navigates to home page when invalid path is requested', async () => {
         // Given
-        const routerHarness = await setup();
+        const { routerHarness } = await setup();
 
         // When
         const activatedComponent = await routerHarness.navigateByUrl('/invalid/path');

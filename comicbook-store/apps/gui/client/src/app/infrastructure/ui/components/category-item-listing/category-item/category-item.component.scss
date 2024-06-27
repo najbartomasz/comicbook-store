@@ -1,11 +1,5 @@
-.grid-container {
-    padding: 5% 0;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(10px, 400px));
-    grid-gap: 10px;
-}
 
-.grid-item {
+.category-item {
     border: solid 1px #000000;
     padding: 4%;
     text-align: center;
@@ -17,7 +11,7 @@
     cursor: pointer;
 }
 
-.grid-item-text {
+.category-item-name {
     justify-content: center;
     white-space: nowrap;
     overflow: hidden;

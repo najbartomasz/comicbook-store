@@ -3,13 +3,13 @@ import { RouterLink } from '@angular/router';
 import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 
 @Component({
-    selector: 'cbs-category-item-listing',
+    selector: 'cbs-category-item',
     standalone: true,
     imports: [RouterLink],
-    templateUrl: './category-item-listing.component.html',
-    styleUrl: './category-item-listing.component.scss',
+    templateUrl: './category-item.component.html',
+    styleUrl: './category-item.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoryItemListingComponent {
-    public categoryItems = input.required<ComicBookCategoryItem[]>();
+export class CategoryItemComponent {
+    public item = input.required<ComicBookCategoryItem>();
 }

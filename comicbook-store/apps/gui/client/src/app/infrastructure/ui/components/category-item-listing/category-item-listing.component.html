@@ -1,0 +1,5 @@
+<div class="grid-container">
+    @for (item of categoryItems(); track item.name) {
+        <cbs-category-item [item]="item" />
+    }
+</div>

@@ -1,14 +1,15 @@
+import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 import { render, screen } from '@testing-library/angular';
 import { CategoryItemListingComponent } from './category-item-listing.component';
-import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
 
 describe('CategoryListingComponent', () => {
     const setup = async (categoryItems: ComicBookCategoryItem[]) => {
-        await render(CategoryItemListingComponent, {
+        const { fixture } = await render(CategoryItemListingComponent, {
             componentInputs: {
                 categoryItems
             }
         });
+        fixture.autoDetectChanges();
     };
 
     test('displays provided category items', async () => {

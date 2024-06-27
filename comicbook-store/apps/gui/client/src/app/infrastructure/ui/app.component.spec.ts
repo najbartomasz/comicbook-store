@@ -11,7 +11,8 @@ describe('AppComponent', () => {
                 { provide: LoggerFactoryToken, useValue: loggerFactory }
             ]
         });
-        return fixture;
+        fixture.autoDetectChanges();
+        return { fixture };
     };
 
     test('is up and running', async () => {
@@ -26,7 +27,7 @@ describe('AppComponent', () => {
     test('is closed', async () => {
         // Given
         const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('AppComponent');
-        const fixture = await setup(loggerFactoryMock);
+        const { fixture } = await setup(loggerFactoryMock);
 
         // When
         fixture.destroy();

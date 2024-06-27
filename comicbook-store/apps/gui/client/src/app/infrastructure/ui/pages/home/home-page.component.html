@@ -1,1 +1,3 @@
-<cbs-category-item-listing [categoryItems]="categoryItems()" data-testid="category-item-listing"></cbs-category-item-listing>
+@if (categoryItems(); as categoryItems) {
+    <cbs-category-item-listing [categoryItems]="categoryItems" data-testid="category-item-listing" />
+}
