@@ -1,8 +1,9 @@
 import { ErrorLogEntry } from '../error-log-entry.model';
 import { LogEntry } from '../log-entry.model';
+import { LogAppender } from './log-appender.model';
 import { LogLevel } from './log-level';
 
-export class ConsoleLogAppender {
+export class ConsoleLogAppender implements LogAppender {
     public info(logEntry: LogEntry): void {
         // eslint-disable-next-line no-console
         console.info(this.#formatLogEntry(LogLevel.Info, logEntry));

@@ -1,21 +1,27 @@
 import { ConsoleLogAppender } from './log-appender/console-log-appender';
-import * as loggerModule from './logger';
+import { LogAppender } from './log-appender/log-appender.model';
+import { Logger } from './logger';
 import { LoggerFactory } from './logger-factory';
+
+jest.mock('./log-appender/console-log-appender');
+jest.mock('./logger');
+const LoggerMock = Logger as jest.Mock<Logger, [string, LogAppender]>;
 
 describe('LoggerFactory', () => {
     test('creates new logger instance', () => {
         // Given
-        const consoleLogAppender = new ConsoleLogAppender();
-        const expectedLogger = new loggerModule.Logger('TestLogger', consoleLogAppender);
-        const loggerSpy = jest.spyOn(loggerModule, 'Logger').mockReturnValueOnce(expectedLogger);
         const loggerFactory = new LoggerFactory();
 
         // When
         const logger = loggerFactory.createLogger('TestLogger');
 
         // Then
-        expect(logger).toBe(expectedLogger);
-        expect(loggerSpy).toHaveBeenCalledTimes(1);
-        expect(loggerSpy).toHaveBeenCalledWith('TestLogger', consoleLogAppender);
+        expect(logger).toBeInstanceOf(LoggerMock);
+        expect(LoggerMock).toHaveBeenCalledTimes(1);
+        const [loggerCallArgs] = LoggerMock.mock.calls;
+        expect(loggerCallArgs).toHaveLength(2);
+        expect(loggerCallArgs[0]).toBe('TestLogger');
+        expect(loggerCallArgs[1]).toBeInstanceOf(ConsoleLogAppender);
+        expect(ConsoleLogAppender).toHaveBeenCalledTimes(1);
     });
 });

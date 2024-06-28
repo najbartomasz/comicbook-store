@@ -6,11 +6,11 @@ jest.mock('./log-appender/console-log-appender');
 describe('Logger', () => {
     test('triggers console log appender info', () => {
         // Given
+        jest.setSystemTime(new Date('2024-02-28T09:21:06.090Z'));
         const consoleLogAppenderMock = new ConsoleLogAppender();
         const logger = new Logger('TestLogger', consoleLogAppenderMock);
 
         // When
-        jest.setSystemTime(new Date('2024-02-28T09:21:06.090Z'));
         logger.info('Test info message.');
 
         // Then
@@ -24,11 +24,11 @@ describe('Logger', () => {
 
     test('triggers console log appender warn', () => {
         // Given
+        jest.setSystemTime(new Date('2024-02-28T09:21:06.090Z'));
         const consoleLogAppenderMock = new ConsoleLogAppender();
         const logger = new Logger('TestLogger', consoleLogAppenderMock);
 
         // When
-        jest.setSystemTime(new Date('2024-02-28T09:21:06.090Z'));
         logger.warn('Test warn message.');
 
         // Then
@@ -42,11 +42,11 @@ describe('Logger', () => {
 
     test('triggers console log appender error', () => {
         // Given
+        jest.setSystemTime(new Date('2024-02-28T09:21:06.090Z'));
         const consoleLogAppenderMock = new ConsoleLogAppender();
         const logger = new Logger('TestLogger', consoleLogAppenderMock);
 
         // When
-        jest.setSystemTime(new Date('2024-02-28T09:21:06.090Z'));
         const error = new Error('Test error.');
         logger.error('Test error message.', error);
 

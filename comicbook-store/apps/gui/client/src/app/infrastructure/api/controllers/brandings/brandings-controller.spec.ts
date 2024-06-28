@@ -8,9 +8,8 @@ describe('BrandingsController', () => {
     test('provides list of all comicbook brandings', () => {
         // Given
         const httpClientMock = mock<HttpClient>();
-        httpClientMock.get.calledWith('/brandings').mockReturnValueOnce(
-            scheduled(of([{ id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL CLASSIC' }]), asyncScheduler)
-        );
+        httpClientMock.get.calledWith('/brandings')
+            .mockReturnValueOnce(scheduled(of([{ id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL CLASSIC' }]), asyncScheduler));
         const brandingsController = new BrandingsController(httpClientMock);
 
         // When
@@ -22,8 +21,7 @@ describe('BrandingsController', () => {
 
         // Then
         expect(receivedComicbookBrandings).toStrictEqual([
-            { id: 1, name: 'MARVEL NOW!' },
-            { id: 2, name: 'MARVEL CLASSIC' }
+            { id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL CLASSIC' }
         ]);
     });
 });
