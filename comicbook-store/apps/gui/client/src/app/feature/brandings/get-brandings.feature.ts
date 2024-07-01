@@ -1,4 +1,4 @@
-import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
+import { CategoryItem } from '@core/models/category-item.model';
 import { Observable } from 'rxjs';
 import { BrandingsRepository } from './brandings-repository.interface';
 import { GetBrandings } from './get-brandings.interface';
@@ -10,7 +10,7 @@ export class GetBrandingsFeature implements GetBrandings {
         this.#brandingRepository = brandingsRepository;
     }
 
-    public getBrandings(): Observable<ComicBookCategoryItem[]> {
+    public getBrandings(): Observable<CategoryItem[]> {
         return this.#brandingRepository.getAllBrandings();
     }
 }

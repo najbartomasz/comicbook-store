@@ -1,6 +1,6 @@
-import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
+import { CategoryItem } from '@core/models/category-item.model';
 import { Observable } from 'rxjs';
 
 export interface BrandingsRepository {
-    getAllBrandings(): Observable<ComicBookCategoryItem[]>;
+    getAllBrandings(): Observable<CategoryItem[]>;
 }

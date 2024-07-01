@@ -1,11 +1,11 @@
-import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
+import { CategoryItem } from '@core/models/category-item.model';
 import { mock } from 'jest-mock-extended';
 import { asyncScheduler, of, scheduled } from 'rxjs';
 import { BrandingsRepository } from './brandings-repository.interface';
 import { GetBrandingsFeature } from './get-brandings.feature';
 
 describe('GetBrandingsFeature', () => {
-    test('provides comicbook brandings', () => {
+    test('provides brandings', () => {
         // Given
         const brandingsRepositoryMock = mock<BrandingsRepository>();
         brandingsRepositoryMock.getAllBrandings
@@ -13,14 +13,14 @@ describe('GetBrandingsFeature', () => {
         const getBrandingsFeature = new GetBrandingsFeature(brandingsRepositoryMock);
 
         // When
-        let receivedComicbookBrandings: ComicBookCategoryItem[] | undefined;
+        let receivedBrandings: CategoryItem[] | undefined;
         getBrandingsFeature.getBrandings().subscribe((brandings) => {
-            receivedComicbookBrandings = brandings;
+            receivedBrandings = brandings;
         });
         jest.runAllTimers();
 
         // Then
-        expect(receivedComicbookBrandings).toStrictEqual([
+        expect(receivedBrandings).toStrictEqual([
             { id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL NOW! 2.0' }
         ]);
     });

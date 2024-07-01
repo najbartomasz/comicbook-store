@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
+import { CategoryItem } from '@core/models/category-item.model';
 import { CategoryItemComponent } from './category-item/category-item.component';
 
 @Component({
@@ -11,5 +11,5 @@ import { CategoryItemComponent } from './category-item/category-item.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryItemListingComponent {
-    public readonly categoryItems = input.required<ComicBookCategoryItem[]>();
+    public readonly categoryItems = input.required<CategoryItem[]>();
 }

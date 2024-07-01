@@ -1,9 +1,9 @@
-import { ComicBookCategoryItem } from '@core/models/comicbook-category-item.model';
+import { CategoryItem } from '@core/models/category-item.model';
 import { render, screen } from '@testing-library/angular';
 import { CategoryItemListingComponent } from './category-item-listing.component';
 
 describe('CategoryListingComponent', () => {
-    const setup = async (categoryItems: ComicBookCategoryItem[]) => {
+    const setup = async (categoryItems: CategoryItem[]) => {
         const { fixture } = await render(CategoryItemListingComponent, {
             componentInputs: {
                 categoryItems
