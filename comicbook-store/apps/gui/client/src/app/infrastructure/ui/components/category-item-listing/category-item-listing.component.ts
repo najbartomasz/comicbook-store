@@ -11,5 +11,5 @@ import { CategoryItemComponent } from './category-item/category-item.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryItemListingComponent {
-    public categoryItems = input.required<ComicBookCategoryItem[]>();
+    public readonly categoryItems = input.required<ComicBookCategoryItem[]>();
 }
