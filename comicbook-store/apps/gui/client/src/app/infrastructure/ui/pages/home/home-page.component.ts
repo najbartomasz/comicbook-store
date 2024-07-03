@@ -8,7 +8,6 @@ import { CategoryItemListingComponent } from '@ui/components/category-item-listi
     standalone: true,
     imports: [CategoryItemListingComponent],
     templateUrl: './home-page.component.html',
-    styleUrl: './home-page.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {

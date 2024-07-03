@@ -6,6 +6,7 @@ import { injectLogger } from '@lib/logger/logger.injector';
     imports: [RouterOutlet],
     selector: 'cbs-root',
     templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit, OnDestroy {
