@@ -1,20 +1,20 @@
 import { CategoryItem } from '@core/models/category-item.model';
 import { mock } from 'jest-mock-extended';
 import { asyncScheduler, of, scheduled } from 'rxjs';
-import { BrandingsRepository } from './brandings-repository.interface';
+import { BrandingRepository } from './branding-repository.interface';
 import { GetBrandingsFeature } from './get-brandings.feature';
 
 describe('GetBrandingsFeature', () => {
-    test('provides brandings', () => {
+    test('provides all brandings', () => {
         // Given
-        const brandingsRepositoryMock = mock<BrandingsRepository>();
+        const brandingsRepositoryMock = mock<BrandingRepository>();
         brandingsRepositoryMock.getAllBrandings
             .mockReturnValueOnce(scheduled(of([{ id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL NOW! 2.0' }]), asyncScheduler));
         const getBrandingsFeature = new GetBrandingsFeature(brandingsRepositoryMock);
 
         // When
         let receivedBrandings: CategoryItem[] | undefined;
-        getBrandingsFeature.getBrandings().subscribe((brandings) => {
+        getBrandingsFeature.getAllBrandings().subscribe((brandings) => {
             receivedBrandings = brandings;
         });
         jest.runAllTimers();

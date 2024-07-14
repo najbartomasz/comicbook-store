@@ -54,6 +54,24 @@
             }
         },
         {
+            "files": ["src/**/*.ts"],
+            "rules": {
+                "no-restricted-imports": [
+                    "error",
+                    {
+                        "patterns": [
+                            {
+                                "group": [
+                                    "../*"
+                                ],
+                                "message": "Relative imports are forbidden. Use absolute paths instead."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "files": ["src/app/feature/**/*.ts"],
             "rules": {
                 "no-restricted-imports": [

@@ -1,5 +1,5 @@
-import { GetBrandingsFeature } from '@feature/brandings/get-brandings.feature.injection-token';
-import { GetBrandings } from '@feature/brandings/get-brandings.interface';
+import { GetBrandingsFeature } from '@feature/branding/get-brandings.feature.injection-token';
+import { GetBrandings } from '@feature/branding/get-brandings.interface';
 import { render, screen, within } from '@testing-library/angular';
 import { mock } from 'jest-mock-extended';
 import { asyncScheduler, of, scheduled } from 'rxjs';
@@ -18,7 +18,7 @@ describe('HomePageComponent', () => {
     test('displays brandings', async () => {
         // Given, When
         const getBrandingsFeature = mock<GetBrandings>();
-        getBrandingsFeature.getBrandings.mockReturnValueOnce(scheduled(of([
+        getBrandingsFeature.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' },
             { id: 2, name: 'DC BLACK LABEL' },
             { id: 3, name: 'J. P. FANTASTICA' }
