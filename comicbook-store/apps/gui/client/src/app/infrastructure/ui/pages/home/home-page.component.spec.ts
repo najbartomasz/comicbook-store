@@ -15,15 +15,15 @@ describe('HomePageComponent', () => {
         fixture.autoDetectChanges();
     };
 
-    test('displays brandings', async () => {
+    test('displays brandings in one column', async () => {
         // Given, When
-        const getBrandingsFeature = mock<GetBrandings>();
-        getBrandingsFeature.getAllBrandings.mockReturnValueOnce(scheduled(of([
+        const getBrandingsFeatureMock = mock<GetBrandings>();
+        getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' },
             { id: 2, name: 'DC BLACK LABEL' },
             { id: 3, name: 'J. P. FANTASTICA' }
         ]), asyncScheduler));
-        await setup(getBrandingsFeature);
+        await setup(getBrandingsFeatureMock);
         jest.runAllTimers();
 
         // Then

@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="grid-container" style="--grid-columns-count: {{maxColumns()}}">
     @for (item of categoryItems(); track item.name) {
         <cbs-category-item [item]="item" />
     }

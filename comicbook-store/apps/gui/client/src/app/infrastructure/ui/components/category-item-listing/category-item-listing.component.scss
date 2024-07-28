@@ -1,7 +1,7 @@
 .grid-container {
     padding: 5% 0;
     display: grid;
-    grid-template-columns: repeat(3, minmax(10px, 400px));
+    grid-template-columns: repeat(var(--grid-columns-count), minmax(10px, 400px));
     grid-gap: 10px;
     font-size: clamp(4px, 1.5vw + 0.25rem, 24px);
 }

@@ -13,14 +13,10 @@ describe('CategoryItemComponent', () => {
     };
 
     test('displays category item name', async () => {
-        // Given, When
-        const item: CategoryItem = {
-            id: 1,
-            name: 'MARVEL NOW!'
-        };
-        await setup(item);
+        // Given
+        await setup({ id: 1, name: 'MARVEL NOW!' });
 
-        // Then
+        // When, Then
         expect(screen.queryByText('MARVEL NOW!')).toBeVisible();
     });
 });
