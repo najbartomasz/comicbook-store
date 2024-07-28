@@ -1,8 +1,9 @@
 import { HttpClient as AngularHttpClient } from '@angular/common/http';
-import { InjectionToken, inject } from '@angular/core';
+import { inject, InjectionToken } from '@angular/core';
+import { HttpClientAdapter } from '@api/http-client/http-client.adapter';
 import { HttpClient as HttpClientInterface } from '@api/http-client/http-client.interface';
 
 export const HttpClient = new InjectionToken<HttpClientInterface>('HttpClient', {
     providedIn: 'root',
-    factory: () => inject(AngularHttpClient)
+    factory: () => new HttpClientAdapter(inject(AngularHttpClient))
 });
