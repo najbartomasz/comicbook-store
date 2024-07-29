@@ -7,7 +7,7 @@ import { asyncScheduler, of, scheduled } from 'rxjs';
 import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {
-    test('displays brandings in one column', async () => {
+    test('displays brandings', async () => {
         // Given, When
         const getBrandingsFeatureMock = mock<GetBrandings>();
         getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
