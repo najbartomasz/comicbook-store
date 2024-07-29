@@ -1,21 +1,23 @@
-import { TestBed } from '@angular/core/testing';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { LoggerFactory as LoggerFactoryToken } from '@lib/logger/logger-factory.injection-token';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
+import { setup } from '@test/fixtures/setup/setup.module';
 import { HomePageComponent } from '@ui/pages/home/home-page.component';
 import { appConfig } from 'app.config';
 
 describe('Router', () => {
-    const setup = async () => {
-        const loggerMockFixture = new LoggerMockFixture('LoggingInterceptor');
-        TestBed.configureTestingModule(appConfig)
-            .overrideProvider(LoggerFactoryToken, { useValue: loggerMockFixture.loggerFactoryMock });
-        return { routerHarness: await RouterTestingHarness.create('/') };
-    };
-
     test('navigates to home page by default', async () => {
         // Given
-        const { routerHarness } = await setup();
+        const { loggerFactoryMock } = new LoggerMockFixture('LoggingInterceptor');
+        const { providers, ...config } = appConfig;
+        setup({
+            ...config,
+            providers: [
+                ...providers,
+                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
+            ]
+        });
+        const routerHarness = await RouterTestingHarness.create('/');
 
         // When
         const activatedComponent = await routerHarness.navigateByUrl('/');
@@ -26,7 +28,16 @@ describe('Router', () => {
 
     test('navigates to home page when invalid path is requested', async () => {
         // Given
-        const { routerHarness } = await setup();
+        const { loggerFactoryMock } = new LoggerMockFixture('LoggingInterceptor');
+        const { providers, ...config } = appConfig;
+        setup({
+            ...config,
+            providers: [
+                ...providers,
+                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
+            ]
+        });
+        const routerHarness = await RouterTestingHarness.create('/');
 
         // When
         const activatedComponent = await routerHarness.navigateByUrl('/invalid/path');

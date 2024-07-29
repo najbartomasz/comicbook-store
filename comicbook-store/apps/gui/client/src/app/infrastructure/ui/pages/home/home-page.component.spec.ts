@@ -1,20 +1,12 @@
 import { GetBrandingsFeature } from '@feature/branding/get-brandings.feature.injection-token';
 import { GetBrandings } from '@feature/branding/get-brandings.interface';
-import { render, screen, within } from '@testing-library/angular';
+import { setup } from '@test/fixtures/setup/setup.component';
+import { screen, within } from '@testing-library/angular';
 import { mock } from 'jest-mock-extended';
 import { asyncScheduler, of, scheduled } from 'rxjs';
 import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {
-    const setup = async (getBrandingsFeature: GetBrandings) => {
-        const { fixture } = await render(HomePageComponent, {
-            providers: [
-                { provide: GetBrandingsFeature, useValue: getBrandingsFeature }
-            ]
-        });
-        fixture.autoDetectChanges();
-    };
-
     test('displays brandings in one column', async () => {
         // Given, When
         const getBrandingsFeatureMock = mock<GetBrandings>();
@@ -23,7 +15,11 @@ describe('HomePageComponent', () => {
             { id: 2, name: 'DC BLACK LABEL' },
             { id: 3, name: 'J. P. FANTASTICA' }
         ]), asyncScheduler));
-        await setup(getBrandingsFeatureMock);
+        await setup(HomePageComponent, {
+            providers: [
+                { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
+            ]
+        });
         jest.runAllTimers();
 
         // Then
