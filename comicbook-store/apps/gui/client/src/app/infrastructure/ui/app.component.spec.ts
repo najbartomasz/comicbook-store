@@ -1,4 +1,4 @@
-import { LoggerFactory as LoggerFactoryToken } from '@lib/logger/logger-factory.injection-token';
+import { LoggerFactory } from '@lib/logger/logger-factory.injection-token';
 import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 import { setup } from '@test/fixtures/setup/setup.component';
 import { AppComponent } from './app.component';
@@ -9,7 +9,7 @@ describe('AppComponent', () => {
         const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('AppComponent');
         await setup(AppComponent, {
             providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
+                { provide: LoggerFactory, useValue: loggerFactoryMock }
             ]
         });
 
@@ -22,7 +22,7 @@ describe('AppComponent', () => {
         const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('AppComponent');
         const { fixture } = await setup(AppComponent, {
             providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
+                { provide: LoggerFactory, useValue: loggerFactoryMock }
             ]
         });
 
