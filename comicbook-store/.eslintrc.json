@@ -608,7 +608,8 @@
                 "@typescript-eslint/no-magic-numbers": [
                     "error",
                     {
-                        "ignoreDefaultValues": true
+                        "ignoreDefaultValues": true,
+                        "ignore": [0, 1]
                     }
                 ],
                 "@typescript-eslint/no-misused-new": "error",
@@ -848,7 +849,7 @@
                 "jest/prefer-to-contain": "error",
                 "jest/prefer-to-have-length": "error",
                 "jest/prefer-todo": "error",
-                "jest/require-hook": "error",
+                "jest/require-hook": "off",
                 "jest/require-to-throw-message": "error",
                 "jest/require-top-level-describe": "error",
                 "jest/unbound-method": "error",

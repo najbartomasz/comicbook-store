@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { injectLogger } from '@lib/logger/logger.injector';
+
 @Component({
     standalone: true,
     imports: [RouterOutlet],

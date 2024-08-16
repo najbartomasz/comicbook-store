@@ -20,7 +20,14 @@
                     "apps/gui/client/src/favicon.ico",
                     "apps/gui/client/src/assets"
                 ],
-                "styles": ["apps/gui/client/src/styles.scss"],
+                "styles": [
+                    "apps/gui/client/src/styles/styles.scss"
+                ],
+                "stylePreprocessorOptions": {
+                    "includePaths": [
+                        "apps/gui/client/src/styles/"
+                    ]
+                },
                 "scripts": []
             },
             "configurations": {
