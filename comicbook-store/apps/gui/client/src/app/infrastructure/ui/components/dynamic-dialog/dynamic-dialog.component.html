@@ -1,8 +1,0 @@
-<dialog #dialog [style.width.px]="config().width" [style.height.px]="config().height">
-    <div data-testid="dialog-content" class="dialog-container">
-        <cbs-dynamic-dialog-header class="dialog-header" [title]="config().title" (close)="onClose()"/>
-        <div class="dialog-body">
-            <ng-container #dialogBody></ng-container>
-        </div>
-    </div>
-</dialog>
