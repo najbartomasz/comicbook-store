@@ -14,7 +14,7 @@ import { CategoryItemComponent } from './category-item/category-item.component';
 export class CategoryItemListingComponent {
     public readonly categoryItems = input.required<CategoryItem[]>();
     public readonly maxColumns = input.required<number, number>({
-        transform: (maxColumns) => Math.min(this.categoryItems().length, maxColumns)
+        transform: (maxColumns) => Math.min(this.categoryItems().length + 1, maxColumns)
     });
 
     protected readonly addNewCategoryItem: CategoryItem = { id: NullCategoryItemId, name: '+' };

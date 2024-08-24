@@ -19,4 +19,19 @@ describe('CategoryListingComponent', () => {
         expect(categoryItems[1]).toHaveTextContent('MARVEL NOW! 2.0');
         expect(categoryItems[2]).toHaveTextContent('+');
     });
+
+    test('displays only `add new` item when no category items are provided', async () => {
+        // Given
+        await setup(CategoryItemListingComponent, {
+            componentInputs: {
+                categoryItems: [],
+                maxColumns: 3
+            }
+        });
+
+        // When, Then
+        const categoryItems = screen.getAllByTestId('category-item');
+        expect(categoryItems).toHaveLength(1);
+        expect(categoryItems[0]).toHaveTextContent('+');
+    });
 });

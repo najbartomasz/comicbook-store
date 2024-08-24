@@ -1,6 +1,8 @@
-
 .category-item {
-    border: solid 1px #000000;
+    --z-index: 0;
+    position: relative;
+    background-color: #ffffff;
+    border: solid 2px #333333;
     padding: 4%;
     text-align: center;
     aspect-ratio: 5/2;
@@ -8,6 +10,15 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    box-shadow: 0 4px 8px #00000000;
+    transition: transform 0.3s, box-shadow 0.3s;
+    z-index: var(--z-index);
+
+    &:hover {
+        transform: scale(1.25);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+        z-index: calc(var(--z-index) + 1);
+    }
 }
 
 .category-item-name {
@@ -15,4 +26,5 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #333333;
 }
