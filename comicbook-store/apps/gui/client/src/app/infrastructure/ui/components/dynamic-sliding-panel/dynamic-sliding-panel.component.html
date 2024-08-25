@@ -1,0 +1,11 @@
+<div class="backdrop" (click)="onPanelClose()" data-testid="dynamic-sliding-panel-backdrop"></div>
+<div class="panel" [@slide]="animationState()" (@slide.done)="onSlideAnimationDone($event)" data-testid="sliding-panel">
+    <div class="header">
+        <h3>Add new comicbook category item</h3>
+        <button class="close-button" (click)="onPanelClose()">X</button>
+    </div>
+    <div class="content" data-testid="dynamic-sliding-panel-content">
+        <ng-container #panelContent />
+        <p>This is the sliding panel content.</p>
+    </div>
+</div>

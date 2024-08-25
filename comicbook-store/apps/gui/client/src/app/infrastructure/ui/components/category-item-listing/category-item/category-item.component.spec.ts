@@ -12,6 +12,6 @@ describe('CategoryItemComponent', () => {
         });
 
         // When, Then
-        expect(screen.queryByText('MARVEL NOW!')).toBeVisible();
+        expect(screen.getByRole('button', { name: 'MARVEL NOW!' })).toBeVisible();
     });
 });
