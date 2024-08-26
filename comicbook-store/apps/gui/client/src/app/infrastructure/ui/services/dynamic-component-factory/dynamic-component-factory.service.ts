@@ -22,7 +22,7 @@ export class DynamicComponentFactoryService {
         if (config?.componentInputs) {
             this.#setComponentInputs(componentRef, config.componentInputs);
         }
-        dynamicDialogRef.close$
+        dynamicDialogRef.destroy$
             .pipe(
                 take(1),
                 tap(() => {

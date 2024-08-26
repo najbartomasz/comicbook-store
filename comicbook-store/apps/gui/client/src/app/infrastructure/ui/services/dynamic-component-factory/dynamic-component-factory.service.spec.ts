@@ -60,7 +60,7 @@ describe('DynamicComponentFactoryService', () => {
         applicationRef.tick();
 
         // When
-        dialogRef.close();
+        dialogRef.destroy();
         applicationRef.tick();
 
         // Then

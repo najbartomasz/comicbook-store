@@ -1,10 +1,12 @@
 import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
-    AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, Injector, input, OnInit, signal, Type, viewChild,
+    AfterViewInit, ChangeDetectionStrategy,
+    Component, ElementRef, HostListener, inject, Injector, input, OnInit, signal, Type, viewChild,
     ViewContainerRef
 } from '@angular/core';
 import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
+import { take, tap } from 'rxjs';
 import { DynamicSlidingPanelAnimationState } from './dynamic-sliding-panel-animation-state.enum';
 
 @Component({
@@ -32,12 +34,8 @@ export class DynamicSlidingPanelComponent implements OnInit, AfterViewInit {
     readonly #injector = inject(Injector);
 
     public ngOnInit(): void {
-        this.panelContent().createComponent(this.componentType(), {
-            injector: Injector.create({
-                providers: [],
-                parent: this.#injector
-            })
-        });
+        this.#createProjectedComponent(this.componentType());
+        this.#subscribeToCloseEvent();
     }
 
     public ngAfterViewInit() {
@@ -51,8 +49,28 @@ export class DynamicSlidingPanelComponent implements OnInit, AfterViewInit {
 
     protected onSlideAnimationDone({ fromState, toState }: AnimationEvent): void {
         if (fromState === DynamicSlidingPanelAnimationState.Visible && toState === DynamicSlidingPanelAnimationState.Hidden) {
-            this.#dynamicComponentRef.close();
+            this.#dynamicComponentRef.destroy();
         }
+    }
+
+    #createProjectedComponent<T>(component: Type<T>): void {
+        this.panelContent().createComponent(component, {
+            injector: Injector.create({
+                providers: [],
+                parent: this.#injector
+            })
+        });
+    }
+
+    #subscribeToCloseEvent(): void {
+        this.#dynamicComponentRef.close$
+            .pipe(
+                take(1),
+                tap(() => {
+                    this.#hide();
+                })
+            )
+            .subscribe();
     }
 
     #show(): void {

@@ -1,5 +1,8 @@
+import { OutputEmitterRef } from '@angular/core';
 import { setup } from '@test/fixtures/setup/setup.component';
 import { screen } from '@testing-library/angular';
+import { userEvent } from '@testing-library/user-event';
+import { mock } from 'jest-mock-extended';
 import { CategoryItemListingComponent } from './category-item-listing.component';
 
 describe('CategoryListingComponent', () => {
@@ -33,5 +36,26 @@ describe('CategoryListingComponent', () => {
         const categoryItems = screen.getAllByTestId('category-item');
         expect(categoryItems).toHaveLength(1);
         expect(categoryItems[0]).toHaveTextContent('+');
+    });
+
+    test('emits event when `add new` item is clicked', async () => {
+        // Given
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+        const outputEmitterRefMock = mock<OutputEmitterRef<void>>();
+        await setup(CategoryItemListingComponent, {
+            componentInputs: {
+                categoryItems: [],
+                maxColumns: 3
+            },
+            componentOutputs: {
+                addNewCategoryItem: outputEmitterRefMock
+            }
+        });
+
+        // When
+        await user.click(screen.getByText('+'));
+
+        // Then
+        expect(outputEmitterRefMock.emit).toHaveBeenCalledTimes(1);
     });
 });

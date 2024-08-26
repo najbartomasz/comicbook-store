@@ -2,5 +2,5 @@
     @for (item of categoryItems(); track item.name) {
         <cbs-category-item [item]="item" />
     }
-    <cbs-category-item [item]="newCategoryItem" />
+    <cbs-category-item [item]="newCategoryItem" (click)="onAddNewCategoryItem()" />
 </div>
