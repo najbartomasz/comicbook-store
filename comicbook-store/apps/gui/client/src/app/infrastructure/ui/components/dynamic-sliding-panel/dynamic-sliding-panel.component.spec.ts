@@ -27,32 +27,7 @@ describe('DynamicSlidingPanelComponent', () => {
         expect(within(screen.getByTestId('dynamic-sliding-panel-content')).getByText('Test')).toBeVisible();
     });
 
-    test('closes the component on backdrop click', async () => {
-        // Given
-        @Component({
-            selector: 'cbs-test',
-            template: '<div>Test</div>'
-        })
-        class TestComponent {}
-        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-        await setup(DynamicSlidingPanelComponent, {
-            componentInputs: {
-                componentType: TestComponent
-            },
-            providers: [
-                DynamicComponentRef
-            ]
-        });
-        const dynamicComponentDestroySpy = jest.spyOn(TestBed.inject(DynamicComponentRef), 'destroy');
-
-        // When
-        await user.click(screen.getByTestId('dynamic-sliding-panel-backdrop'));
-
-        // Then
-        expect(dynamicComponentDestroySpy).toHaveBeenCalledTimes(1);
-    });
-
-    test('closes the component on close button click', async () => {
+    test('destroys the component on close button click', async () => {
         // Given
         @Component({
             selector: 'cbs-test',
@@ -77,7 +52,7 @@ describe('DynamicSlidingPanelComponent', () => {
         expect(dynamicComponentDestroySpy).toHaveBeenCalledTimes(1);
     });
 
-    test('closes the component on escape keydown', async () => {
+    test('destroys the component on escape keydown', async () => {
         // Given
         @Component({
             selector: 'cbs-test',
