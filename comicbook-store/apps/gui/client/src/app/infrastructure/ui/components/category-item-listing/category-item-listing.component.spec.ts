@@ -1,4 +1,6 @@
 import { OutputEmitterRef } from '@angular/core';
+import { LoggerFactory } from '@lib/logger/logger-factory.injection-token';
+import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 import { setup } from '@test/fixtures/setup/setup.component';
 import { screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
@@ -38,10 +40,11 @@ describe('CategoryListingComponent', () => {
         expect(categoryItems[0]).toHaveTextContent('+');
     });
 
-    test('emits event when `add new` item is clicked', async () => {
+    test('emits event when `add new` item is selected', async () => {
         // Given
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const outputEmitterRefMock = mock<OutputEmitterRef<void>>();
+        const { loggerFactoryMock } = new LoggerMockFixture();
         await setup(CategoryItemListingComponent, {
             componentInputs: {
                 categoryItems: [],
@@ -49,7 +52,10 @@ describe('CategoryListingComponent', () => {
             },
             componentOutputs: {
                 addNewCategoryItem: outputEmitterRefMock
-            }
+            },
+            providers: [
+                { provide: LoggerFactory, useValue: loggerFactoryMock }
+            ]
         });
 
         // When
