@@ -1,53 +1,32 @@
-@import 'variables';
+@import 'mixins';
 
-.form-container {
-    display: flex;
-    justify-content: center;
+.container {
+    @include flex-center;
     margin-top: 32px;
-}
 
-form {
-    width: 30%;
-    display: flex;
-    flex-flow: column;
-    border: solid 2px #333333;
-    padding: 8px;
-    background-color: #ffffff;
-
-    label {
-        color: #333333;
-        margin-bottom: 4px;
-    }
-
-    input[type="text"] {
-        padding: 4px;
-        margin-bottom: 8px;
-        border: solid 1px #333333;
-        box-sizing: border-box;
-    }
-
-    button {
-        background-color: #ffffff;
-        border: solid 2px #333333;
-        padding: 4px;
-        text-align: center;
+    .add-item-form {
+        width: 30%;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        box-shadow: 0 4px 8px #00000000;
-        transition: transform 0.3s, box-shadow 0.3s;
-        z-index: $z-index-neutral;
+        flex-flow: column;
+        border: solid 2px #333333;
+        padding: 8px;
+        background-color: #ffffff;
 
-        &:hover {
-            transform: scale(1.025);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-            z-index: calc($z-index-neutral + 1);
+        .form-label {
+            color: #333333;
+            margin-bottom: 4px;
         }
 
-        &:active {
-            transform: scale(1);
-            z-index: $z-index-neutral;
+        .form-text-input {
+            padding: 4px;
+            margin-bottom: 8px;
+            border: solid 1px #333333;
+            box-sizing: border-box;
+        }
+
+        .submit-button {
+            @include flex-center;
+            padding: 4px;
         }
     }
 }

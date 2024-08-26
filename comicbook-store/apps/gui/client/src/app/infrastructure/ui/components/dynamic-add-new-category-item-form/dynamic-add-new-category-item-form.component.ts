@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
 
@@ -11,6 +11,7 @@ import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dyna
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicAddNewCategoryItemFormComponent {
+    protected readonly categoryName = viewChild.required<ElementRef<HTMLInputElement>>('categoryName');
     protected readonly newCategoryItemForm: FormGroup;
 
     readonly #dynamicComponentRef = inject(DynamicComponentRef);

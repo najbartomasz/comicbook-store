@@ -1,8 +1,8 @@
-main {
+@import 'mixins';
+
+.container {
+    @include flex-center;
     min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 0 15%;
     overflow-x: auto;
 }
