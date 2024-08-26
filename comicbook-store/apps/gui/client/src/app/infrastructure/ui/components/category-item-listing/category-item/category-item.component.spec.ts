@@ -1,6 +1,4 @@
 import { OutputEmitterRef } from '@angular/core';
-import { LoggerFactory } from '@lib/logger/logger-factory.injection-token';
-import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 import { setup } from '@test/fixtures/setup/setup.component';
 import { screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
@@ -23,7 +21,6 @@ describe('CategoryItemComponent', () => {
     test('emits event when clicked', async () => {
         // Given
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-        const { loggerFactoryMock } = new LoggerMockFixture('CategoryItemComponent');
         const outputEmitterRefMock = mock<OutputEmitterRef<void>>();
         await setup(CategoryItemComponent, {
             componentInputs: {
@@ -31,10 +28,7 @@ describe('CategoryItemComponent', () => {
             },
             componentOutputs: {
                 select: outputEmitterRefMock
-            },
-            providers: [
-                { provide: LoggerFactory, useValue: loggerFactoryMock }
-            ]
+            }
         });
 
         // When

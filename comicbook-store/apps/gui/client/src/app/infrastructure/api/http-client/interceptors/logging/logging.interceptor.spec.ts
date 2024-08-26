@@ -1,7 +1,5 @@
 import { HttpErrorResponse, HttpEventType, HttpHandlerFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { LoggerFactory as LoggerFactoryToken } from '@lib/logger/logger-factory.injection-token';
-import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 import { setup } from '@test/fixtures/setup/setup.module';
 import { EMPTY, Subject, asyncScheduler, catchError, delay, of, scheduled, throwError } from 'rxjs';
 import { withLoggingInterceptor } from './logging.interceptor';
@@ -9,13 +7,8 @@ import { withLoggingInterceptor } from './logging.interceptor';
 describe('loggingInterceptor', () => {
     test('logs request without body', () => {
         // Given
-        const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('LoggingInterceptor');
         const httpHandlerFnMock: HttpHandlerFn = jest.fn().mockReturnValueOnce(new Subject<HttpResponse<unknown>>());
-        setup({
-            providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
-            ]
-        });
+        const { loggerMock } = setup();
         const loggingInterceptor = withLoggingInterceptor();
 
         // When
@@ -30,13 +23,8 @@ describe('loggingInterceptor', () => {
 
     test('logs request with body', () => {
         // Given
-        const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('LoggingInterceptor');
         const httpHandlerFnMock: HttpHandlerFn = jest.fn().mockReturnValueOnce(new Subject<HttpResponse<unknown>>());
-        setup({
-            providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
-            ]
-        });
+        const { loggerMock } = setup();
         const loggingInterceptor = withLoggingInterceptor();
 
         // When
@@ -51,14 +39,9 @@ describe('loggingInterceptor', () => {
 
     test('logs successfull response without body', () => {
         // Given
-        const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('LoggingInterceptor');
         const httpHandlerFnMock: HttpHandlerFn = jest.fn()
             .mockReturnValueOnce(scheduled(of(new HttpResponse({ status: 204 })), asyncScheduler));
-        setup({
-            providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
-            ]
-        });
+        const { loggerMock } = setup();
         const loggingInterceptor = withLoggingInterceptor();
 
         // When
@@ -74,14 +57,9 @@ describe('loggingInterceptor', () => {
 
     test('logs successfull response with body', () => {
         // Given
-        const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('LoggingInterceptor');
         const httpHandlerFnMock: HttpHandlerFn = jest.fn()
             .mockReturnValueOnce(scheduled(of(new HttpResponse({ status: 200, body: { data: 1 } })), asyncScheduler));
-        setup({
-            providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
-            ]
-        });
+        const { loggerMock } = setup();
         const loggingInterceptor = withLoggingInterceptor();
 
         // When
@@ -97,13 +75,8 @@ describe('loggingInterceptor', () => {
 
     test('logs successfull event', () => {
         // Given
-        const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('LoggingInterceptor');
         const httpHandlerFnMock: HttpHandlerFn = jest.fn().mockReturnValueOnce(scheduled(of({ type: HttpEventType.Sent }), asyncScheduler));
-        setup({
-            providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
-            ]
-        });
+        const { loggerMock } = setup();
         const loggingInterceptor = withLoggingInterceptor();
 
         // When
@@ -119,14 +92,9 @@ describe('loggingInterceptor', () => {
 
     test('logs error response', () => {
         // Given
-        const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('LoggingInterceptor');
         const httpHandlerFnMock: HttpHandlerFn = jest.fn()
             .mockReturnValueOnce(scheduled(throwError(() => new HttpErrorResponse({ status: 409 })), asyncScheduler));
-        setup({
-            providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
-            ]
-        });
+        const { loggerMock } = setup();
         const loggingInterceptor = withLoggingInterceptor();
 
         // When
@@ -146,15 +114,10 @@ describe('loggingInterceptor', () => {
 
     test('logs requests and responses in correct order', () => {
         // Given
-        const { loggerMock, loggerFactoryMock } = new LoggerMockFixture('LoggingInterceptor', { returnTimes: 'every' });
         const nextMock: HttpHandlerFn = jest.fn()
             .mockReturnValueOnce(of(new HttpResponse({ status: 200 })).pipe(delay(500)))
             .mockReturnValueOnce(of(new HttpResponse({ status: 200, body: { data: 1 } })).pipe(delay(300)));
-        setup({
-            providers: [
-                { provide: LoggerFactoryToken, useValue: loggerFactoryMock }
-            ]
-        });
+        const { loggerMock } = setup();
         const loggingInterceptor = withLoggingInterceptor();
 
         // // When

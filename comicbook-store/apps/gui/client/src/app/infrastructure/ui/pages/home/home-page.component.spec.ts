@@ -1,7 +1,5 @@
 import { GetBrandingsFeature } from '@feature/branding/get-brandings.feature.injection-token';
 import { GetBrandings } from '@feature/branding/get-brandings.interface';
-import { LoggerFactory } from '@lib/logger/logger-factory.injection-token';
-import { LoggerMockFixture } from '@test/fixtures/logger-mock/logger-mock.fixture';
 import { setup } from '@test/fixtures/setup/setup.component';
 import { screen, within } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
@@ -39,10 +37,8 @@ describe('HomePageComponent', () => {
         getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' }
         ]), asyncScheduler));
-        const { loggerFactoryMock } = new LoggerMockFixture();
         await setup(HomePageComponent, {
             providers: [
-                { provide: LoggerFactory, useValue: loggerFactoryMock },
                 { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
             ]
         });
