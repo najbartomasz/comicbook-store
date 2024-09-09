@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
 
@@ -10,7 +10,7 @@ import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dyna
     styleUrl: './dynamic-add-new-category-item-form.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicAddNewCategoryItemFormComponent {
+export class DynamicAddNewCategoryItemFormComponent implements AfterViewInit {
     protected readonly categoryName = viewChild.required<ElementRef<HTMLInputElement>>('categoryName');
     protected readonly newCategoryItemForm: FormGroup;
 
@@ -20,6 +20,10 @@ export class DynamicAddNewCategoryItemFormComponent {
         this.newCategoryItemForm = formBuilder.group({
             categoryName: ''
         });
+    }
+
+    public ngAfterViewInit(): void {
+        this.categoryName().nativeElement.focus();
     }
 
     protected onSubmit(): void {

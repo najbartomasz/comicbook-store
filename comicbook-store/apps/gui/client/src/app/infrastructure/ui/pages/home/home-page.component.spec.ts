@@ -50,4 +50,70 @@ describe('HomePageComponent', () => {
         // Then
         expect(screen.queryByTestId('dynamic-add-new-category-form')).toBeVisible();
     });
+
+    test('hides `add new category item` form on submit', async () => {
+        // Given
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+        const getBrandingsFeatureMock = mock<GetBrandings>();
+        getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
+            { id: 1, name: 'MARVEL NOW!' }
+        ]), asyncScheduler));
+        await setup(HomePageComponent, {
+            providers: [
+                { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
+            ]
+        });
+        jest.runAllTimers();
+        await user.click(screen.getByText('+'));
+
+        // When
+        await user.click(screen.getByRole('button', { name: 'Submit' }));
+
+        // Then
+        expect(screen.queryByTestId('dynamic-add-new-category-form')).not.toBeInTheDocument();
+    });
+
+    test('hides `add new category item` form on Enter key press', async () => {
+        // Given
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+        const getBrandingsFeatureMock = mock<GetBrandings>();
+        getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
+            { id: 1, name: 'MARVEL NOW!' }
+        ]), asyncScheduler));
+        await setup(HomePageComponent, {
+            providers: [
+                { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
+            ]
+        });
+        jest.runAllTimers();
+        await user.click(screen.getByText('+'));
+
+        // When
+        await user.keyboard('{Enter}');
+
+        // Then
+        expect(screen.queryByTestId('dynamic-add-new-category-form')).not.toBeInTheDocument();
+    });
+
+    test('hides `add new category item` form on Esc key press', async () => {
+        // Given
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+        const getBrandingsFeatureMock = mock<GetBrandings>();
+        getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
+            { id: 1, name: 'MARVEL NOW!' }
+        ]), asyncScheduler));
+        await setup(HomePageComponent, {
+            providers: [
+                { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
+            ]
+        });
+        jest.runAllTimers();
+        await user.click(screen.getByText('+'));
+
+        // When
+        await user.keyboard('{Esc}');
+
+        // Then
+        expect(screen.queryByTestId('dynamic-add-new-category-form')).not.toBeInTheDocument();
+    });
 });
