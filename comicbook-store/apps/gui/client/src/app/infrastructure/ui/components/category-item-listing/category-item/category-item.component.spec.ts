@@ -15,7 +15,7 @@ describe('CategoryItemComponent', () => {
         });
 
         // When, Then
-        expect(screen.getByRole('button', { name: 'MARVEL NOW!' })).toBeVisible();
+        expect(screen.queryByRole('button', { name: 'MARVEL NOW!' })).toBeVisible();
     });
 
     test('emits event when clicked', async () => {

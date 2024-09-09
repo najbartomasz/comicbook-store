@@ -20,7 +20,7 @@ describe('DynamicComponentFactoryService', () => {
         applicationRef.tick();
 
         // Then
-        expect(screen.getByText('Test')).toBeVisible();
+        expect(screen.queryByText('Test')).toBeVisible();
     });
 
     test('creates component and appends it to the dom on provided host element level', async () => {
@@ -44,7 +44,7 @@ describe('DynamicComponentFactoryService', () => {
         applicationRef.tick();
 
         // Then
-        expect(within(screen.getByTestId('test-host-element')).getByText('Test')).toBeVisible();
+        expect(within(screen.getByTestId('test-host-element')).queryByText('Test')).toBeVisible();
     });
 
     test('destroys component and removes it from the dom', () => {
@@ -84,6 +84,6 @@ describe('DynamicComponentFactoryService', () => {
         applicationRef.tick();
 
         // Then
-        expect(screen.getByText('Test Input')).toBeVisible();
+        expect(screen.queryByText('Test Input')).toBeVisible();
     });
 });

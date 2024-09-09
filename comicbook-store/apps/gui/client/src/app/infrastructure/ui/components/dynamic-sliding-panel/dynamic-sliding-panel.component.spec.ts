@@ -24,7 +24,7 @@ describe('DynamicSlidingPanelComponent', () => {
         });
 
         // Then
-        expect(within(screen.getByTestId('dynamic-sliding-panel-content')).getByText('Test')).toBeVisible();
+        expect(within(screen.getByTestId('dynamic-sliding-panel-content')).queryByText('Test')).toBeVisible();
     });
 
     test('destroys the component on close button click', async () => {

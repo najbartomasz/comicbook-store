@@ -39,6 +39,6 @@ describe('DynamicSlidingPanelComponentFactoryService', () => {
                 }
             }
         );
-        expect(screen.getByText('Test')).toBeVisible();
+        expect(screen.queryByText('Test')).toBeVisible();
     });
 });
