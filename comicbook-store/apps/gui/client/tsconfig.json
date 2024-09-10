@@ -3,7 +3,7 @@
         "baseUrl": "src",
         "paths": {
             "@ui/*": ["app/infrastructure/ui/*"],
-            "@api/*": ["app/infrastructure/api/*", "app/dependency-injection/api/*"],
+            "@api/*": ["app/infrastructure/api/*", "app/dependency-injection/infrastructure/api/*"],
             "@feature/*": ["app/feature/*", "app/dependency-injection/feature/*"],
             "@core/*": ["app/core/*"],
             "@lib/*": ["app/lib/*", "app/dependency-injection/lib/*"],
