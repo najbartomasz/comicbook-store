@@ -15,4 +15,17 @@ describe('HttpClientAdapter', () => {
         // When, Then
         expect(httpClientAdapter.get('https://cbs.com/')).toBe(angularHttpClientMock.get('https://cbs.com/'));
     });
+
+    test('provides post method results', () => {
+        // Given
+        const angularHttpClientMock = mock<HttpClient>();
+        angularHttpClientMock.post.calledWith('https://cbs.com', { name: 'MARVEL NOW!' }).mockReturnValueOnce(
+            scheduled(of(new HttpResponse({ body: {}, status: 204 })), asyncScheduler)
+        );
+        const httpClientAdapter = new HttpClientAdapter(angularHttpClientMock);
+
+        // When, Then
+        expect(httpClientAdapter.post('https://cbs.com/', { name: 'MARVEL NOW!' }))
+            .toBe(angularHttpClientMock.post('https://cbs.com/', { name: 'MARVEL NOW!' }));
+    });
 });

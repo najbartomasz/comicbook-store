@@ -1,6 +1,6 @@
-import { DtoAdapter } from '@api/adapters/dto-adapter.interface';
 import { CategoryItemDto } from '@api/data-transfer-objects/category-item.dto';
 import { HttpClient } from '@api/http-client/http-client.interface';
+import { CategoryItemDtoMapper } from '@api/mapper/category-item/category-item.dto-mapper.interface';
 import { CategoryItem } from '@core/models/category-item.model';
 import { mock } from 'jest-mock-extended';
 import { asyncScheduler, of, scheduled } from 'rxjs';
@@ -13,14 +13,11 @@ describe('BrandingController', () => {
         httpClientMock.get
             .calledWith('/brandings')
             .mockReturnValueOnce(scheduled(of([{ id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL CLASSIC' }]), asyncScheduler));
-        const brandingAdapterMock = mock<DtoAdapter<CategoryItemDto, CategoryItem>>();
-        brandingAdapterMock.fromDto
-            .calledWith(expect.objectContaining({ id: 1, name: 'MARVEL NOW!' }) as CategoryItemDto)
-            .mockReturnValueOnce({ id: 1, name: 'MARVEL NOW!' });
-        brandingAdapterMock.fromDto
-            .calledWith(expect.objectContaining({ id: 2, name: 'MARVEL CLASSIC' }) as CategoryItemDto)
-            .mockReturnValueOnce({ id: 2, name: 'MARVEL CLASSIC' });
-        const brandingController = new BrandingController(httpClientMock, brandingAdapterMock);
+        const categoryItemDtoMapperMock = mock<CategoryItemDtoMapper>();
+        categoryItemDtoMapperMock.fromDto
+            .calledWith(expect.arrayContaining([{ id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL CLASSIC' }]) as CategoryItemDto[])
+            .mockReturnValueOnce([{ id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL CLASSIC' }]);
+        const brandingController = new BrandingController(httpClientMock, categoryItemDtoMapperMock);
 
         // When
         let receivedBrandings: CategoryItem[] | undefined;

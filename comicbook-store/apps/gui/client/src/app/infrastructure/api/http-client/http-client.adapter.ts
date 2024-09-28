@@ -12,4 +12,8 @@ export class HttpClientAdapter implements HttpClient {
     public get<T>(path: string): Observable<T> {
         return this.#httpClient.get<T>(path);
     }
+
+    public post<T>(path: string, body: unknown): Observable<T> {
+        return this.#httpClient.post<T>(path, body);
+    }
 }
