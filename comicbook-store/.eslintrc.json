@@ -1,7 +1,7 @@
 {
     "root": true,
     "ignorePatterns": ["**/*"],
-    "plugins": ["@nx", "jest"],
+    "plugins": ["@nx", "jest", "@stylistic/js", "@stylistic/ts"],
     "overrides": [
         {
             "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -441,12 +441,6 @@
                 "@typescript-eslint/await-thenable": "error",
                 "@typescript-eslint/ban-ts-comment": "error",
                 "@typescript-eslint/ban-tslint-comment": "error",
-                "@typescript-eslint/ban-types": [
-                    "error",
-                    {
-                        "types": {}
-                    }
-                ],
                 "@typescript-eslint/class-literal-property-style": [
                     "error",
                     "fields"
@@ -484,7 +478,7 @@
                         "allowTypedFunctionExpressions": false
                     }
                 ],
-                "@typescript-eslint/member-delimiter-style": [
+                "@stylistic/ts/member-delimiter-style": [
                     "error",
                     {
                         "multiline": {
@@ -758,7 +752,7 @@
                 ],
                 "@typescript-eslint/switch-exhaustiveness-check": "error",
                 "@typescript-eslint/triple-slash-reference": "error",
-                "@typescript-eslint/type-annotation-spacing": [
+                "@stylistic/ts/type-annotation-spacing": [
                     "error",
                     {
                         "before": false,
@@ -785,16 +779,14 @@
             "files": ["*.ts", "*.tsx"],
             "extends": ["plugin:@nx/typescript"],
             "rules": {
-                "@typescript-eslint/no-extra-semi": "error",
-                "no-extra-semi": "off"
+                "@stylistic/js/no-extra-semi": "error"
             }
         },
         {
             "files": ["*.js", "*.jsx"],
             "extends": ["plugin:@nx/javascript"],
             "rules": {
-                "@typescript-eslint/no-extra-semi": "error",
-                "no-extra-semi": "off"
+                "@stylistic/js/no-extra-semi": "error"
             }
         },
         {
