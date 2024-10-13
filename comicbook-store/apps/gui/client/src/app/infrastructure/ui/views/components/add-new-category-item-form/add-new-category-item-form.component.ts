@@ -1,20 +1,20 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, output, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
+import { Closable } from '@ui/views/models/closable.model';
 
 @Component({
-    selector: 'cbs-dynamic-add-new-category-item-form',
+    selector: 'cbs-add-new-category-item-form',
     standalone: true,
     imports: [ReactiveFormsModule],
-    templateUrl: './dynamic-add-new-category-item-form.component.html',
-    styleUrl: './dynamic-add-new-category-item-form.component.scss',
+    templateUrl: './add-new-category-item-form.component.html',
+    styleUrl: './add-new-category-item-form.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicAddNewCategoryItemFormComponent implements AfterViewInit {
+export class AddNewCategoryItemFormComponent implements AfterViewInit, Closable {
+    public readonly close = output();
+
     protected readonly categoryName = viewChild.required<ElementRef<HTMLInputElement>>('categoryName');
     protected readonly newCategoryItemForm: FormGroup;
-
-    readonly #dynamicComponentRef = inject(DynamicComponentRef);
 
     public constructor(formBuilder: FormBuilder) {
         this.newCategoryItemForm = formBuilder.group({
@@ -27,6 +27,6 @@ export class DynamicAddNewCategoryItemFormComponent implements AfterViewInit {
     }
 
     protected onSubmit(): void {
-        this.#dynamicComponentRef.close();
+        this.close.emit();
     }
 }

@@ -1,9 +1,11 @@
-import { ApplicationRef, Component } from '@angular/core';
+import { ApplicationRef, Component, output } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { setup } from '@test/fixtures/setup/setup.module';
 import { screen } from '@testing-library/angular';
 import { DynamicComponentFactoryService } from '@ui/services/dynamic-component-factory/dynamic-component-factory.service';
+import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
+import { Closable } from '@ui/views/models/closable.model';
 import { DynamicSlidingPanelComponentFactoryService } from './dynamic-sliding-panel-component-factory.service';
 import { DynamicSlidingPanelComponent } from './dynamic-sliding-panel.component';
 
@@ -14,7 +16,9 @@ describe('DynamicSlidingPanelComponentFactoryService', () => {
             selector: 'cbs-test',
             template: '<div>Test</div>'
         })
-        class TestComponent {}
+        class TestComponent implements Closable {
+            public readonly close = output();
+        }
         setup({
             imports: [
                 NoopAnimationsModule
@@ -26,16 +30,17 @@ describe('DynamicSlidingPanelComponentFactoryService', () => {
         const dynamicSlidingPanelComponentFactory = TestBed.inject(DynamicSlidingPanelComponentFactoryService);
 
         // When
-        dynamicSlidingPanelComponentFactory.create(TestComponent);
+        const dynamicComponentRef = dynamicSlidingPanelComponentFactory.create(TestComponent);
         applicationRef.tick();
 
         // Then
+        expect(dynamicComponentRef).toBeInstanceOf(DynamicComponentRef);
         expect(createSpy).toHaveBeenCalledTimes(1);
         expect(createSpy).toHaveBeenCalledWith(
             DynamicSlidingPanelComponent,
             {
                 componentInputs: {
-                    componentType: TestComponent
+                    projectedComponent: TestComponent
                 }
             }
         );

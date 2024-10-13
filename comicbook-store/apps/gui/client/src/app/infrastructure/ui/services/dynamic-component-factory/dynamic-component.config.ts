@@ -1,4 +1,4 @@
-export interface DynamicComponentConfig<T extends Record<string, unknown> = Record<string, unknown>> {
+export interface DynamicComponentConfig {
     hostElement?: HTMLElement;
-    componentInputs?: T;
+    componentInputs?: object;
 }

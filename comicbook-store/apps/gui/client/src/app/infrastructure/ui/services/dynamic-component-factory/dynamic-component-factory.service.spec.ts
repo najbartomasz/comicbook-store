@@ -5,7 +5,7 @@ import { screen, within } from '@testing-library/angular';
 import { DynamicComponentFactoryService } from './dynamic-component-factory.service';
 
 describe('DynamicComponentFactoryService', () => {
-    test('creates component and appends it to the dom on document body level', () => {
+    test('creates component and appends it to the DOM on document body level', () => {
         // Given
         @Component({
             selector: 'cbs-test',
@@ -23,7 +23,7 @@ describe('DynamicComponentFactoryService', () => {
         expect(screen.queryByText('Test')).toBeVisible();
     });
 
-    test('creates component and appends it to the dom on provided host element level', async () => {
+    test('creates component and appends it to the DOM on provided host element level', async () => {
         // Given
         @Component({
             selector: 'cbs-test-host',
@@ -47,7 +47,7 @@ describe('DynamicComponentFactoryService', () => {
         expect(within(screen.getByTestId('test-host-element')).queryByText('Test')).toBeVisible();
     });
 
-    test('destroys component and removes it from the dom', () => {
+    test('closes component and removes it from the DOM', () => {
         // Given
         @Component({
             selector: 'cbs-test',
@@ -60,7 +60,7 @@ describe('DynamicComponentFactoryService', () => {
         applicationRef.tick();
 
         // When
-        dialogRef.destroy();
+        dialogRef.close();
         applicationRef.tick();
 
         // Then

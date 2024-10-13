@@ -2,11 +2,13 @@ import { animate, AnimationEvent, state, style, transition, trigger } from '@ang
 import { CommonModule } from '@angular/common';
 import {
     AfterViewInit, ChangeDetectionStrategy,
-    Component, ElementRef, HostListener, inject, Injector, input, OnInit, signal, Type, viewChild,
+    Component, ElementRef, HostListener, inject, Injector, input, OnInit,
+    Signal,
+    signal, Type, viewChild,
     ViewContainerRef
 } from '@angular/core';
 import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
-import { take, tap } from 'rxjs';
+import { Closable } from '@ui/views/models/closable.model';
 import { DynamicSlidingPanelAnimationState } from './dynamic-sliding-panel-animation-state.enum';
 
 @Component({
@@ -24,18 +26,22 @@ import { DynamicSlidingPanelAnimationState } from './dynamic-sliding-panel-anima
     styleUrl: './dynamic-sliding-panel.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicSlidingPanelComponent implements OnInit, AfterViewInit {
-    public readonly componentType = input.required<Type<unknown>>();
+export class DynamicSlidingPanelComponent<T extends Closable> implements OnInit, AfterViewInit {
+    public readonly projectedComponent = input.required<Type<T>>();
 
     protected readonly panelContent = viewChild.required<ElementRef, ViewContainerRef>('panelContent', { read: ViewContainerRef });
-    protected animationState = signal<DynamicSlidingPanelAnimationState>(DynamicSlidingPanelAnimationState.Hidden);
+    protected readonly animationState: Signal<DynamicSlidingPanelAnimationState>;
 
     readonly #dynamicComponentRef = inject(DynamicComponentRef);
     readonly #injector = inject(Injector);
+    readonly #animationState = signal(DynamicSlidingPanelAnimationState.Hidden);
+
+    public constructor() {
+        this.animationState = this.#animationState.asReadonly();
+    }
 
     public ngOnInit(): void {
-        this.#createProjectedComponent(this.componentType());
-        this.#subscribeToCloseEvent();
+        this.#createProjectedComponent(this.projectedComponent());
     }
 
     public ngAfterViewInit() {
@@ -49,35 +55,27 @@ export class DynamicSlidingPanelComponent implements OnInit, AfterViewInit {
 
     protected onSlideAnimationDone({ fromState, toState }: AnimationEvent): void {
         if (fromState === DynamicSlidingPanelAnimationState.Visible && toState === DynamicSlidingPanelAnimationState.Hidden) {
-            this.#dynamicComponentRef.destroy();
+            this.#dynamicComponentRef.close();
         }
     }
 
-    #createProjectedComponent<T>(component: Type<T>): void {
-        this.panelContent().createComponent(component, {
+    #createProjectedComponent(component: Type<T>): void {
+        const componentRef = this.panelContent().createComponent(component, {
             injector: Injector.create({
                 providers: [],
                 parent: this.#injector
             })
         });
-    }
-
-    #subscribeToCloseEvent(): void {
-        this.#dynamicComponentRef.close$
-            .pipe(
-                take(1),
-                tap(() => {
-                    this.#hide();
-                })
-            )
-            .subscribe();
+        componentRef.instance.close.subscribe(() => {
+            this.#hide();
+        });
     }
 
     #show(): void {
-        this.animationState.set(DynamicSlidingPanelAnimationState.Visible);
+        this.#animationState.set(DynamicSlidingPanelAnimationState.Visible);
     }
 
     #hide(): void {
-        this.animationState.set(DynamicSlidingPanelAnimationState.Hidden);
+        this.#animationState.set(DynamicSlidingPanelAnimationState.Hidden);
     }
 }
