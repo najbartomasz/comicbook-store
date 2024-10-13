@@ -18,7 +18,7 @@ describe('DynamicSlidingPanelComponent', () => {
             public readonly close = output();
         }
         await setup(DynamicSlidingPanelComponent, {
-            componentInputs: {
+            inputs: {
                 projectedComponent: TestComponent
             },
             providers: [
@@ -41,7 +41,7 @@ describe('DynamicSlidingPanelComponent', () => {
         }
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         await setup(DynamicSlidingPanelComponent, {
-            componentInputs: {
+            inputs: {
                 projectedComponent: TestComponent
             },
             providers: [
@@ -68,7 +68,7 @@ describe('DynamicSlidingPanelComponent', () => {
         }
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         await setup(DynamicSlidingPanelComponent, {
-            componentInputs: {
+            inputs: {
                 projectedComponent: TestComponent
             },
             providers: [
@@ -94,7 +94,7 @@ describe('DynamicSlidingPanelComponent', () => {
             public readonly close = output();
         }
         await setup(DynamicSlidingPanelComponent, {
-            componentInputs: {
+            inputs: {
                 projectedComponent: TestComponent
             },
             providers: [

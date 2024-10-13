@@ -9,7 +9,7 @@ describe('CategoryListingComponent', () => {
     test('displays provided category items with additional `add new` item', async () => {
         // Given
         await setup(CategoryItemListingComponent, {
-            componentInputs: {
+            inputs: {
                 categoryItems: [{ id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL NOW! 2.0' }],
                 maxColumns: 2
             }
@@ -26,7 +26,7 @@ describe('CategoryListingComponent', () => {
     test('displays only `add new` item when no category items are provided', async () => {
         // Given
         await setup(CategoryItemListingComponent, {
-            componentInputs: {
+            inputs: {
                 categoryItems: [],
                 maxColumns: 3
             }
@@ -43,12 +43,14 @@ describe('CategoryListingComponent', () => {
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const outputEmitterRefMock = mock<OutputEmitterRef<void>>();
         await setup(CategoryItemListingComponent, {
-            componentInputs: {
+            inputs: {
                 categoryItems: [],
                 maxColumns: 3
             },
-            componentOutputs: {
-                addNewCategoryItem: outputEmitterRefMock
+            on: {
+                addNewCategoryItem: () => {
+                    outputEmitterRefMock.emit();
+                }
             }
         });
 

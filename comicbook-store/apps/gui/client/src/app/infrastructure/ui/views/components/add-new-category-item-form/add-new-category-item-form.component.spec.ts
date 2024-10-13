@@ -12,8 +12,10 @@ describe('AddNewCategoryItemFormComponent', () => {
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const outputEmitterRefMock = mock<OutputEmitterRef<void>>();
         await setup(AddNewCategoryItemFormComponent, {
-            componentOutputs: {
-                close: outputEmitterRefMock
+            on: {
+                close: () => {
+                    outputEmitterRefMock.emit();
+                }
             },
             providers: [
                 DynamicComponentRef

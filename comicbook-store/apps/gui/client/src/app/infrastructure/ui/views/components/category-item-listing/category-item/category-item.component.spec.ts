@@ -9,7 +9,7 @@ describe('CategoryItemComponent', () => {
     test('displays category item name', async () => {
         // Given
         await setup(CategoryItemComponent, {
-            componentInputs: {
+            inputs: {
                 item: { id: 1, name: 'MARVEL NOW!' }
             }
         });
@@ -23,11 +23,11 @@ describe('CategoryItemComponent', () => {
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const outputEmitterRefMock = mock<OutputEmitterRef<void>>();
         await setup(CategoryItemComponent, {
-            componentInputs: {
+            inputs: {
                 item: { id: 1, name: 'MARVEL NOW!' }
             },
-            componentOutputs: {
-                select: outputEmitterRefMock
+            on: {
+                select: () => { outputEmitterRefMock.emit(); }
             }
         });
 
