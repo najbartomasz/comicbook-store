@@ -7,13 +7,12 @@ import { CategoryItemListingComponent } from '@ui/views/components/category-item
 import {
     DynamicSlidingPanelComponentFactoryService
 } from '@ui/views/components/dynamic-sliding-panel/dynamic-sliding-panel-component-factory.service';
-import { DynamicSlidingPanelComponent } from '@ui/views/components/dynamic-sliding-panel/dynamic-sliding-panel.component';
 import { finalize } from 'rxjs';
 
 @Component({
     selector: 'cbs-home-page',
     standalone: true,
-    imports: [CategoryItemListingComponent, DynamicSlidingPanelComponent],
+    imports: [CategoryItemListingComponent],
     templateUrl: './home-page.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
