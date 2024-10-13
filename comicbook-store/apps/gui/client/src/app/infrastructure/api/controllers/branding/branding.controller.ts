@@ -1,6 +1,6 @@
 import { CategoryItemDto } from '@api/data-transfer-objects/category-item.dto';
+import { CategoryItemDtoMapper } from '@api/dto-mappers/category-item/category-item.dto-mapper';
 import { HttpClient } from '@api/http-client/http-client.interface';
-import { CategoryItemDtoMapper } from '@api/mapper/category-item/category-item.dto-mapper';
 import { CategoryItem } from '@core/models/category-item.model';
 import { BrandingRepository } from '@feature/branding/branding-repository.interface';
 import { map, Observable } from 'rxjs';
