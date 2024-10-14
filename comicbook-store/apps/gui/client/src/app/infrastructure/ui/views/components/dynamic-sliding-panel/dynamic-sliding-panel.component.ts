@@ -2,7 +2,7 @@ import { animate, AnimationEvent, state, style, transition, trigger } from '@ang
 import { CommonModule } from '@angular/common';
 import {
     AfterViewInit, ChangeDetectionStrategy,
-    Component, ElementRef, HostListener, inject, Injector, input, OnInit,
+    Component, ElementRef, HostListener, inject, Injector, input,
     Signal,
     signal, Type, viewChild,
     ViewContainerRef
@@ -26,7 +26,7 @@ import { DynamicSlidingPanelAnimationState } from './dynamic-sliding-panel-anima
     styleUrl: './dynamic-sliding-panel.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicSlidingPanelComponent<T> implements OnInit, AfterViewInit {
+export class DynamicSlidingPanelComponent<T> implements AfterViewInit {
     public readonly projectedComponent = input.required<Type<T>>();
 
     protected readonly panelContent = viewChild.required<ElementRef, ViewContainerRef>('panelContent', { read: ViewContainerRef });
@@ -41,11 +41,8 @@ export class DynamicSlidingPanelComponent<T> implements OnInit, AfterViewInit {
         this.animationState = this.#animationState.asReadonly();
     }
 
-    public ngOnInit(): void {
-        this.#createProjectedComponent(this.projectedComponent());
-    }
-
     public ngAfterViewInit() {
+        this.#createProjectedComponent(this.projectedComponent());
         this.#show();
     }
 
