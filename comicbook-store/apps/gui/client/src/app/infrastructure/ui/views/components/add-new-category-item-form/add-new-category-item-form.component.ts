@@ -10,7 +10,7 @@ import { Closable } from '@ui/views/models/closable.model';
     styleUrl: './add-new-category-item-form.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddNewCategoryItemFormComponent implements AfterViewInit, Closable {
+export class AddNewCategoryItemFormComponent implements AfterViewInit, Closable<void> {
     public readonly close = output();
 
     protected readonly categoryName = viewChild.required<ElementRef<HTMLInputElement>>('categoryName');

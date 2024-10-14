@@ -16,7 +16,7 @@ describe('DynamicSlidingPanelComponentFactoryService', () => {
             selector: 'cbs-test',
             template: '<div>Test</div>'
         })
-        class TestComponent implements Closable {
+        class TestComponent implements Closable<void> {
             public readonly close = output();
         }
         setup({

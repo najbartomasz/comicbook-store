@@ -14,7 +14,7 @@ describe('DynamicSlidingPanelComponent', () => {
             selector: 'cbs-test',
             template: '<div>Test</div>'
         })
-        class TestComponent implements Closable {
+        class TestComponent implements Closable<void> {
             public readonly close = output();
         }
         await setup(DynamicSlidingPanelComponent, {
@@ -36,7 +36,7 @@ describe('DynamicSlidingPanelComponent', () => {
             selector: 'cbs-test',
             template: '<div>Test</div>'
         })
-        class TestComponent implements Closable {
+        class TestComponent implements Closable<void> {
             public readonly close = output();
         }
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
@@ -55,6 +55,7 @@ describe('DynamicSlidingPanelComponent', () => {
 
         // Then
         expect(dynamicComponentRefCloseSpy).toHaveBeenCalledTimes(1);
+        expect(dynamicComponentRefCloseSpy).toHaveBeenCalledWith(undefined);
     });
 
     test('closes the component on escape keydown', async () => {
@@ -63,7 +64,7 @@ describe('DynamicSlidingPanelComponent', () => {
             selector: 'cbs-test',
             template: '<div>Test</div>'
         })
-        class TestComponent implements Closable {
+        class TestComponent implements Closable<void> {
             public readonly close = output();
         }
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
@@ -82,6 +83,7 @@ describe('DynamicSlidingPanelComponent', () => {
 
         // Then
         expect(dynamicComponentRefCloseSpy).toHaveBeenCalledTimes(1);
+        expect(dynamicComponentRefCloseSpy).toHaveBeenCalledWith(undefined);
     });
 
     test('closes the component when close event was received', async () => {
@@ -90,8 +92,8 @@ describe('DynamicSlidingPanelComponent', () => {
             selector: 'cbs-test',
             template: '<div>Test</div>'
         })
-        class TestComponent implements Closable {
-            public readonly close = output();
+        class TestComponent implements Closable<string> {
+            public readonly close = output<string>();
         }
         await setup(DynamicSlidingPanelComponent, {
             inputs: {
@@ -105,10 +107,11 @@ describe('DynamicSlidingPanelComponent', () => {
         const dynamicComponentRefCloseSpy = jest.spyOn(dynamicComponentRef, 'close');
 
         // When
-        dynamicComponentRef.close();
+        dynamicComponentRef.close('data');
         await jest.runAllTimersAsync();
 
         // Then
         expect(dynamicComponentRefCloseSpy).toHaveBeenCalledTimes(1);
+        expect(dynamicComponentRefCloseSpy).toHaveBeenCalledWith('data');
     });
 });
