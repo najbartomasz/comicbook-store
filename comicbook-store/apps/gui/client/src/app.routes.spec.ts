@@ -1,12 +1,12 @@
 import { RouterTestingHarness } from '@angular/router/testing';
-import { setup } from '@test/fixtures/setup/setup.module';
+import { setupModule } from '@test/fixtures/setup/setup-module.fixture';
 import { HomePageComponent } from '@ui/views/pages/home/home-page.component';
 import { appConfig } from 'app.config';
 
 describe('Router', () => {
     test('navigates to home page by default', async () => {
         // Given
-        setup({ ...appConfig });
+        setupModule({ ...appConfig });
         const routerHarness = await RouterTestingHarness.create('/');
 
         // When
@@ -18,7 +18,7 @@ describe('Router', () => {
 
     test('navigates to home page when invalid path is requested', async () => {
         // Given
-        setup({ ...appConfig });
+        setupModule({ ...appConfig });
         const routerHarness = await RouterTestingHarness.create('/');
 
         // When

@@ -1,6 +1,6 @@
 import { GetBrandingsFeature } from '@feature/branding/get-brandings.feature.injection-token';
 import { GetBrandings } from '@feature/branding/get-brandings.interface';
-import { setup } from '@test/fixtures/setup/setup.component';
+import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { screen, within } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
 import { mock } from 'jest-mock-extended';
@@ -16,7 +16,7 @@ describe('HomePageComponent', () => {
             { id: 2, name: 'DC BLACK LABEL' },
             { id: 3, name: 'J. P. FANTASTICA' }
         ]), asyncScheduler));
-        await setup(HomePageComponent, {
+        await setupComponent(HomePageComponent, {
             providers: [
                 { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
             ]
@@ -37,7 +37,7 @@ describe('HomePageComponent', () => {
         getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' }
         ]), asyncScheduler));
-        await setup(HomePageComponent, {
+        await setupComponent(HomePageComponent, {
             providers: [
                 { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
             ]
@@ -58,7 +58,7 @@ describe('HomePageComponent', () => {
         getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' }
         ]), asyncScheduler));
-        await setup(HomePageComponent, {
+        await setupComponent(HomePageComponent, {
             providers: [
                 { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
             ]
@@ -80,7 +80,7 @@ describe('HomePageComponent', () => {
         getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' }
         ]), asyncScheduler));
-        await setup(HomePageComponent, {
+        await setupComponent(HomePageComponent, {
             providers: [
                 { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
             ]
@@ -102,7 +102,7 @@ describe('HomePageComponent', () => {
         getBrandingsFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' }
         ]), asyncScheduler));
-        await setup(HomePageComponent, {
+        await setupComponent(HomePageComponent, {
             providers: [
                 { provide: GetBrandingsFeature, useValue: getBrandingsFeatureMock }
             ]

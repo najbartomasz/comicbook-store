@@ -1,7 +1,7 @@
 import { ApplicationRef, Component, output } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { setup } from '@test/fixtures/setup/setup.module';
+import { setupModule } from '@test/fixtures/setup/setup-module.fixture';
 import { screen } from '@testing-library/angular';
 import { DynamicComponentFactoryService } from '@ui/services/dynamic-component-factory/dynamic-component-factory.service';
 import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
@@ -19,7 +19,7 @@ describe('DynamicSlidingPanelComponentFactoryService', () => {
         class TestComponent implements Closable<void> {
             public readonly close = output();
         }
-        setup({
+        setupModule({
             imports: [
                 NoopAnimationsModule
             ]

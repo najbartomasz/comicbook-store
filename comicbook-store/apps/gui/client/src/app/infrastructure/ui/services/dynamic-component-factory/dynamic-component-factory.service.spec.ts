@@ -1,6 +1,6 @@
 import { ApplicationRef, Component, input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { setup } from '@test/fixtures/setup/setup.component';
+import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { screen, within } from '@testing-library/angular';
 import { DynamicComponentFactoryService } from './dynamic-component-factory.service';
 
@@ -30,7 +30,7 @@ describe('DynamicComponentFactoryService', () => {
             template: '<div data-testid="test-host-element">Test Host</div>'
         })
         class TestHostComponent {}
-        await setup(TestHostComponent);
+        await setupComponent(TestHostComponent);
         @Component({
             selector: 'cbs-test',
             template: '<div>Test</div>'

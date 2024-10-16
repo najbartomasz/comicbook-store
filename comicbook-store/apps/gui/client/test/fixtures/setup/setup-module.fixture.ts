@@ -3,7 +3,7 @@ import { TestBed, TestModuleMetadata } from '@angular/core/testing';
 import { LoggerFactory } from '@lib/logger/logger-factory.injection-token';
 import { LoggerFixture } from '../logger/logger.fixture';
 
-export const setup = (moduleDef?: TestModuleMetadata) => {
+export const setupModule = (moduleDef?: TestModuleMetadata) => {
     const loggerFixture = new LoggerFixture();
     const providers = (moduleDef?.providers ?? []) as Provider[];
     TestBed.configureTestingModule({

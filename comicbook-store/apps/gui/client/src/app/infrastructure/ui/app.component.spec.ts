@@ -1,10 +1,10 @@
-import { setup } from '@test/fixtures/setup/setup.component';
+import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
     test('is up and running', async () => {
         // Given
-        const { loggerMock } = await setup(AppComponent);
+        const { loggerMock } = await setupComponent(AppComponent);
 
         // When, Then
         expect(loggerMock.info).toHaveBeenCalledWith('Up and running.');
@@ -12,7 +12,7 @@ describe('AppComponent', () => {
 
     test('is closed', async () => {
         // Given
-        const { fixture, loggerMock } = await setup(AppComponent);
+        const { fixture, loggerMock } = await setupComponent(AppComponent);
 
         // When
         fixture.destroy();

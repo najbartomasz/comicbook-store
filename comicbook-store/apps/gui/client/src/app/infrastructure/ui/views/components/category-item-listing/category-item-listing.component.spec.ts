@@ -1,5 +1,5 @@
 import { OutputEmitterRef } from '@angular/core';
-import { setup } from '@test/fixtures/setup/setup.component';
+import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
 import { mock } from 'jest-mock-extended';
@@ -8,7 +8,7 @@ import { CategoryItemListingComponent } from './category-item-listing.component'
 describe('CategoryListingComponent', () => {
     test('displays provided category items with additional `add new` item', async () => {
         // Given
-        await setup(CategoryItemListingComponent, {
+        await setupComponent(CategoryItemListingComponent, {
             inputs: {
                 categoryItems: [{ id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL NOW! 2.0' }],
                 maxColumns: 2
@@ -25,7 +25,7 @@ describe('CategoryListingComponent', () => {
 
     test('displays only `add new` item when no category items are provided', async () => {
         // Given
-        await setup(CategoryItemListingComponent, {
+        await setupComponent(CategoryItemListingComponent, {
             inputs: {
                 categoryItems: [],
                 maxColumns: 3
@@ -42,7 +42,7 @@ describe('CategoryListingComponent', () => {
         // Given
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const outputEmitterRefMock = mock<OutputEmitterRef<void>>();
-        await setup(CategoryItemListingComponent, {
+        await setupComponent(CategoryItemListingComponent, {
             inputs: {
                 categoryItems: [],
                 maxColumns: 3

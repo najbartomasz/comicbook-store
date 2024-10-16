@@ -1,6 +1,6 @@
 import { Component, output } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { setup } from '@test/fixtures/setup/setup.component';
+import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { screen, within } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
 import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
@@ -17,7 +17,7 @@ describe('DynamicSlidingPanelComponent', () => {
         class TestComponent implements Closable<void> {
             public readonly close = output();
         }
-        await setup(DynamicSlidingPanelComponent, {
+        await setupComponent(DynamicSlidingPanelComponent, {
             inputs: {
                 projectedComponent: TestComponent
             },
@@ -40,7 +40,7 @@ describe('DynamicSlidingPanelComponent', () => {
             public readonly close = output();
         }
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-        await setup(DynamicSlidingPanelComponent, {
+        await setupComponent(DynamicSlidingPanelComponent, {
             inputs: {
                 projectedComponent: TestComponent
             },
@@ -68,7 +68,7 @@ describe('DynamicSlidingPanelComponent', () => {
             public readonly close = output();
         }
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-        await setup(DynamicSlidingPanelComponent, {
+        await setupComponent(DynamicSlidingPanelComponent, {
             inputs: {
                 projectedComponent: TestComponent
             },
@@ -95,7 +95,7 @@ describe('DynamicSlidingPanelComponent', () => {
         class TestComponent implements Closable<string> {
             public readonly close = output<string>();
         }
-        await setup(DynamicSlidingPanelComponent, {
+        await setupComponent(DynamicSlidingPanelComponent, {
             inputs: {
                 projectedComponent: TestComponent
             },

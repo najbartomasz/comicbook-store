@@ -1,5 +1,5 @@
 import { OutputEmitterRef } from '@angular/core';
-import { setup } from '@test/fixtures/setup/setup.component';
+import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
 import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
@@ -11,7 +11,7 @@ describe('AddNewCategoryItemFormComponent', () => {
         // Given
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const outputEmitterRefMock = mock<OutputEmitterRef<void>>();
-        await setup(AddNewCategoryItemFormComponent, {
+        await setupComponent(AddNewCategoryItemFormComponent, {
             on: {
                 close: () => {
                     outputEmitterRefMock.emit();
