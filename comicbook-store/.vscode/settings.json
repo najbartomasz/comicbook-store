@@ -4,5 +4,9 @@
         "source.fixAll": "always",
         "source.organizeImports": "always",
         "source.addMissingImports.ts": "always"
+    },
+    "sonarlint.connectedMode.project": {
+        "connectionId": "http-localhost-9000-",
+        "projectKey": "comicbook-store"
     }
 }
