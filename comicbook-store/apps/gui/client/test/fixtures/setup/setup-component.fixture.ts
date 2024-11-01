@@ -1,18 +1,15 @@
-import { Provider, Type } from '@angular/core';
-import { LoggerFactory } from '@lib/logger/logger-factory.injection-token';
+import { Type } from '@angular/core';
 import { render, RenderComponentOptions } from '@testing-library/angular';
-import { LoggerFixture } from '../logger/logger.fixture';
+import { configureTestingModule } from './configurator/test-bed.configurator';
 
 export const setupComponent = async <ComponentType>(component: Type<ComponentType>, options?: RenderComponentOptions<ComponentType>) => {
-    const loggerFixture = new LoggerFixture();
-    const providers = (options?.providers ?? []) as Provider[];
+    const { providers, ...renderOptions } = options ?? { providers: [] };
     const renderResults = await render(component, {
-        ...options,
-        providers: [
-            { provide: LoggerFactory, useValue: loggerFixture.loggerFactoryMock },
-            ...providers
-        ]
+        ...renderOptions,
+        configureTestBed: (testBed) => {
+            configureTestingModule(testBed, { providers });
+        }
     });
     renderResults.fixture.autoDetectChanges();
-    return { ...renderResults, ...loggerFixture };
+    return renderResults;
 };

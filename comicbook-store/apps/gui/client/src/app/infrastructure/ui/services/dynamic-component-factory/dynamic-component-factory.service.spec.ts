@@ -1,6 +1,6 @@
 import { ApplicationRef, Component, input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
+import { setupService } from '@test/fixtures/setup/setup-service.fixture';
 import { screen, within } from '@testing-library/angular';
 import { DynamicComponentFactoryService } from './dynamic-component-factory.service';
 
@@ -12,7 +12,7 @@ describe('DynamicComponentFactoryService', () => {
             template: '<div>Test</div>'
         })
         class TestComponent {}
-        const dynamicComponentFactory = TestBed.inject(DynamicComponentFactoryService);
+        const dynamicComponentFactory = setupService(DynamicComponentFactoryService);
         const applicationRef = TestBed.inject(ApplicationRef);
 
         // When
@@ -30,13 +30,13 @@ describe('DynamicComponentFactoryService', () => {
             template: '<div data-testid="test-host-element">Test Host</div>'
         })
         class TestHostComponent {}
-        await setupComponent(TestHostComponent);
         @Component({
             selector: 'cbs-test',
             template: '<div>Test</div>'
         })
         class TestComponent {}
-        const dynamicComponentFactory = TestBed.inject(DynamicComponentFactoryService);
+        const dynamicComponentFactory = setupService(DynamicComponentFactoryService);
+        TestBed.createComponent(TestHostComponent);
         const applicationRef = TestBed.inject(ApplicationRef);
 
         // When
@@ -54,7 +54,7 @@ describe('DynamicComponentFactoryService', () => {
             template: '<div>Test</div>'
         })
         class TestComponent {}
-        const dynamicComponentFactory = TestBed.inject(DynamicComponentFactoryService);
+        const dynamicComponentFactory = setupService(DynamicComponentFactoryService);
         const applicationRef = TestBed.inject(ApplicationRef);
         const dialogRef = dynamicComponentFactory.create(TestComponent);
         applicationRef.tick();
@@ -76,7 +76,7 @@ describe('DynamicComponentFactoryService', () => {
         class TestComponent {
             public readonly testInput = input.required<string>();
         }
-        const dynamicComponentFactory = TestBed.inject(DynamicComponentFactoryService);
+        const dynamicComponentFactory = setupService(DynamicComponentFactoryService);
         const applicationRef = TestBed.inject(ApplicationRef);
 
         // When

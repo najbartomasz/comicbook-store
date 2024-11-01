@@ -48,7 +48,7 @@
             "rules": {}
         },
         {
-            "files": ["*.spec.ts"],
+            "files": ["*.spec.ts", "test/**/*.ts"],
             "rules": {
                 "no-restricted-imports": "off"
             }

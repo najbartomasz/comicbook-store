@@ -33,7 +33,3 @@ declare global {
   }
 }
 window._virtualConsole = virtualConsole;
-
-afterEach(() => {
-    document.body.innerHTML = '';
-});
