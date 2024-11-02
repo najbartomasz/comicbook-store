@@ -1,9 +1,13 @@
 import { CategoryItem } from '@core/models/category-item.model';
+import { Feature } from '@feature/feature.model';
 import { Observable } from 'rxjs';
-import { BrandingRepository } from './branding-repository.interface';
-import { GetBrandings } from './get-brandings.interface';
+import { BrandingRepository } from './branding-repository.model';
 
-export class GetBrandingsFeature implements GetBrandings {
+export const BrandingFeatureId = 'BrandingFeature';
+
+export class BrandingFeature implements Feature {
+    public get id(): Feature['id'] { return BrandingFeatureId; }
+
     readonly #brandingRepository: BrandingRepository;
 
     public constructor(brandingsRepository: BrandingRepository) {

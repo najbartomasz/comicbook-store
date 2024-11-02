@@ -404,7 +404,7 @@ module.exports = [
             '@typescript-eslint/ban-tslint-comment': 'error',
             '@typescript-eslint/class-literal-property-style': [
                 'error',
-                'fields',
+                'fields'
             ],
             '@typescript-eslint/consistent-indexed-object-style': [
                 'error',

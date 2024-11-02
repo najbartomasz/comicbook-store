@@ -1,6 +1,6 @@
 import { CategoryItemDto } from '@api/data-transfer-objects/category-item.dto';
-import { CategoryItemDtoMapper } from '@api/dto-mappers/category-item/category-item.dto-mapper.interface';
-import { HttpClient } from '@api/http-client/http-client.interface';
+import { CategoryItemDtoMapper } from '@api/dto-mappers/category-item/category-item.dto-mapper.model';
+import { HttpClient } from '@api/http-client/http-client.model';
 import { CategoryItem } from '@core/models/category-item.model';
 import { mock } from 'jest-mock-extended';
 import { asyncScheduler, of, scheduled } from 'rxjs';
