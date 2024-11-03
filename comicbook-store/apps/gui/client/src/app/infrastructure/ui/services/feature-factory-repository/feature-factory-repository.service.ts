@@ -1,7 +1,7 @@
 import { inject, Injectable, Injector } from '@angular/core';
 import { FeatureFactoryRepository } from '@feature/feature-factory-repository.model';
+import { FeatureFactoryTokenMapper } from '@feature/feature-factory-token.mapper.injection-token';
 import { FeatureFactoryMapper } from '@feature/feature-factory.mapper.model';
-import { FeatureFactoryTokenMapper } from './feature-factory-token.mapper.injection-token';
 
 @Injectable({
     providedIn: 'root'
