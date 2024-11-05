@@ -11,10 +11,7 @@ export const configureTestingModule = (testBed: TestBed, moduleDef?: TestModuleM
         providers: [
             { provide: LoggerFactory, useValue: loggerFixture.loggerFactoryMock },
             ...(providers ?? []) as Provider[]
-        ],
-        teardown: {
-            destroyAfterEach: true
-        }
+        ]
     });
     return loggerFixture;
 };
