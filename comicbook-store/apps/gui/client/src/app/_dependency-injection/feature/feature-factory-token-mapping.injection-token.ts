@@ -1,13 +1,13 @@
 import { InjectionToken } from '@angular/core';
-import { FeatureFactoryMapper } from '@feature/feature-factory.mapper.model';
+import { FeatureFactoryMapping } from '@feature/feature-factory-mapping.type';
 import { BrandingFeatureId } from '@feature/feature-id';
 import { BrandingFeatureFactory } from './branding/branding.feature-factory.injection-token';
 
-type FactoryTokenMapper = {
-    [T in keyof FeatureFactoryMapper]: InjectionToken<FeatureFactoryMapper[T]>;
+type FactoryTokenMapping = {
+    [T in keyof FeatureFactoryMapping]: InjectionToken<FeatureFactoryMapping[T]>;
 }
 
-export const FeatureFactoryTokenMapper = new InjectionToken<FactoryTokenMapper>('FeatureFactoryTokenMapper', {
+export const FeatureFactoryTokenMapping = new InjectionToken<FactoryTokenMapping>('FeatureFactoryTokenMapping', {
     providedIn: 'root',
     factory: () => ({
         [BrandingFeatureId]: BrandingFeatureFactory

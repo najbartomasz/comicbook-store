@@ -1,5 +1,5 @@
-import { FeatureFactoryMapper } from './feature-factory.mapper.model';
+import { FeatureFactoryMapping } from './feature-factory-mapping.type';
 
 export interface FeatureFactoryRepository {
-    getFeatureFactory<T extends keyof FeatureFactoryMapper>(featureId: T): FeatureFactoryMapper[T];
+    getFeatureFactory<T extends keyof FeatureFactoryMapping>(featureId: T): FeatureFactoryMapping[T];
 }

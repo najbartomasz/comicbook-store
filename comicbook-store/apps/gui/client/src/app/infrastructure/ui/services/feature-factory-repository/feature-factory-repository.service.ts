@@ -1,16 +1,16 @@
 import { inject, Injectable, Injector } from '@angular/core';
+import { FeatureFactoryMapping } from '@feature/feature-factory-mapping.type';
 import { FeatureFactoryRepository } from '@feature/feature-factory-repository.model';
-import { FeatureFactoryTokenMapper } from '@feature/feature-factory-token.mapper.injection-token';
-import { FeatureFactoryMapper } from '@feature/feature-factory.mapper.model';
+import { FeatureFactoryTokenMapping } from '@feature/feature-factory-token-mapping.injection-token';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FeatureFactoryRepositoryService implements FeatureFactoryRepository {
     readonly #injector = inject(Injector);
-    readonly #featureFactoryTokenMapper = inject(FeatureFactoryTokenMapper)
+    readonly #featureFactoryTokenMapping = inject(FeatureFactoryTokenMapping)
 
-    public getFeatureFactory<T extends keyof FeatureFactoryMapper>(featureId: T): FeatureFactoryMapper[T] {
-        return this.#injector.get(this.#featureFactoryTokenMapper[featureId]);
+    public getFeatureFactory<T extends keyof FeatureFactoryMapping>(featureId: T): FeatureFactoryMapping[T] {
+        return this.#injector.get(this.#featureFactoryTokenMapping[featureId]);
     }
 }
