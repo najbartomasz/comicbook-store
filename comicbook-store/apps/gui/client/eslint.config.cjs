@@ -78,7 +78,7 @@ module.exports = [
                 {
                     patterns: [
                         {
-                            group: ['../*'],
+                            group: ['../*', 'app/*'],
                             message:
                                 'Relative imports are forbidden. Use absolute paths instead.',
                         },

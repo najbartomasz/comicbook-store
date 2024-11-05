@@ -7,7 +7,7 @@ type FactoryTokenMapper = {
     [T in keyof FeatureFactoryMapper]: InjectionToken<FeatureFactoryMapper[T]>;
 }
 
-export const FeatureFactoryTokenMapper = new InjectionToken<FactoryTokenMapper>('FeatureFactoryMapper', {
+export const FeatureFactoryTokenMapper = new InjectionToken<FactoryTokenMapper>('FeatureFactoryTokenMapper', {
     providedIn: 'root',
     factory: () => ({
         [BrandingFeatureId]: BrandingFeatureFactory
