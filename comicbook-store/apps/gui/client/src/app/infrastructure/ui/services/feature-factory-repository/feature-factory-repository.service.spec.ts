@@ -1,22 +1,21 @@
 import { InjectionToken } from '@angular/core';
-import { FeatureFactoryMapping } from '@feature/feature-factory-mapping.type';
-import { FeatureFactoryTokenMapping } from '@feature/feature-factory-token-mapping.injection-token';
-import { BrandingFeatureId } from '@feature/feature-id';
-import { setupService } from '@test/fixtures/setup/setup-service.fixture';
+import { FeatureFactoryMapping } from '@di/feature';
+import { BrandingFeatureFactory, BrandingFeatureId } from '@feature';
+import { setupService } from '@testing/fixtures';
 import { mock } from 'jest-mock-extended';
 import { FeatureFactoryRepositoryService } from './feature-factory-repository.service';
 
 describe('FeatureFactoryRepository', () => {
-    test('provieds feature factory for requested feature', () => {
+    test('provides feature factory for requested feature', () => {
         // Given
-        const brandingFeatureFactoryMock = mock<FeatureFactoryMapping[typeof BrandingFeatureId]>();
-        const brandingFeatureFactoryTokenStub = new InjectionToken('BrandingFeatureFactoryStub', {
+        const brandingFeatureFactoryMock = mock<BrandingFeatureFactory>();
+        const brandingFeatureFactoryTokenStub = new InjectionToken<BrandingFeatureFactory>('BrandingFeatureFactoryStub', {
             providedIn: 'root',
             factory: () => brandingFeatureFactoryMock
         });
         const featureFactoryRepository = setupService(FeatureFactoryRepositoryService, {
             providers: [
-                { provide: FeatureFactoryTokenMapping, useValue: { [BrandingFeatureId]: brandingFeatureFactoryTokenStub } }
+                { provide: FeatureFactoryMapping, useValue: { [BrandingFeatureId]: brandingFeatureFactoryTokenStub } }
             ]
         });
 

@@ -1,5 +1,4 @@
-import { CategoryItem } from '@core/models/category-item.model';
-import { Feature } from '@feature/feature.model';
+import { CategoryItem, Feature } from '@core/models';
 import { Observable } from 'rxjs';
 import { BrandingRepository } from './branding-repository.model';
 

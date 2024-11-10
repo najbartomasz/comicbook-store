@@ -1,13 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { BrandingFeatureId } from '@feature/feature-id';
-import { injectFeature } from '@feature/feature.injector';
-import { injectLogger } from '@lib/logger/logger.injector';
-import { AddNewCategoryItemFormComponent } from '@ui/views/components/add-new-category-item-form/add-new-category-item-form.component';
-import { CategoryItemListingComponent } from '@ui/views/components/category-item-listing/category-item-listing.component';
-import {
-    DynamicSlidingPanelComponentFactoryService
-} from '@ui/views/components/dynamic-sliding-panel/dynamic-sliding-panel-component-factory.service';
+import { BrandingFeatureId } from '@feature';
+import { injectFeature, injectLogger } from '@ui/injectors';
+import { DynamicSlidingPanelComponentFactoryService } from '@ui/services';
+import { AddNewCategoryItemFormComponent, CategoryItemListingComponent } from '@ui/views/components';
 import { finalize } from 'rxjs';
 
 @Component({

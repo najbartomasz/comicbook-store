@@ -1,6 +1,6 @@
 import { RouterTestingHarness } from '@angular/router/testing';
-import { setupModule } from '@test/fixtures/setup/setup-module.fixture';
-import { HomePageComponent } from '@ui/views/pages/home/home-page.component';
+import { setupModule } from '@testing/fixtures';
+import { HomePageComponent } from '@ui/views/pages';
 import { appConfig } from 'app.config';
 
 describe('Router', () => {

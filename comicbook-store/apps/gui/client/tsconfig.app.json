@@ -8,9 +8,6 @@
     "include": ["src/**/*.d.ts"],
     "exclude": [
         "jest.config.ts",
-        "src/**/*.test.ts",
-        "src/**/*.spec.ts",
-        "**/*.stories.ts",
-        "**/*.stories.js"
+        "src/**/*.spec.ts"
     ]
 }

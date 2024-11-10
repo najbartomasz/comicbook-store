@@ -1,5 +1,5 @@
-import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { screen } from '@testing-library/angular';
+import { setupComponent } from '@testing/fixtures';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {

@@ -1,10 +1,10 @@
 import { Component, output } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { screen, within } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
-import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
-import { Closable } from '@ui/views/models/closable.model';
+import { setupComponent } from '@testing/fixtures';
+import { DynamicComponentRef } from '@ui/services';
+import { Closable } from '@ui/views/models';
 import { DynamicSlidingPanelComponent } from './dynamic-sliding-panel.component';
 
 describe('DynamicSlidingPanelComponent', () => {

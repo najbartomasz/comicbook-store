@@ -1,6 +1,7 @@
 const { FlatCompat } = require('@eslint/eslintrc');
 const js = require('@eslint/js');
 const baseConfig = require('../../../eslint.config.cjs');
+const { group } = require('console');
 
 const compat = new FlatCompat({
     baseDirectory: __dirname,
@@ -36,19 +37,7 @@ module.exports = [
                         prefix: 'cbs',
                         style: 'kebab-case',
                     },
-                ],
-                'no-restricted-imports': [
-                    'error',
-                    {
-                        patterns: [
-                            {
-                                group: ['@test/*'],
-                                message:
-                                    'Test files cannot be imported in production code.',
-                            },
-                        ],
-                    },
-                ],
+                ]
             },
             languageOptions: {
                 parserOptions: {
@@ -67,11 +56,7 @@ module.exports = [
             },
         })),
     {
-        files: ['**/*.spec.ts', 'test/**/*.ts'],
-        rules: { 'no-restricted-imports': 'off' },
-    },
-    {
-        files: ['src/**/*.ts'],
+        files: ['src/app/infrastructure/**/*.ts'],
         rules: {
             'no-restricted-imports': [
                 'error',
@@ -82,6 +67,13 @@ module.exports = [
                             message:
                                 'Relative imports are forbidden. Use absolute paths instead.',
                         },
+                        {
+                            group: [
+                                '@testing*'
+                            ],
+                            message:
+                                'Infrastructure files cannot be depended on testing code.',
+                        }
                     ],
                 },
             ],
@@ -96,13 +88,25 @@ module.exports = [
                     patterns: [
                         {
                             group: [
-                                '../**/infrastructure/*',
-                                '@ui/*',
-                                '@api/*',
+                                '@di*',
+                                '@ui*',
+                                '@api*',
                             ],
                             message:
                                 'Feature files cannot be depended on any other layer.',
                         },
+                        {
+                            group: ['../*', 'app/*'],
+                            message:
+                                'Relative imports are forbidden. Use absolute paths instead.',
+                        },
+                        {
+                            group: [
+                                '@testing*'
+                            ],
+                            message:
+                                'Feature files cannot be depended on testing code.',
+                        }
                     ],
                 },
             ],
@@ -117,16 +121,27 @@ module.exports = [
                     patterns: [
                         {
                             group: [
-                                '../**/infrastructure/*',
-                                '@ui/*',
-                                '@api/*',
-                                '../**/feature/*',
-                                '@feature/*',
+                                '@di*',
+                                '@ui*',
+                                '@api*',
+                                '@feature*',
                             ],
                             message:
                                 'Core files cannot be depended on any other layer.',
                         },
-                    ],
+                        {
+                            group: ['../*', 'app/*'],
+                            message:
+                                'Relative imports are forbidden. Use absolute paths instead.',
+                        },
+                        {
+                            group: [
+                                '@testing*'
+                            ],
+                            message:
+                                'Core files cannot be depended on testing code.',
+                        }
+                    ]
                 },
             ],
         },
@@ -140,20 +155,34 @@ module.exports = [
                     patterns: [
                         {
                             group: [
-                                '../**/infrastructure/*',
-                                '@ui/*',
-                                '@api/*',
-                                '../**/feature/*',
-                                '@feature/*',
-                                '../**/core/*',
-                                '@core/*',
+                                '@di*',
+                                '@ui*',
+                                '@api*',
+                                '@feature*',
+                                '@core*',
                             ],
                             message:
                                 'Lib files cannot be depended on application code.',
                         },
-                    ],
+                        {
+                            group: ['../*', 'app/*'],
+                            message:
+                                'Relative imports are forbidden. Use absolute paths instead.',
+                        },
+                        {
+                            group: [
+                                '@testing*'
+                            ],
+                            message:
+                                'Lib files cannot be depended on testing code.',
+                        }
+                    ]
                 },
             ],
         },
     },
+    {
+        files: ['**/*.spec.ts', 'testing/**/*.ts'],
+        rules: { 'no-restricted-imports': 'off' },
+    }
 ];

@@ -1,8 +1,8 @@
 import { OutputEmitterRef } from '@angular/core';
-import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
-import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
+import { setupComponent } from '@testing/fixtures';
+import { DynamicComponentRef } from '@ui/services';
 import { mock } from 'jest-mock-extended';
 import { AddNewCategoryItemFormComponent } from './add-new-category-item-form.component';
 

@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, output, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Closable } from '@ui/views/models/closable.model';
+import { Closable } from '@ui/views/models';
 
 @Component({
     selector: 'cbs-add-new-category-item-form',

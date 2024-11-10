@@ -1,4 +1,4 @@
-import { Factory } from '@core/models/factory.model';
+import { Factory } from '@core/models';
 import { BrandingRepository } from './branding-repository.model';
 import { BrandingFeature } from './branding.feature';
 

@@ -1,9 +1,8 @@
-import { BrandingFeature, BrandingFeatureId } from '@feature/branding/branding.feature';
-import { FeatureFactory } from '@feature/feature-factory';
-import { FeatureFactory as FactoryFactoryToken } from '@feature/feature-factory.injection-token';
-import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
+import { FeatureFactory as FactoryFactoryToken } from '@di/feature';
+import { BrandingFeature, BrandingFeatureId, FeatureFactory } from '@feature';
 import { screen, within } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
+import { setupComponent } from '@testing/fixtures';
 import { mock } from 'jest-mock-extended';
 import { asyncScheduler, of, scheduled } from 'rxjs';
 import { HomePageComponent } from './home-page.component';

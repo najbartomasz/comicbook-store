@@ -1,6 +1,6 @@
 import { inject, InjectionToken } from '@angular/core';
-import { FeatureFactory as Factory } from '@feature/feature-factory';
-import { FeatureFactoryRepositoryService } from '@ui/services/feature-factory-repository/feature-factory-repository.service';
+import { FeatureFactory as Factory } from '@feature';
+import { FeatureFactoryRepositoryService } from '@ui/services';
 
 export const FeatureFactory = new InjectionToken<Factory>('FeatureFactory', {
     providedIn: 'root',

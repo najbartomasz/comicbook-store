@@ -1,5 +1,6 @@
-import { FeatureFactoryMapping } from './feature-factory-mapping.type';
+import { ConcreteFeatureFactory } from './concrete-feature-factory.type';
+import { ConcreteFeatureId } from './concrete-feature-id.type';
 
 export interface FeatureFactoryRepository {
-    getFeatureFactory<T extends keyof FeatureFactoryMapping>(featureId: T): FeatureFactoryMapping[T];
+    getFeatureFactory<T extends ConcreteFeatureId>(featureId: T): ConcreteFeatureFactory<T>;
 }

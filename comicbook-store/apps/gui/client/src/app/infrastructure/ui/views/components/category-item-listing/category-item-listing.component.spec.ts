@@ -1,7 +1,7 @@
 import { OutputEmitterRef } from '@angular/core';
-import { setupComponent } from '@test/fixtures/setup/setup-component.fixture';
 import { screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
+import { setupComponent } from '@testing/fixtures';
 import { mock } from 'jest-mock-extended';
 import { CategoryItemListingComponent } from './category-item-listing.component';
 

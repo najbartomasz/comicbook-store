@@ -1,7 +1,7 @@
 import { ApplicationRef, Component, input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { setupService } from '@test/fixtures/setup/setup-service.fixture';
 import { screen, within } from '@testing-library/angular';
+import { setupService } from '@testing/fixtures';
 import { DynamicComponentFactoryService } from './dynamic-component-factory.service';
 
 describe('DynamicComponentFactoryService', () => {

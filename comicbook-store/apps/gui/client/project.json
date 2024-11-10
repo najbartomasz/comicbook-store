@@ -75,6 +75,7 @@
             "options": {
                 "jestConfig": "apps/gui/client/jest.config.ts",
                 "coveragePathIgnorePatterns": [
+                    ".type.ts",
                     ".model.ts",
                     "src/index.html",
                     "src/main.ts",

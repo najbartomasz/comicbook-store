@@ -2,12 +2,19 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "@ui/*": ["app/infrastructure/ui/*"],
-            "@api/*": ["app/infrastructure/api/*", "app/_dependency-injection/infrastructure/api/*"],
-            "@feature/*": ["app/feature/*", "app/_dependency-injection/feature/*"],
-            "@core/*": ["app/core/*"],
-            "@lib/*": ["app/lib/*", "app/_dependency-injection/lib/*"],
-            "@test/*": ["../test/*"]
+            "@di/api": ["app/_dependency-injection/infrastructure/api/index.ts"],
+            "@di/feature": ["app/_dependency-injection/feature/index.ts"],
+            "@di/lib": ["app/_dependency-injection/lib/index.ts"],
+            "@ui/views/components": ["app/infrastructure/ui/views/components/index.ts"],
+            "@ui/views/models": ["app/infrastructure/ui/views/models/index.ts"],
+            "@ui/views/pages": ["app/infrastructure/ui/views/pages/index.ts"],
+            "@ui/services": ["app/infrastructure/ui/services/index.ts"],
+            "@ui/interceptors": ["app/infrastructure/ui/interceptors/index.ts"],
+            "@ui/injectors": ["app/infrastructure/ui/injectors/index.ts"],
+            "@api": ["app/infrastructure/api/index.ts"],
+            "@feature": ["app/feature/index.ts"],
+            "@core/models": ["app/core/models/index.ts"],
+            "@testing/fixtures": ["../testing/fixtures/index.ts"]
         },
         "target": "es2022",
         "useDefineForClassFields": false,

@@ -1,15 +1,16 @@
-import { Factory } from '@core/models/factory.model';
+import { Factory } from '@core/models';
+import { ConcreteFeatureId } from './concrete-feature-id.type';
+import { ConcreteFeature } from './concrete-feature.type';
 import { FeatureFactoryRepository } from './feature-factory-repository.model';
-import { FeatureMapping } from './feature-mapping.type';
 
-export class FeatureFactory implements Factory<FeatureMapping[keyof FeatureMapping]> {
+export class FeatureFactory implements Factory<ConcreteFeature<ConcreteFeatureId>> {
     readonly #featureFactoryRepository: FeatureFactoryRepository;
 
     public constructor(featureFactoryRepository: FeatureFactoryRepository) {
         this.#featureFactoryRepository = featureFactoryRepository;
     }
 
-    public create<T extends keyof FeatureMapping>(featureId: T): FeatureMapping[T] {
-        return this.#featureFactoryRepository.getFeatureFactory(featureId).create() as FeatureMapping[T];
+    public create<T extends ConcreteFeatureId>(featureId: T): ConcreteFeature<T> {
+        return this.#featureFactoryRepository.getFeatureFactory(featureId).create() as ConcreteFeature<T>;
     }
 }

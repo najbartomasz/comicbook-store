@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CategoryItem } from '@core/models/category-item.model';
-import { injectLogger } from '@lib/logger/logger.injector';
+import { CategoryItem } from '@core/models';
+import { injectLogger } from '@ui/injectors';
 
 @Component({
     selector: 'cbs-category-item',

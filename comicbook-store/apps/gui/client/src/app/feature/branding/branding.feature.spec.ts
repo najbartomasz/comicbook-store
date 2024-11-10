@@ -1,4 +1,4 @@
-import { CategoryItem } from '@core/models/category-item.model';
+import { CategoryItem } from '@core/models';
 import { mock } from 'jest-mock-extended';
 import { asyncScheduler, of, scheduled } from 'rxjs';
 import { BrandingRepository } from './branding-repository.model';

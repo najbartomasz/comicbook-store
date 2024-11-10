@@ -1,4 +1,4 @@
-import { CategoryItem } from '@core/models/category-item.model';
+import { CategoryItem } from '@core/models';
 import { Observable } from 'rxjs';
 
 export interface BrandingRepository {

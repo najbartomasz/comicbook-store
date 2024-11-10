@@ -1,14 +1,22 @@
 import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
-    AfterViewInit, ChangeDetectionStrategy,
-    Component, ElementRef, HostListener, inject, Injector, input,
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostListener,
+    inject,
+    Injector,
+    input,
     Signal,
-    signal, Type, viewChild,
+    signal,
+    Type,
+    viewChild,
     ViewContainerRef
 } from '@angular/core';
-import { DynamicComponentRef } from '@ui/services/dynamic-component-factory/dynamic-component-ref';
-import { Closable } from '@ui/views/models/closable.model';
+import { DynamicComponentRef } from '@ui/services';
+import { Closable } from '@ui/views/models';
 import { DynamicSlidingPanelAnimationState } from './dynamic-sliding-panel-animation-state.enum';
 
 @Component({
