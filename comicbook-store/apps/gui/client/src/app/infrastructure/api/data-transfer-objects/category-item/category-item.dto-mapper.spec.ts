@@ -1,4 +1,4 @@
-import { CategoryItemDto } from '@api';
+import { CategoryItemDto } from './category-item.dto';
 import { CategoryItemDtoMapper } from './category-item.dto-mapper';
 
 describe('CategoryItemDtoMapper', () => {

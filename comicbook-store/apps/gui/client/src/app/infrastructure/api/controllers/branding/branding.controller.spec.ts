@@ -1,5 +1,5 @@
-import { CategoryItemDto, CategoryItemDtoMapper, HttpClient } from '@api';
-import { CategoryItem } from '@core/models';
+import { CategoryItemDto, CategoryItemDtoMapper } from '@api/dto';
+import { CategoryItem, HttpClient } from '@core/models';
 import { mock } from 'jest-mock-extended';
 import { asyncScheduler, of, scheduled } from 'rxjs';
 import { BrandingController } from './branding.controller';

@@ -1,6 +1,6 @@
 import { HttpClient as AngularHttpClient } from '@angular/common/http';
+import { HttpClient } from '@core/models';
 import { Observable } from 'rxjs';
-import { HttpClient } from './http-client.model';
 
 export class HttpClientAdapter implements HttpClient {
     readonly #httpClient: AngularHttpClient;

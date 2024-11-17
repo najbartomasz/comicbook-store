@@ -79,7 +79,7 @@
                     ".model.ts",
                     "src/index.html",
                     "src/main.ts",
-                    "src/app/infrastructure/api/http-client/in-memory-web-api/"
+                    "src/app/infrastructure/ui/services/in-memory-database/"
                 ]
             },
             "configurations": {

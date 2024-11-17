@@ -1,5 +1,5 @@
-import { CategoryItemDto, CategoryItemDtoMapper, HttpClient } from '@api';
-import { CategoryItem } from '@core/models';
+import { CategoryItemDtoMapper, CategoryItemDto } from '@api/dto';
+import { CategoryItem, HttpClient } from '@core/models';
 import { BrandingRepository } from '@feature';
 import { map, Observable } from 'rxjs';
 
