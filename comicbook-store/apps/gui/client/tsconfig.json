@@ -13,6 +13,7 @@
             "@ui/injectors": ["app/infrastructure/ui/injectors/index.ts"],
             "@api": ["app/infrastructure/api/index.ts"],
             "@feature": ["app/feature/index.ts"],
+            "@core/services": ["app/core/services/index.ts"],
             "@core/models": ["app/core/models/index.ts"],
             "@testing/fixtures": ["../testing/fixtures/index.ts"]
         },

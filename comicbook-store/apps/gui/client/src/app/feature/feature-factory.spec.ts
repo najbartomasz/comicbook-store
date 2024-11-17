@@ -1,3 +1,4 @@
+import { FactoryStrategy } from '@core/models';
 import { mock } from 'jest-mock-extended';
 import { BrandingRepository } from './branding/branding-repository.model';
 import { BrandingFeature, BrandingFeatureId } from './branding/branding.feature';
@@ -6,18 +7,30 @@ import { FeatureFactory } from './feature-factory';
 import { FeatureFactoryRepository } from './feature-factory-repository.model';
 
 describe('FeatureFactory', () => {
-    test('creates requested feature', () => {
-        // Given
-        const featureFactoryRepositoryMock = mock<FeatureFactoryRepository>();
-        featureFactoryRepositoryMock.getFeatureFactory.calledWith(BrandingFeatureId)
-            .mockReturnValueOnce(new BrandingFeatureFactory(mock<BrandingRepository>()));
-        const featureFactory = new FeatureFactory(featureFactoryRepositoryMock);
-        const expectedFeature = new BrandingFeature(mock<BrandingRepository>());
+    [
+        {
+            featureId: BrandingFeatureId,
+            ConcreteFeatureFactory: BrandingFeatureFactory,
+            featureDependencies: [mock<BrandingRepository>()]
+        } as const
+    ].forEach(({ featureId, ConcreteFeatureFactory, featureDependencies }) => {
+        test(`creates the feature ${featureId}`, () => {
+            // Given
+            const factoryStartegyMock = mock<FactoryStrategy<BrandingFeature>>();
+            factoryStartegyMock.create
+                .mockImplementationOnce((createObject) => createObject())
+                .mockImplementationOnce((createObject) => createObject());
+            const featureFactory2 = new ConcreteFeatureFactory(factoryStartegyMock, ...featureDependencies);
+            const featureFactoryRepositoryMock = mock<FeatureFactoryRepository>();
+            featureFactoryRepositoryMock.getFeatureFactory.calledWith(featureId).mockReturnValueOnce(featureFactory2);
+            const featureFactory = new FeatureFactory(featureFactoryRepositoryMock);
+            const expectedFeature = featureFactory2.create();
 
-        // When
-        const feature = featureFactory.create(BrandingFeatureId);
+            // When
+            const feature = featureFactory.create(featureId);
 
-        // Then
-        expect(feature).toStrictEqual(expectedFeature);
+            // Then
+            expect(feature).toStrictEqual(expectedFeature);
+        });
     });
 });
