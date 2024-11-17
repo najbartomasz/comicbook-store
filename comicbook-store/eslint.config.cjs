@@ -186,7 +186,7 @@ module.exports = [
             'no-with': 'error',
             'no-await-in-loop': 'error',
             'no-plusplus': 'off',
-            'no-duplicate-imports': ['error', { includeExports: true }],
+            'no-duplicate-imports': ['error', { includeExports: false }],
             'no-promise-executor-return': 'error',
             'no-restricted-imports': 'error',
             'no-self-compare': 'error',
