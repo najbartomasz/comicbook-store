@@ -17,14 +17,12 @@ describe('FeatureFactory', () => {
         test(`creates the feature ${featureId}`, () => {
             // Given
             const factoryStartegyMock = mock<FactoryStrategy<BrandingFeature>>();
-            factoryStartegyMock.create
-                .mockImplementationOnce((createObject) => createObject())
-                .mockImplementationOnce((createObject) => createObject());
-            const featureFactory2 = new ConcreteFeatureFactory(factoryStartegyMock, ...featureDependencies);
+            factoryStartegyMock.create.mockImplementation((createObject) => createObject())
+            const concreteFeatureFactory = new ConcreteFeatureFactory(factoryStartegyMock, ...featureDependencies);
             const featureFactoryRepositoryMock = mock<FeatureFactoryRepository>();
-            featureFactoryRepositoryMock.getFeatureFactory.calledWith(featureId).mockReturnValueOnce(featureFactory2);
+            featureFactoryRepositoryMock.getFeatureFactory.calledWith(featureId).mockReturnValueOnce(concreteFeatureFactory);
             const featureFactory = new FeatureFactory(featureFactoryRepositoryMock);
-            const expectedFeature = featureFactory2.create();
+            const expectedFeature = concreteFeatureFactory.create();
 
             // When
             const feature = featureFactory.create(featureId);
