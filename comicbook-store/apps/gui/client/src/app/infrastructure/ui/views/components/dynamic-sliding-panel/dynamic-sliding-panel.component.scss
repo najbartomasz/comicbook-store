@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables';
+@use 'mixins';
 
 .backdrop {
     position: fixed;
@@ -7,7 +7,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: $z-index-neutral;
+    z-index: variables.$z-index-neutral;
 }
 
 .panel {
@@ -16,7 +16,7 @@
     height: 90%;
     background-color: #ffffff;
     box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.25);
-    z-index: calc($z-index-neutral + 1);
+    z-index: calc(variables.$z-index-neutral + 1);
     border-top: solid 1px #333333;
 
     .header {
@@ -34,7 +34,7 @@
         }
 
         .close-button {
-            @include flex-center;
+            @include mixins.flex-center;
             font-weight: bold;
             font-size: 12px;
             line-height: 1;

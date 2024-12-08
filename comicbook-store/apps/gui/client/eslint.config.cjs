@@ -22,6 +22,7 @@ module.exports = [
             files: ['**/*.ts'],
             rules: {
                 ...config.rules,
+                '@angular-eslint/prefer-standalone': 'off',
                 '@angular-eslint/directive-selector': [
                     'error',
                     {
@@ -37,7 +38,7 @@ module.exports = [
                         prefix: 'cbs',
                         style: 'kebab-case',
                     },
-                ]
+                ],
             },
             languageOptions: {
                 parserOptions: {
@@ -68,12 +69,10 @@ module.exports = [
                                 'Relative imports are forbidden. Use absolute paths instead.',
                         },
                         {
-                            group: [
-                                '@testing*'
-                            ],
+                            group: ['@testing*'],
                             message:
                                 'Infrastructure files cannot be depended on testing code.',
-                        }
+                        },
                     ],
                 },
             ],
@@ -87,11 +86,7 @@ module.exports = [
                 {
                     patterns: [
                         {
-                            group: [
-                                '@di*',
-                                '@ui*',
-                                '@api*',
-                            ],
+                            group: ['@di*', '@ui*', '@api*'],
                             message:
                                 'Feature files cannot be depended on any other layer.',
                         },
@@ -101,12 +96,10 @@ module.exports = [
                                 'Relative imports are forbidden. Use absolute paths instead.',
                         },
                         {
-                            group: [
-                                '@testing*'
-                            ],
+                            group: ['@testing*'],
                             message:
                                 'Feature files cannot be depended on testing code.',
-                        }
+                        },
                     ],
                 },
             ],
@@ -120,12 +113,7 @@ module.exports = [
                 {
                     patterns: [
                         {
-                            group: [
-                                '@di*',
-                                '@ui*',
-                                '@api*',
-                                '@feature*',
-                            ],
+                            group: ['@di*', '@ui*', '@api*', '@feature*'],
                             message:
                                 'Core files cannot be depended on any other layer.',
                         },
@@ -135,13 +123,11 @@ module.exports = [
                                 'Relative imports are forbidden. Use absolute paths instead.',
                         },
                         {
-                            group: [
-                                '@testing*'
-                            ],
+                            group: ['@testing*'],
                             message:
                                 'Core files cannot be depended on testing code.',
-                        }
-                    ]
+                        },
+                    ],
                 },
             ],
         },
@@ -170,13 +156,11 @@ module.exports = [
                                 'Relative imports are forbidden. Use absolute paths instead.',
                         },
                         {
-                            group: [
-                                '@testing*'
-                            ],
+                            group: ['@testing*'],
                             message:
                                 'Lib files cannot be depended on testing code.',
-                        }
-                    ]
+                        },
+                    ],
                 },
             ],
         },

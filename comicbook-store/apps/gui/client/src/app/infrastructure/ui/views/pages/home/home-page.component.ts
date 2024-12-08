@@ -8,7 +8,6 @@ import { finalize } from 'rxjs';
 
 @Component({
     selector: 'cbs-home-page',
-    standalone: true,
     imports: [CategoryItemListingComponent],
     templateUrl: './home-page.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush

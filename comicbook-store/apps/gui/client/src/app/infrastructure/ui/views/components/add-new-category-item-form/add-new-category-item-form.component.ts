@@ -4,7 +4,6 @@ import { Closable } from '@ui/views/models';
 
 @Component({
     selector: 'cbs-add-new-category-item-form',
-    standalone: true,
     imports: [ReactiveFormsModule],
     templateUrl: './add-new-category-item-form.component.html',
     styleUrl: './add-new-category-item-form.component.scss',

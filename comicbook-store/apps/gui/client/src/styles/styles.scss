@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables';
 
 * {
     box-sizing: border-box;
@@ -17,22 +17,22 @@ body {
 
 .button {
     cursor: pointer;
-    background-color: $button-background-color;
-    color: $button-font-color;
+    background-color: variables.$button-background-color;
+    color: variables.$button-font-color;
     border: solid 2px #333333;
     font-size: 1em;
-    z-index: $z-index-neutral;
+    z-index: variables.$z-index-neutral;
     box-shadow: 0 4px 8px #00000000;
     transition: transform 0.3s, box-shadow 0.3s;
 
     &:hover {
         transform: scale(1.25);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-        z-index: calc($z-index-neutral + 1);
+        z-index: calc(variables.$z-index-neutral + 1);
     }
 
     &:active {
         transform: scale(1);
-        z-index: $z-index-neutral;
+        z-index: variables.$z-index-neutral;
     }
 }

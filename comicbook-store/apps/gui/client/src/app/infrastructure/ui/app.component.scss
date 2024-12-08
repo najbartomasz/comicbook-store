@@ -1,7 +1,7 @@
-@import 'mixins';
+@use 'mixins';
 
 .container {
-    @include flex-center;
+    @include mixins.flex-center;
     min-height: 100%;
     padding: 0 15%;
     overflow-x: auto;

@@ -21,7 +21,6 @@ import { DynamicSlidingPanelAnimationState } from './dynamic-sliding-panel-anima
 
 @Component({
     selector: 'cbs-sliding-panel',
-    standalone: true,
     imports: [CommonModule],
     animations: [
         trigger('slide', [

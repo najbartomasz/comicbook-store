@@ -1,7 +1,7 @@
-@import 'mixins';
+@use 'mixins';
 
 .container {
-    @include flex-center;
+    @include mixins.flex-center;
     margin-top: 32px;
 
     .add-item-form {
@@ -25,7 +25,7 @@
         }
 
         .submit-button {
-            @include flex-center;
+            @include mixins.flex-center;
             padding: 4px;
         }
     }
