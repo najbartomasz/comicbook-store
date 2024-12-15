@@ -8,9 +8,9 @@ import { CategoryItemProviderService } from './category-item-provider.service';
 
 @Component({
     selector: 'cbs-home-page',
+    templateUrl: './home-page.component.html',
     imports: [CategoryItemListingComponent],
     providers: [CategoryItemProviderService],
-    templateUrl: './home-page.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {

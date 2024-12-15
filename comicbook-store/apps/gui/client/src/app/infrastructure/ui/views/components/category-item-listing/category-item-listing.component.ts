@@ -4,9 +4,9 @@ import { CategoryItemComponent } from './category-item/category-item.component';
 
 @Component({
     selector: 'cbs-category-item-listing',
-    imports: [CategoryItemComponent],
     templateUrl: './category-item-listing.component.html',
     styleUrl: './category-item-listing.component.scss',
+    imports: [CategoryItemComponent],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryItemListingComponent {

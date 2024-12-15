@@ -4,9 +4,9 @@ import { Closable } from '@ui/views/models';
 
 @Component({
     selector: 'cbs-add-new-category-item-form',
-    imports: [ReactiveFormsModule],
     templateUrl: './add-new-category-item-form.component.html',
     styleUrl: './add-new-category-item-form.component.scss',
+    imports: [ReactiveFormsModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddNewCategoryItemFormComponent implements AfterViewInit, Closable<void> {

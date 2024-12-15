@@ -4,7 +4,6 @@ import { injectLogger } from '@ui/injectors';
 
 @Component({
     selector: 'cbs-category-item',
-    standalone: true,
     templateUrl: './category-item.component.html',
     styleUrl: './category-item.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush

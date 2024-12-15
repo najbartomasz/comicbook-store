@@ -21,6 +21,8 @@ import { DynamicSlidingPanelAnimationState } from './dynamic-sliding-panel-anima
 
 @Component({
     selector: 'cbs-sliding-panel',
+    templateUrl: './dynamic-sliding-panel.component.html',
+    styleUrl: './dynamic-sliding-panel.component.scss',
     imports: [CommonModule],
     animations: [
         trigger('slide', [
@@ -29,8 +31,6 @@ import { DynamicSlidingPanelAnimationState } from './dynamic-sliding-panel-anima
             transition(`${DynamicSlidingPanelAnimationState.Hidden} <=> ${DynamicSlidingPanelAnimationState.Visible}`, [animate('0.3s')])
         ])
     ],
-    templateUrl: './dynamic-sliding-panel.component.html',
-    styleUrl: './dynamic-sliding-panel.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicSlidingPanelComponent<T> implements AfterViewInit {
