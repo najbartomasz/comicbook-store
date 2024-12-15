@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { FeatureFactoryMapping } from '@di/feature';
-import { BrandingFeatureFactory, BrandingFeatureId } from '@feature';
+import { BrandingProviderFeatureFactory, BrandingProviderFeatureId } from '@feature';
 import { setupService } from '@testing/fixtures';
 import { mock } from 'jest-mock-extended';
 import { FeatureFactoryRepositoryService } from './feature-factory-repository.service';
@@ -8,21 +8,24 @@ import { FeatureFactoryRepositoryService } from './feature-factory-repository.se
 describe('FeatureFactoryRepository', () => {
     test('provides feature factory for requested feature', () => {
         // Given
-        const brandingFeatureFactoryMock = mock<BrandingFeatureFactory>();
-        const brandingFeatureFactoryTokenStub = new InjectionToken<BrandingFeatureFactory>('BrandingFeatureFactoryStub', {
-            providedIn: 'root',
-            factory: () => brandingFeatureFactoryMock
-        });
+        const brandingProviderFeatureFactoryMock = mock<BrandingProviderFeatureFactory>();
+        const brandingProviderFeatureFactoryTokenStub = new InjectionToken<BrandingProviderFeatureFactory>(
+            'BrandingProviderFeatureFactoryStub',
+            {
+                providedIn: 'root',
+                factory: () => brandingProviderFeatureFactoryMock
+            }
+        );
         const featureFactoryRepository = setupService(FeatureFactoryRepositoryService, {
             providers: [
-                { provide: FeatureFactoryMapping, useValue: { [BrandingFeatureId]: brandingFeatureFactoryTokenStub } }
+                { provide: FeatureFactoryMapping, useValue: { [BrandingProviderFeatureId]: brandingProviderFeatureFactoryTokenStub } }
             ]
         });
 
         // When
-        const featureFactory = featureFactoryRepository.getFeatureFactory(BrandingFeatureId);
+        const featureFactory = featureFactoryRepository.getFeatureFactory(BrandingProviderFeatureId);
 
         // Then
-        expect(featureFactory).toBe(brandingFeatureFactoryMock);
+        expect(featureFactory).toBe(brandingProviderFeatureFactoryMock);
     });
 });

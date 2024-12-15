@@ -1,4 +1,4 @@
+export { BrandingProviderFeatureId } from './branding-provider/branding-provider.feature';
+export type { BrandingProviderFeature } from './branding-provider/branding-provider.feature';
+export { BrandingProviderFeatureFactory } from './branding-provider/branding-provider.feature-factory';
 export type { BrandingRepository } from './branding-repository.model';
-export { BrandingFeatureId } from './branding.feature';
-export type { BrandingFeature } from './branding.feature';
-export { BrandingFeatureFactory } from './branding.feature-factory';

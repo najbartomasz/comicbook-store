@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { FeatureFactoryMapping } from '@di/feature';
-import { BrandingFeatureId } from '@feature';
+import { BrandingProviderFeatureId } from '@feature';
 import { setupModule } from '@testing/fixtures';
-import { BrandingFeatureFactory } from 'app/_dependency-injection/feature/branding/branding.feature-factory.injection-token';
+import { BrandingProviderFeatureFactory } from 'app/_dependency-injection/feature/branding/branding.feature-factory.injection-token';
 import { mock } from 'jest-mock-extended';
 import { injectFeature } from './feature.injector';
 
 describe('FeatureInjector', () => {
     [
         {
-            featureId: BrandingFeatureId,
-            FeatureFactory: BrandingFeatureFactory,
+            featureId: BrandingProviderFeatureId,
+            FeatureFactory: BrandingProviderFeatureFactory,
             featureDependencies: [
                 { provide: HttpClient, useValue: mock<HttpClient>() }
             ]

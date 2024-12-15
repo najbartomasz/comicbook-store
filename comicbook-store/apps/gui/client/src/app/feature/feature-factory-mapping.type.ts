@@ -1,6 +1,6 @@
-import { BrandingFeatureId } from './branding/branding.feature';
-import { BrandingFeatureFactory } from './branding/branding.feature-factory';
+import { BrandingProviderFeatureId } from './branding/branding-provider/branding-provider.feature';
+import { BrandingProviderFeatureFactory } from './branding/branding-provider/branding-provider.feature-factory';
 
 export interface FeatureFactoryMapping {
-   [BrandingFeatureId]: BrandingFeatureFactory;
+   [BrandingProviderFeatureId]: BrandingProviderFeatureFactory;
 }

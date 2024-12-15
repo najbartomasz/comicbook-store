@@ -1,5 +1,5 @@
 import { FeatureFactory as FactoryFactoryToken } from '@di/feature';
-import { BrandingFeature, BrandingFeatureId, FeatureFactory } from '@feature';
+import { BrandingProviderFeature, BrandingProviderFeatureId, FeatureFactory } from '@feature';
 import { screen, within } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
 import { setupComponent } from '@testing/fixtures';
@@ -10,14 +10,14 @@ import { HomePageComponent } from './home-page.component';
 describe('HomePageComponent', () => {
     test('displays brandings', async () => {
         // Given, When
-        const brandingFeatureMock = mock<BrandingFeature>();
-        brandingFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
+        const brandingProviderFeatureMock = mock<BrandingProviderFeature>();
+        brandingProviderFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' },
             { id: 2, name: 'DC BLACK LABEL' },
             { id: 3, name: 'J. P. FANTASTICA' }
         ]), asyncScheduler));
         const featureFactoryMock = mock<FeatureFactory>();
-        featureFactoryMock.create.calledWith(BrandingFeatureId).mockReturnValueOnce(brandingFeatureMock)
+        featureFactoryMock.create.calledWith(BrandingProviderFeatureId).mockReturnValueOnce(brandingProviderFeatureMock)
         await setupComponent(HomePageComponent, {
             providers: [
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }
@@ -35,12 +35,12 @@ describe('HomePageComponent', () => {
     test('opens `add new category item` form on `add new` button click', async () => {
         // Given
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-        const brandingFeatureMock = mock<BrandingFeature>();
-        brandingFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
+        const brandingProviderFeatureMock = mock<BrandingProviderFeature>();
+        brandingProviderFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' }
         ]), asyncScheduler));
         const featureFactoryMock = mock<FeatureFactory>();
-        featureFactoryMock.create.calledWith(BrandingFeatureId).mockReturnValueOnce(brandingFeatureMock)
+        featureFactoryMock.create.calledWith(BrandingProviderFeatureId).mockReturnValueOnce(brandingProviderFeatureMock)
         await setupComponent(HomePageComponent, {
             providers: [
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }
@@ -58,12 +58,12 @@ describe('HomePageComponent', () => {
     test('hides `add new category item` form on submit', async () => {
         // Given
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-        const brandingFeatureMock = mock<BrandingFeature>();
-        brandingFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
+        const brandingProviderFeatureMock = mock<BrandingProviderFeature>();
+        brandingProviderFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' }
         ]), asyncScheduler));
         const featureFactoryMock = mock<FeatureFactory>();
-        featureFactoryMock.create.calledWith(BrandingFeatureId).mockReturnValueOnce(brandingFeatureMock)
+        featureFactoryMock.create.calledWith(BrandingProviderFeatureId).mockReturnValueOnce(brandingProviderFeatureMock)
         await setupComponent(HomePageComponent, {
             providers: [
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }
@@ -82,12 +82,12 @@ describe('HomePageComponent', () => {
     test('hides `add new category item` form on Enter key press', async () => {
         // Given
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-        const brandingFeatureMock = mock<BrandingFeature>();
-        brandingFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
+        const brandingProviderFeatureMock = mock<BrandingProviderFeature>();
+        brandingProviderFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' }
         ]), asyncScheduler));
         const featureFactoryMock = mock<FeatureFactory>();
-        featureFactoryMock.create.calledWith(BrandingFeatureId).mockReturnValueOnce(brandingFeatureMock)
+        featureFactoryMock.create.calledWith(BrandingProviderFeatureId).mockReturnValueOnce(brandingProviderFeatureMock)
         await setupComponent(HomePageComponent, {
             providers: [
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }
@@ -106,12 +106,12 @@ describe('HomePageComponent', () => {
     test('hides `add new category item` form on Esc key press', async () => {
         // Given
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-        const brandingFeatureMock = mock<BrandingFeature>();
-        brandingFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
+        const brandingProviderFeatureMock = mock<BrandingProviderFeature>();
+        brandingProviderFeatureMock.getAllBrandings.mockReturnValueOnce(scheduled(of([
             { id: 1, name: 'MARVEL NOW!' }
         ]), asyncScheduler));
         const featureFactoryMock = mock<FeatureFactory>();
-        featureFactoryMock.create.calledWith(BrandingFeatureId).mockReturnValueOnce(brandingFeatureMock)
+        featureFactoryMock.create.calledWith(BrandingProviderFeatureId).mockReturnValueOnce(brandingProviderFeatureMock)
         await setupComponent(HomePageComponent, {
             providers: [
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }

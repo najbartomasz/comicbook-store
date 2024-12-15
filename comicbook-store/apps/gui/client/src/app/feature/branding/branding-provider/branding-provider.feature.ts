@@ -1,11 +1,11 @@
 import { CategoryItem, Feature } from '@core/models';
+import { BrandingRepository } from '@feature';
 import { Observable } from 'rxjs';
-import { BrandingRepository } from './branding-repository.model';
 
-export const BrandingFeatureId = 'BrandingFeature';
+export const BrandingProviderFeatureId = 'BrandingProviderFeature';
 
-export class BrandingFeature implements Feature {
-    public get id(): Feature['id'] { return BrandingFeatureId; }
+export class BrandingProviderFeature implements Feature {
+    public get id(): Feature['id'] { return BrandingProviderFeatureId; }
 
     readonly #brandingRepository: BrandingRepository;
 

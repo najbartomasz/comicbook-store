@@ -1,22 +1,22 @@
 import { FactoryStrategy } from '@core/models';
 import { mock } from 'jest-mock-extended';
+import { BrandingProviderFeature, BrandingProviderFeatureId } from './branding/branding-provider/branding-provider.feature';
+import { BrandingProviderFeatureFactory } from './branding/branding-provider/branding-provider.feature-factory';
 import { BrandingRepository } from './branding/branding-repository.model';
-import { BrandingFeature, BrandingFeatureId } from './branding/branding.feature';
-import { BrandingFeatureFactory } from './branding/branding.feature-factory';
 import { FeatureFactory } from './feature-factory';
 import { FeatureFactoryRepository } from './feature-factory-repository.model';
 
 describe('FeatureFactory', () => {
     [
         {
-            featureId: BrandingFeatureId,
-            ConcreteFeatureFactory: BrandingFeatureFactory,
+            featureId: BrandingProviderFeatureId,
+            ConcreteFeatureFactory: BrandingProviderFeatureFactory,
             featureDependencies: [mock<BrandingRepository>()]
         } as const
     ].forEach(({ featureId, ConcreteFeatureFactory, featureDependencies }) => {
         test(`creates the feature ${featureId}`, () => {
             // Given
-            const factoryStartegyMock = mock<FactoryStrategy<BrandingFeature>>();
+            const factoryStartegyMock = mock<FactoryStrategy<BrandingProviderFeature>>();
             factoryStartegyMock.create.mockImplementation((createObject) => createObject())
             const concreteFeatureFactory = new ConcreteFeatureFactory(factoryStartegyMock, ...featureDependencies);
             const featureFactoryRepositoryMock = mock<FeatureFactoryRepository>();

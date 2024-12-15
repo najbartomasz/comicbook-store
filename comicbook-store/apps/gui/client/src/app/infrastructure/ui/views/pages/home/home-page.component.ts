@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { BrandingFeatureId } from '@feature';
+import { BrandingProviderFeatureId } from '@feature';
 import { injectFeature, injectLogger } from '@ui/injectors';
 import { DynamicSlidingPanelComponentFactoryService } from '@ui/services';
 import { AddNewCategoryItemFormComponent, CategoryItemListingComponent } from '@ui/views/components';
@@ -13,7 +13,7 @@ import { finalize } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
-    protected readonly categoryItems = toSignal(injectFeature(BrandingFeatureId).getAllBrandings());
+    protected readonly categoryItems = toSignal(injectFeature(BrandingProviderFeatureId).getAllBrandings());
 
     readonly #logger = injectLogger('HomePageComponent');
     readonly #dynamicSlidingPanelFactory = inject(DynamicSlidingPanelComponentFactoryService);
