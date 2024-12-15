@@ -23,7 +23,7 @@ describe('HomePageComponent', () => {
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }
             ]
         });
-        jest.runAllTimers();
+        await jest.runAllTimersAsync();
 
         // Then
         const brandings = within(screen.getByTestId('category-item-listing'));
@@ -46,7 +46,7 @@ describe('HomePageComponent', () => {
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }
             ]
         });
-        jest.runAllTimers();
+        await jest.runAllTimersAsync();
 
         // When
         await user.click(screen.getByText('+'));
@@ -69,7 +69,7 @@ describe('HomePageComponent', () => {
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }
             ]
         });
-        jest.runAllTimers();
+        await jest.runAllTimersAsync();
         await user.click(screen.getByText('+'));
 
         // When
@@ -93,7 +93,7 @@ describe('HomePageComponent', () => {
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }
             ]
         });
-        jest.runAllTimers();
+        await jest.runAllTimersAsync();
         await user.click(screen.getByText('+'));
 
         // When
@@ -117,7 +117,7 @@ describe('HomePageComponent', () => {
                 { provide: FactoryFactoryToken, useValue: featureFactoryMock }
             ]
         });
-        jest.runAllTimers();
+        await jest.runAllTimersAsync();
         await user.click(screen.getByText('+'));
 
         // When
