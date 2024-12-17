@@ -1,34 +1,23 @@
 import { ChangeDetectionStrategy, Component, inject, ResourceRef } from '@angular/core';
 import { CategoryItem } from '@core/models';
-import { injectLogger } from '@ui/injectors';
-import { DynamicSlidingPanelComponentFactoryService } from '@ui/services';
-import { AddNewCategoryItemFormComponent, CategoryItemListingComponent } from '@ui/views/components';
-import { finalize } from 'rxjs';
+import { CategoryItemListingComponent } from '@ui/views/components';
+import { AddNewCategoryItemPanelService } from './add-new-category-item-panel.service';
 import { CategoryItemProviderService } from './category-item-provider.service';
 
 @Component({
     selector: 'cbs-home-page',
     templateUrl: './home-page.component.html',
     imports: [CategoryItemListingComponent],
-    providers: [CategoryItemProviderService],
+    providers: [CategoryItemProviderService, AddNewCategoryItemPanelService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
-    protected get categoryItems(): ResourceRef<CategoryItem[]> { return this.#categoryItemProviderService.categoryItems; }
+    protected get categoryItems(): ResourceRef<CategoryItem[]> { return this.#categoryItemProvider.categoryItems; }
 
-    readonly #logger = injectLogger('HomePageComponent');
-    readonly #categoryItemProviderService = inject(CategoryItemProviderService);
-    readonly #dynamicSlidingPanelFactory = inject(DynamicSlidingPanelComponentFactoryService);
+    readonly #categoryItemProvider = inject(CategoryItemProviderService);
+    readonly #addNewCategoryItemPanel = inject(AddNewCategoryItemPanelService);
 
     protected addNewCategoryItem(): void {
-        const dynamicComponentRef = this.#dynamicSlidingPanelFactory.create(AddNewCategoryItemFormComponent);
-        this.#logger.info('Add new category item form opened.');
-        dynamicComponentRef.close$
-            .pipe(
-                finalize(() => {
-                    this.#logger.info('Add new category item form closed.');
-                })
-            )
-            .subscribe();
+        this.#addNewCategoryItemPanel.open();
     }
 }
