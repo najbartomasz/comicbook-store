@@ -1,4 +1,4 @@
-import { Counter } from '@core/models';
+import { Counter } from './counter.model';
 
 export class IncrementalCounter implements Counter {
     #value = 0;

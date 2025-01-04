@@ -1,6 +1,5 @@
 import { HttpEvent, HttpEventType, HttpInterceptorFn } from '@angular/common/http';
-import { Counter } from '@core/models';
-import { IncrementalCounter } from '@core/services';
+import { Counter, IncrementalCounter } from '@comicbook-store/counter';
 import { injectLogger } from '@ui/injectors';
 import { tap } from 'rxjs';
 
