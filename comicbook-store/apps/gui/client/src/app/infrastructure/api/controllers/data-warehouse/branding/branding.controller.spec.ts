@@ -9,7 +9,7 @@ describe('BrandingController', () => {
         // Given
         const httpClientMock = mock<HttpClient>();
         httpClientMock.get
-            .calledWith('/brandings')
+            .calledWith('/data-warehouse/brandings')
             .mockReturnValueOnce(scheduled(of([{ id: 1, name: 'MARVEL NOW!' }, { id: 2, name: 'MARVEL CLASSIC' }]), asyncScheduler));
         const categoryItemDtoMapperMock = mock<CategoryItemDtoMapper>();
         categoryItemDtoMapperMock.fromDto

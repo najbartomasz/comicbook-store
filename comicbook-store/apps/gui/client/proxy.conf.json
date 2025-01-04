@@ -1,6 +1,6 @@
 {
-    "/api": {
-        "target": "http://localhost:3000",
+    "/data-warehouse": {
+        "target": "http://localhost:3001/v1",
         "secure": false
     }
 }

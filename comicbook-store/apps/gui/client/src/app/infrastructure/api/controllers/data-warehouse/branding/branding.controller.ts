@@ -1,3 +1,4 @@
+import { DataWarehouseEndpoint } from '@api/controllers';
 import { CategoryItemDto, CategoryItemDtoMapper } from '@api/dto';
 import { CategoryItem, HttpClient } from '@core/models';
 import { BrandingRepository } from '@feature';
@@ -13,7 +14,7 @@ export class BrandingController implements BrandingRepository {
     }
 
     public getAllBrandings(): Observable<CategoryItem[]> {
-        return this.#httpClient.get<CategoryItemDto[]>('/brandings')
+        return this.#httpClient.get<CategoryItemDto[]>(DataWarehouseEndpoint.Brandings)
             .pipe(
                 map((categoryItems) => this.#dtoMapper.fromDto(categoryItems))
             );

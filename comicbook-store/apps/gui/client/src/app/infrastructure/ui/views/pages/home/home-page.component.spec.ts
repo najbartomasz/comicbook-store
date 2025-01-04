@@ -12,7 +12,7 @@ describe('HomePageComponent', () => {
         // Given, When
         const httpClientMock = mock<HttpClient>();
         httpClientMock.get
-            .calledWith('/brandings')
+            .calledWith('/data-warehouse/brandings')
             .mockReturnValueOnce(scheduled(of([
                 { id: 1, name: 'MARVEL NOW!' },
                 { id: 2, name: 'DC BLACK LABEL' },
@@ -38,7 +38,7 @@ describe('HomePageComponent', () => {
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const httpClientMock = mock<HttpClient>();
         httpClientMock.get
-            .calledWith('/brandings')
+            .calledWith('/data-warehouse/brandings')
             .mockReturnValueOnce(scheduled(of([{ id: 1, name: 'MARVEL NOW!' }]), asyncScheduler)
         );
         await setupComponent(HomePageComponent, {
@@ -60,7 +60,7 @@ describe('HomePageComponent', () => {
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const httpClientMock = mock<HttpClient>();
         httpClientMock.get
-            .calledWith('/brandings')
+            .calledWith('/data-warehouse/brandings')
             .mockReturnValueOnce(scheduled(of([{ id: 1, name: 'MARVEL NOW!' }]), asyncScheduler)
         );
         await setupComponent(HomePageComponent, {
@@ -83,7 +83,7 @@ describe('HomePageComponent', () => {
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const httpClientMock = mock<HttpClient>();
         httpClientMock.get
-            .calledWith('/brandings')
+            .calledWith('/data-warehouse/brandings')
             .mockReturnValueOnce(scheduled(of([{ id: 1, name: 'MARVEL NOW!' }]), asyncScheduler)
         );
         await setupComponent(HomePageComponent, {
@@ -106,7 +106,7 @@ describe('HomePageComponent', () => {
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         const httpClientMock = mock<HttpClient>();
         httpClientMock.get
-            .calledWith('/brandings')
+            .calledWith('/data-warehouse/brandings')
             .mockReturnValueOnce(scheduled(of([{ id: 1, name: 'MARVEL NOW!' }]), asyncScheduler)
         );
         await setupComponent(HomePageComponent, {
