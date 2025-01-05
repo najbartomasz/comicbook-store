@@ -1,4 +1,5 @@
-import { Factory, FactoryStrategy } from '@core/models';
+import { FactoryStrategy } from '@comicbook-store/factory-strategy';
+import { Factory } from '@core/models';
 import { BrandingRepository } from '@feature';
 import { BrandingProviderFeature } from './branding-provider.feature';
 

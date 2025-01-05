@@ -16,6 +16,7 @@
         "baseUrl": ".",
         "paths": {
             "@comicbook-store/counter": ["libs/counter/src/index.ts"],
+            "@comicbook-store/factory-strategy": ["libs/factory-strategy/src/index.ts"],
             "@comicbook-store/logger": ["libs/logger/src/index.ts"]
         }
     },

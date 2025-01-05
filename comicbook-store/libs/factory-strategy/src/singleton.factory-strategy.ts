@@ -1,4 +1,4 @@
-import { FactoryStrategy } from '@core/models';
+import { FactoryStrategy } from './factory-strategy.model';
 
 export class SingletonFactoryStrategy<T> implements FactoryStrategy<T> {
     #instance: T | undefined;

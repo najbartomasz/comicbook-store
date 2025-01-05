@@ -1,0 +1,41 @@
+{
+    "name": "factory-strategy",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/factory-strategy/src",
+    "projectType": "library",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/factory-strategy",
+                "main": "libs/factory-strategy/src/index.ts",
+                "tsConfig": "libs/factory-strategy/tsconfig.lib.json",
+                "assets": []
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/factory-strategy/jest.config.ts"
+            },
+            "configurations": {
+                "coverage": {
+                    "codeCoverage": true
+                },
+                "watch": {
+                    "watch": true
+                },
+                "unit": {
+                    "testMatch": [
+                        "**/?(*.)spec.ts",
+                        "!**/?(*.)integration.spec.ts"
+                    ]
+                }
+            },
+            "defaultConfiguration": "coverage"
+        }
+    }
+}

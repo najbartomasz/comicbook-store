@@ -1,10 +1,10 @@
-import { FactoryStrategy } from '@core/models';
 import { mock } from 'jest-mock-extended';
 import { BrandingProviderFeature, BrandingProviderFeatureId } from './branding/branding-provider/branding-provider.feature';
 import { BrandingProviderFeatureFactory } from './branding/branding-provider/branding-provider.feature-factory';
 import { BrandingRepository } from './branding/branding-repository.model';
 import { FeatureFactory } from './feature-factory';
 import { FeatureFactoryRepository } from './feature-factory-repository.model';
+import { FactoryStrategy } from '@comicbook-store/factory-strategy';
 
 describe('FeatureFactory', () => {
     [
