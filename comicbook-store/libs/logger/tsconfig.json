@@ -1,15 +1,5 @@
 {
     "extends": "../../tsconfig.base.json",
-    "compilerOptions": {
-        "module": "esNext",
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "noImplicitOverride": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "target": "es2022",
-    },
     "files": [],
     "include": [],
     "references": [

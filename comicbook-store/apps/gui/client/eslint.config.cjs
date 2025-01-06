@@ -1,7 +1,6 @@
 const { FlatCompat } = require('@eslint/eslintrc');
 const js = require('@eslint/js');
 const baseConfig = require('../../../eslint.config.cjs');
-const { group } = require('console');
 
 const compat = new FlatCompat({
     baseDirectory: __dirname,

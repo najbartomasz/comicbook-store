@@ -4,6 +4,7 @@ const nxEslintPlugin = require('@nx/eslint-plugin');
 const eslintPluginJest = require('eslint-plugin-jest');
 const stylisticEslintPluginJs = require('@stylistic/eslint-plugin-js');
 const stylisticEslintPluginTs = require('@stylistic/eslint-plugin-ts');
+const { parser } = require('typescript-eslint');
 
 const compat = new FlatCompat({
     baseDirectory: __dirname,
@@ -20,7 +21,25 @@ module.exports = [
         },
     },
     {
-        files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+        files: ['**/*.json'],rules: {
+            '@nx/dependency-checks': [
+                'error',
+                {
+                    ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs}'],
+                },
+            ],
+        },
+        languageOptions: {
+            parser: require('jsonc-eslint-parser')
+        },
+    },
+    {
+        files: ['**/*.ts'],
+        languageOptions: {
+            parserOptions: {
+                project: ['tsconfig.*?.json']
+            }
+        },
         rules: {
             '@nx/enforce-module-boundaries': [
                 'error',
@@ -723,7 +742,7 @@ module.exports = [
     },
     ...compat.config({ extends: ['plugin:@nx/typescript'] }).map((config) => ({
         ...config,
-        files: ['**/*.ts', '**/*.tsx'],
+        files: ['**/*.ts'],
         rules: {
             ...config.rules,
             '@stylistic/js/no-extra-semi': 'error',
@@ -731,7 +750,7 @@ module.exports = [
     })),
     ...compat.config({ extends: ['plugin:@nx/javascript'] }).map((config) => ({
         ...config,
-        files: ['**/*.js', '**/*.jsx'],
+        files: ['**/*.js'],
         rules: {
             ...config.rules,
             '@stylistic/js/no-extra-semi': 'error',

@@ -8,7 +8,7 @@ export default {
             { tsconfig: '<rootDir>/tsconfig.spec.json' },
         ],
     },
-    moduleFileExtensions: ['ts', 'js', 'html'],
+    moduleFileExtensions: ['ts', 'js'],
     coverageDirectory: '../../coverage/libs/counter',
     globalSetup: '../../jest.global-setup.ts'
 };
