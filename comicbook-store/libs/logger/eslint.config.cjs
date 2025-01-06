@@ -11,25 +11,24 @@ module.exports = [
     ...baseConfig,
     {
         files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-        // Override or add rules here
         rules: {},
         languageOptions: {
-            parserOptions: { project: ['libs/logger/tsconfig.*?.json'] },
+            parserOptions: {
+                project: ['libs/logger/tsconfig.*?.json']
+            },
         },
     },
     {
-        files: ['**/*.ts', '**/*.tsx'],
-        // Override or add rules here
-        rules: {},
-    },
-    {
-        files: ['**/*.js', '**/*.jsx'],
-        // Override or add rules here
-        rules: {},
-    },
-    {
-        files: ['**/*.json'],
-        rules: { '@nx/dependency-checks': 'error' },
-        languageOptions: { parser: require('jsonc-eslint-parser') },
+        files: ['**/*.json'],rules: {
+            '@nx/dependency-checks': [
+                'error',
+                {
+                    ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs}'],
+                },
+            ],
+        },
+        languageOptions: {
+            parser: require('jsonc-eslint-parser')
+        },
     },
 ];

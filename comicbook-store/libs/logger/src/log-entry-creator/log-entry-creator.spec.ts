@@ -1,4 +1,4 @@
-import { createErrorLogEntry, createLogEntry } from './log-entry-provider';
+import { createErrorLogEntry, createLogEntry } from './log-entry-creator';
 
 describe('createLogEntry', () => {
     test('creates log entry', () => {

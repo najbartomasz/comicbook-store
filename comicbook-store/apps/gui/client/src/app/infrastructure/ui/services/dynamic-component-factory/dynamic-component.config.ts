@@ -1,4 +1,4 @@
 export interface DynamicComponentConfig {
-    hostElement?: HTMLElement;
-    componentInputs?: object;
+    readonly hostElement?: HTMLElement;
+    readonly componentInputs?: object;
 }

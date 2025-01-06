@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import {
     ApplicationRef, ComponentRef, createComponent, EnvironmentInjector, inject, Injectable, Injector, Provider, Type
 } from '@angular/core';
-import { finalize } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { DynamicComponentRef } from './dynamic-component-ref';
 import { DynamicComponentConfig } from './dynamic-component.config';
 
@@ -18,6 +18,7 @@ export class DynamicComponentFactoryService {
         const componentRef = this.#createComponent(component, [{ provide: DynamicComponentRef, useValue: dynamicComponentRef }], config);
         dynamicComponentRef.close$
             .pipe(
+                take(1),
                 finalize(() => {
                     this.#destroyComponent(componentRef);
                 })

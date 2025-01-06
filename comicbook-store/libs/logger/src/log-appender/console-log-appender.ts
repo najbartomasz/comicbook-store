@@ -21,10 +21,10 @@ export class ConsoleLogAppender implements LogAppender {
     }
 
     #formatLogEntry(logLevel: LogLevel, logEntry: LogEntry): string {
-        return `${this.#mapTimestampToLocalISOString(logEntry.timestamp)} ${logEntry.loggerName} ${logLevel}: ${logEntry.message}`;
+        return `${this.#mapTimestampToISOString(logEntry.timestamp)} ${logEntry.loggerName} ${logLevel}: ${logEntry.message}`;
     }
 
-    #mapTimestampToLocalISOString(timestamp: Date): string {
+    #mapTimestampToISOString(timestamp: Date): string {
         const minuteInMs = 60000;
         const date = new Date(timestamp);
         date.setTime(timestamp.getTime() - (date.getTimezoneOffset() * minuteInMs));

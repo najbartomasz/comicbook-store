@@ -1,5 +1,5 @@
 import { LogAppender } from './log-appender/log-appender.model';
-import { createErrorLogEntry, createLogEntry } from './log-entry-provider/log-entry-provider';
+import { createErrorLogEntry, createLogEntry } from './log-entry-creator/log-entry-creator';
 
 export class Logger {
     readonly #name: string;

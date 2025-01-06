@@ -1,5 +1,5 @@
 export interface LogEntry {
-    timestamp: Date;
-    loggerName: string;
-    message: string;
+    readonly timestamp: Date;
+    readonly loggerName: string;
+    readonly message: string;
 }

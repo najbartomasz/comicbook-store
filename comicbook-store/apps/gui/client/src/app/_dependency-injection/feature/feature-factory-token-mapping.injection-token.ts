@@ -4,7 +4,7 @@ import { BrandingProviderFeatureFactory } from './branding/branding.feature-fact
 
 type FeatureFactoryMapping = Record<ConcreteFeatureId, InjectionToken<ConcreteFeatureFactory<ConcreteFeatureId>>>;
 
-export const FeatureFactoryMapping = new InjectionToken<FeatureFactoryMapping>('FeatureFactoryTokenMapping', {
+export const FeatureFactoryMapping = new InjectionToken<FeatureFactoryMapping>('FeatureFactoryMapping', {
     providedIn: 'root',
     factory: () => ({
         [BrandingProviderFeatureId]: BrandingProviderFeatureFactory

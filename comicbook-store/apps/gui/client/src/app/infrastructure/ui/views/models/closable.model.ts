@@ -1,5 +1,5 @@
 import { OutputEmitterRef } from '@angular/core';
 
 export interface Closable<T> {
-    close: OutputEmitterRef<T>;
+    readonly close: OutputEmitterRef<T>;
 }

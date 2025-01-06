@@ -1,5 +1,4 @@
 import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
-import { CommonModule } from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -23,7 +22,6 @@ import { DynamicSlidingPanelAnimationState } from './dynamic-sliding-panel-anima
     selector: 'cbs-sliding-panel',
     templateUrl: './dynamic-sliding-panel.component.html',
     styleUrl: './dynamic-sliding-panel.component.scss',
-    imports: [CommonModule],
     animations: [
         trigger('slide', [
             state(DynamicSlidingPanelAnimationState.Hidden, style({ bottom: '-100%' })),

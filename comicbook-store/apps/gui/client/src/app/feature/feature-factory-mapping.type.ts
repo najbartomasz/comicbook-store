@@ -2,5 +2,5 @@ import { BrandingProviderFeatureId } from './branding/branding-provider/branding
 import { BrandingProviderFeatureFactory } from './branding/branding-provider/branding-provider.feature-factory';
 
 export interface FeatureFactoryMapping {
-   [BrandingProviderFeatureId]: BrandingProviderFeatureFactory;
+   readonly [BrandingProviderFeatureId]: BrandingProviderFeatureFactory;
 }

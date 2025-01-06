@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { injectLogger } from '@ui/injectors';
 import { DynamicSlidingPanelComponentFactoryService } from '@ui/services';
 import { AddNewCategoryItemFormComponent } from '@ui/views/components';
-import { finalize } from 'rxjs';
+import { finalize, take } from 'rxjs';
 
 @Injectable()
 export class AddNewCategoryItemPanelService {
@@ -14,6 +14,7 @@ export class AddNewCategoryItemPanelService {
         this.#logger.info('Add new category item form opened.');
         dynamicComponentRef.close$
             .pipe(
+                take(1),
                 finalize(() => {
                     this.#logger.info('Add new category item form closed.');
                 })

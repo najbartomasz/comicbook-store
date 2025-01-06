@@ -2,7 +2,7 @@
 <div class="panel" [@slide]="animationState()" (@slide.done)="onSlideAnimationDone($event)" data-testid="dynamic-sliding-panel">
     <header class="header">
         <h3 class="title">Add new comicbook category item</h3>
-        <button class="button close-button" (click)="onPanelClose()">X</button>
+        <button class="cbs-button close-button" (click)="onPanelClose()">X</button>
     </header>
     <section class="content" data-testid="dynamic-sliding-panel-content">
         <ng-container #panelContent />
