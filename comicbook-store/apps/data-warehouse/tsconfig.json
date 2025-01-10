@@ -1,0 +1,21 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "@core": ["core/index.ts"],
+            "@infrastructure/router": ["infrastructure/routers/index.ts"],
+            "@lib": ["lib/index.ts"],
+        }
+    },
+    "files": [],
+    "include": [],
+    "references": [
+        {
+            "path": "./tsconfig.app.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ]
+}

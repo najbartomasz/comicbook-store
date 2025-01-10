@@ -1,0 +1,74 @@
+{
+    "name": "data-warehouse",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/data-warehouse/src",
+    "projectType": "application",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nx/esbuild:esbuild",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "platform": "node",
+                "outputPath": "dist/apps/data-warehouse",
+                "format": ["cjs"],
+                "bundle": true,
+                "main": "apps/data-warehouse/src/main.ts",
+                "tsConfig": "apps/data-warehouse/tsconfig.app.json",
+                "assets": [
+                    {
+                        "input": "apps/data-warehouse/certs/",
+                        "glob": "**/*.pem",
+                        "output": "./certs"
+                    },
+                    {
+                        "input": "apps/data-warehouse/api/",
+                        "glob": "api.yaml",
+                        "output": "."
+                    }
+                ],
+                "generatePackageJson": true,
+                "esbuildOptions": {
+                    "sourcemap": true,
+                    "outExtension": {
+                        ".js": ".js"
+                    }
+                }
+            },
+            "configurations": {
+                "development": {},
+                "production": {
+                    "esbuildOptions": {
+                        "sourcemap": false,
+                        "outExtension": {
+                            ".js": ".js"
+                        }
+                    }
+                }
+            }
+        },
+        "serve": {
+            "command": "node dist/apps/data-warehouse/main.js",
+            "defaultConfiguration": "development",
+            "dependsOn": ["build"],
+            "options": {
+                "buildTarget": "data-warehouse:build",
+                "runBuildTargetDependencies": false
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "data-warehouse:build:development"
+                },
+                "production": {
+                    "buildTarget": "data-warehouse:build:production"
+                }
+            }
+        },
+        "test": {
+            "options": {
+                "passWithNoTests": true
+            }
+        }
+    }
+}
