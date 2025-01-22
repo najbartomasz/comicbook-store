@@ -3,6 +3,7 @@ import { Logger, LoggerFactory } from '@lib';
 import { Application } from 'express';
 import fs from 'fs';
 import https, { Server as NetServer } from 'https';
+import { brandingRouter } from 'infrastructure/routers/branding/branding.router';
 import path from 'path';
 import { App } from './app';
 import { ServerOptions } from './server-options.model';
@@ -36,7 +37,10 @@ export class Server {
             .withCors()
             .withHelmet()
             .withJsonBodyParser()
-            .withRouter(apiRouter)
+            .withRouter(
+                apiRouter,
+                brandingRouter
+            )
             .build();
     }
 }

@@ -19,3 +19,23 @@ paths:
             text/html:
               schema:
                 type: string
+  /brandings:
+    get:
+      summary: Retrieve all brandings
+      description: Returns a list of all brandings.
+      responses:
+        '200':
+          description: A JSON array of brandings.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The branding ID.
+                    name:
+                      type: string
+                      description: The branding name.
