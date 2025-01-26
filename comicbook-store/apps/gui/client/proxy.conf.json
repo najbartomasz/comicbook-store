@@ -1,6 +1,9 @@
 {
     "/data-warehouse": {
-        "target": "http://localhost:3001/v1",
-        "secure": false
+        "target": "https://localhost:3001/v1",
+        "secure": false,
+        "pathRewrite": {
+            "^/data-warehouse": ""
+        }
     }
 }
