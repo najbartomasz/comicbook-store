@@ -2,6 +2,16 @@ const { FlatCompat } = require('@eslint/eslintrc');
 const js = require('@eslint/js');
 const baseConfig = require('../../../eslint.config.cjs');
 
+const baseConfigTsRules = baseConfig
+    .filter((config) => config.files?.includes('**/*.ts'))
+    .find((config) => config.languageOptions?.parserOptions?.project?.includes('tsconfig.*?.json'))
+    .rules ?? {};
+
+const baseConfigSpecTsRules = baseConfig
+    .find((config) => config.files?.includes('**/*.spec.ts'))
+    .rules ?? {};
+
+
 const compat = new FlatCompat({
     baseDirectory: __dirname,
     recommendedConfig: js.configs.recommended,
@@ -21,6 +31,7 @@ module.exports = [
             files: ['**/*.ts'],
             rules: {
                 ...config.rules,
+                ...baseConfigTsRules,
                 '@angular-eslint/prefer-standalone': 'off',
                 '@angular-eslint/directive-selector': [
                     'error',
@@ -58,6 +69,7 @@ module.exports = [
     {
         files: ['src/app/infrastructure/**/*.ts'],
         rules: {
+            ...baseConfigTsRules,
             'no-restricted-imports': [
                 'error',
                 {
@@ -80,6 +92,7 @@ module.exports = [
     {
         files: ['src/app/feature/**/*.ts'],
         rules: {
+            ...baseConfigTsRules,
             'no-restricted-imports': [
                 'error',
                 {
@@ -107,6 +120,7 @@ module.exports = [
     {
         files: ['src/app/core/**/*.ts'],
         rules: {
+            ...baseConfigTsRules,
             'no-restricted-imports': [
                 'error',
                 {
@@ -134,6 +148,7 @@ module.exports = [
     {
         files: ['src/app/lib/**/*.ts'],
         rules: {
+            ...baseConfigTsRules,
             'no-restricted-imports': [
                 'error',
                 {
@@ -166,6 +181,8 @@ module.exports = [
     },
     {
         files: ['**/*.spec.ts', 'testing/**/*.ts'],
-        rules: { 'no-restricted-imports': 'off' },
+        rules: {
+            ...baseConfigSpecTsRules
+        },
     }
 ];

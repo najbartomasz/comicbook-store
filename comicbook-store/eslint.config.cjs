@@ -440,7 +440,7 @@ module.exports = [
                 'error',
                 'interface',
             ],
-            '@typescript-eslint/explicit-function-return-type': 'error',
+            '@typescript-eslint/explicit-function-return-type': 'off',
             '@typescript-eslint/explicit-member-accessibility': [
                 'error',
                 {
@@ -448,16 +448,7 @@ module.exports = [
                     overrides: {},
                 },
             ],
-            '@typescript-eslint/explicit-module-boundary-types': [
-                'error',
-                {
-                    allowArgumentsExplicitlyTypedAsAny: false,
-                    allowDirectConstAssertionInArrowFunctions: false,
-                    allowedNames: [],
-                    allowHigherOrderFunctions: false,
-                    allowTypedFunctionExpressions: false,
-                },
-            ],
+            '@typescript-eslint/explicit-module-boundary-types': 'off',
             '@stylistic/ts/member-delimiter-style': [
                 'error',
                 {
@@ -596,20 +587,6 @@ module.exports = [
             '@typescript-eslint/no-namespace': 'error',
             '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
             '@typescript-eslint/no-non-null-assertion': 'error',
-            '@typescript-eslint/no-parameter-properties': [
-                'error',
-                {
-                    allows: [
-                        'readonly',
-                        'private',
-                        'protected',
-                        'public',
-                        'private readonly',
-                        'protected readonly',
-                        'public readonly',
-                    ],
-                },
-            ],
             '@typescript-eslint/no-require-imports': 'error',
             '@typescript-eslint/no-shadow': [
                 'error',
@@ -765,6 +742,7 @@ module.exports = [
             '@typescript-eslint/unbound-method': 'off',
             'max-lines-per-function': 'off',
             'max-nested-callbacks': 'off',
+            'no-restricted-imports': 'off',
             'jest/consistent-test-it': [
                 'error',
                 {

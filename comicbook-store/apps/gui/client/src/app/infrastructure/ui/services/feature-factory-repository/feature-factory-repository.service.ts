@@ -7,7 +7,7 @@ import { ConcreteFeatureFactory, ConcreteFeatureId, FeatureFactoryRepository } f
 })
 export class FeatureFactoryRepositoryService implements FeatureFactoryRepository {
     readonly #injector = inject(Injector);
-    readonly #featureFactoryMapping = inject(FeatureFactoryMapping)
+    readonly #featureFactoryMapping = inject(FeatureFactoryMapping);
 
     public getFeatureFactory<T extends ConcreteFeatureId>(featureId: T): ConcreteFeatureFactory<T> {
         return this.#injector.get(this.#featureFactoryMapping[featureId]);

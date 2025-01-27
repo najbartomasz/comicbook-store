@@ -3,17 +3,19 @@ import { Counter, IncrementalCounter } from '@comicbook-store/counter';
 import { injectLogger } from '@ui/injectors';
 import { tap } from 'rxjs';
 
-const formatMessage = (message: string, data: unknown): string =>
-    (data !== undefined && data !== null) ? `${message} ${JSON.stringify(data)}` : message;
+const formatMessage = (message: string, data: unknown): string => (
+    (data !== undefined && data !== null) ? `${message} ${JSON.stringify(data)}` : message
+);
 
-const stringifyRequest = (method: string, url: string, body: unknown): string =>
-    formatMessage(`${method} ${url}`, body);
+const stringifyRequest = (method: string, url: string, body: unknown): string => (
+    formatMessage(`${method} ${url}`, body)
+);
 
 const stringifyResponse = (method: string, url: string, event: HttpEvent<unknown>): string => {
     const baseMessage = `${method} ${url}`;
     return (event.type === HttpEventType.Response)
         ? formatMessage(`${baseMessage} ${event.status}`, event.body)
-        : formatMessage(baseMessage, event)
+        : formatMessage(baseMessage, event);
 };
 
 const logHttpEvent = (eventCounter: Counter): HttpInterceptorFn => (req, next) => {

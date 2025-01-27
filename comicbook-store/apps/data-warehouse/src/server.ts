@@ -1,9 +1,8 @@
-import { apiRouter } from '@infrastructure/router';
 import { Logger, LoggerFactory } from '@lib';
+import { apiRouter, brandingRouter } from '@router';
 import { Application } from 'express';
 import fs from 'fs';
 import https, { Server as NetServer } from 'https';
-import { brandingRouter } from 'infrastructure/routers/branding/branding.router';
 import path from 'path';
 import { App } from './app';
 import { ServerOptions } from './server-options.model';
@@ -25,11 +24,11 @@ export class Server {
             });
     }
 
-    #loadCerts() {
+    #loadCerts(): { key: Buffer; cert: Buffer } {
         return {
             key: fs.readFileSync(path.join(__dirname, './certs/key.pem')),
             cert: fs.readFileSync(path.join(__dirname, './certs/cert.pem'))
-        }
+        };
     }
 
     #buildApp(): Application {

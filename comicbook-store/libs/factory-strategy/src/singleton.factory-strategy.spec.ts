@@ -3,7 +3,7 @@ import { SingletonFactoryStrategy } from './singleton.factory-strategy';
 describe('SingletonFactoryStrategy', () => {
     test('creates only one instance of an object', () => {
         // Given
-        const createObject = () => ({ type: 'Stub'})
+        const createObject = () => ({ type: 'Stub' });
         const factory = new SingletonFactoryStrategy();
 
         // When

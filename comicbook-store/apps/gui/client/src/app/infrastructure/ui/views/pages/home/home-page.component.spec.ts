@@ -16,8 +16,7 @@ describe('HomePageComponent', () => {
                 { id: 1, name: 'MARVEL NOW!' },
                 { id: 2, name: 'DC BLACK LABEL' },
                 { id: 3, name: 'J. P. FANTASTICA' }
-            ]), asyncScheduler)
-        );
+            ]), asyncScheduler));
         await setupComponent(HomePageComponent, {
             providers: [
                 { provide: HttpClientToken, useValue: httpClientMock }

@@ -4,7 +4,9 @@
         "baseUrl": "src",
         "paths": {
             "@core": ["core/index.ts"],
-            "@infrastructure/router": ["infrastructure/routers/index.ts"],
+            "@router": ["infrastructure/routers/index.ts"],
+            "@controller": ["infrastructure/controllers/index.ts"],
+            "@database": ["infrastructure/database/index.ts"],
             "@lib": ["lib/index.ts"],
         }
     },

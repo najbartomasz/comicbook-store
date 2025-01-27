@@ -1,21 +1,32 @@
-const { FlatCompat } = require('@eslint/eslintrc');
-const js = require('@eslint/js');
 const baseConfig = require('../../eslint.config.cjs');
 
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-});
+const baseConfigTsRules = baseConfig
+    .filter((config) => config.files?.includes('**/*.ts'))
+    .find((config) => config.languageOptions?.parserOptions?.project?.includes('tsconfig.*?.json'))
+    .rules ?? {};
+
+const baseConfigSpecTsRules = baseConfig
+    .find((config) => config.files?.includes('**/*.spec.ts'))
+    .rules ?? {};
+
 
 module.exports = [
     ...baseConfig,
     {
         files: ['**/*.ts'],
-        rules: {},
+        rules: {
+            ...baseConfigTsRules
+        },
         languageOptions: {
             parserOptions: {
                 project: ['libs/logger/tsconfig.*?.json']
             },
+        },
+    },
+    {
+        files: ['**/*.spec.ts', 'testing/**/*.ts'],
+        rules: {
+            ...baseConfigSpecTsRules
         },
     }
 ];

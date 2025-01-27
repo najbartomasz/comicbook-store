@@ -1,5 +1,5 @@
+import { getAllBrandings } from '@controller';
 import { Router } from 'express';
-import { getAllBrandings } from 'infrastructure/controllers/branding/branding.controller';
 
 const router = Router();
 

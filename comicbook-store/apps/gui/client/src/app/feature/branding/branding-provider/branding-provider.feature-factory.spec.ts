@@ -1,6 +1,6 @@
 import { FactoryStrategy } from '@comicbook-store/factory-strategy';
+import { BrandingRepository } from '@feature';
 import { mock } from 'jest-mock-extended';
-import { BrandingRepository } from '../branding-repository.model';
 import { BrandingProviderFeature } from './branding-provider.feature';
 import { BrandingProviderFeatureFactory } from './branding-provider.feature-factory';
 

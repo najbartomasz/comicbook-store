@@ -1,5 +1,14 @@
 const baseConfig = require('../../eslint.config.cjs');
 
+const baseConfigTsRules = baseConfig
+    .filter((config) => config.files?.includes('**/*.ts'))
+    .find((config) => config.languageOptions?.parserOptions?.project?.includes('tsconfig.*?.json'))
+    .rules ?? {};
+
+const baseConfigSpecTsRules = baseConfig
+    .find((config) => config.files?.includes('**/*.spec.ts'))
+    .rules ?? {};
+
 module.exports = [
     ...baseConfig,
     {
@@ -9,6 +18,9 @@ module.exports = [
                 project: ['apps/data-warehouse/tsconfig.*?.json']
             }
         },
+        rules: {
+            ...baseConfigTsRules
+        }
     },
     {
         files: ['src/infrastructure/**/*.ts'],
@@ -40,7 +52,11 @@ module.exports = [
                 {
                     patterns: [
                         {
-                            group: ['@infrastructure*'],
+                            group: [
+                                '@router*',
+                                '@controller*',
+                                '@database*'
+                            ],
                             message:
                                 'Domain files cannot be depended on any other layer.',
                         },
@@ -67,7 +83,12 @@ module.exports = [
                 {
                     patterns: [
                         {
-                            group: ['@infrastructure*', '@domain*'],
+                            group: [
+                                '@router*',
+                                '@controller*',
+                                '@database*',
+                                '@domain*'
+                            ],
                             message:
                                 'Core files cannot be depended on any other layer.',
                         },
@@ -119,6 +140,8 @@ module.exports = [
     },
     {
         files: ['**/*.spec.ts', 'testing/**/*.ts'],
-        rules: { 'no-restricted-imports': 'off' },
+        rules: {
+            ...baseConfigSpecTsRules
+        },
     }
 ];
