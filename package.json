@@ -1,0 +1,16 @@
+{
+    "name": "comicbook-store",
+    "version": "0.0.0",
+    "description": "ComicBook Store Project",
+    "author": "Tomasz Najbar <najbartomasz@gmail.com>",
+    "license": "UNLICENSED",
+    "repository":
+    {
+        "type": "git",
+        "url": "git+https://github.com/najbartomasz/comicbook-store.git"
+    },
+    "homepage": "https://github.com/najbartomasz/comicbook-store#readme",
+    "scripts": {},
+    "dependencies": {},
+    "devDependencies": {}
+}
