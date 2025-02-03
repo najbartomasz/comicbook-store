@@ -29,5 +29,8 @@
     "typescript.preferences.organizeImports": {
         "sortImports": true,
         "removeUnusedImports": true
+    },
+    "[ignore]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
     }
 }

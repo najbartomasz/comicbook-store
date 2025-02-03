@@ -4,13 +4,14 @@
     "description": "ComicBook Store Project",
     "author": "Tomasz Najbar <najbartomasz@gmail.com>",
     "license": "UNLICENSED",
-    "repository":
-    {
+    "repository": {
         "type": "git",
         "url": "git+https://github.com/najbartomasz/comicbook-store.git"
     },
     "homepage": "https://github.com/najbartomasz/comicbook-store#readme",
     "scripts": {},
     "dependencies": {},
-    "devDependencies": {}
+    "devDependencies": {
+        "nx": "20.4.0"
+    }
 }
