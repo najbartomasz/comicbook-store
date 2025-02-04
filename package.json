@@ -12,6 +12,8 @@
     "scripts": {},
     "dependencies": {},
     "devDependencies": {
+        "@angular-devkit/core": "19.1.5",
+        "@nx/angular": "20.4.0",
         "nx": "20.4.0"
     }
 }
