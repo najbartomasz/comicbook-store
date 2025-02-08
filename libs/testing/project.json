@@ -1,7 +1,7 @@
 {
     "name": "testing",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "libs/testing/src",
+    "sourceRoot": "libs/testing",
     "projectType": "library",
     "tags": [],
     "targets": {
@@ -12,7 +12,7 @@
             ],
             "options": {
                 "outputPath": "dist/libs/testing",
-                "main": "libs/testing/src/index.ts",
+                "main": "libs/testing/index.ts",
                 "tsConfig": "libs/testing/tsconfig.lib.json",
                 "assets": []
             }
