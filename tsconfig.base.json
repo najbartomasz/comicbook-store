@@ -19,7 +19,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@comicbook-store/testing": [
-				"libs/testing/src/index.ts"
+				"libs/testing/index.ts"
 			]
 		}
 	},
