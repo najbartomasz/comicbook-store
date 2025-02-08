@@ -1,0 +1,5 @@
+@use 'mixins';
+
+.header-container {
+    @include mixins.flex-center;
+}
