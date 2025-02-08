@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/angular';
+import { setupComponent } from '@comicbook-store/testing/angular';
+import { screen } from '@testing-library/angular';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
     it('should render title', async () => {
-        const { fixture } = await render(AppComponent)
-        fixture.autoDetectChanges();
+        await setupComponent(AppComponent)
 
         expect(screen.getByText('ComicBook Store')).toBeVisible()
     });

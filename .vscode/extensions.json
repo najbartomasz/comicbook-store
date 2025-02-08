@@ -1,11 +1,12 @@
 {
-    "recommendations": [
-        "github.copilot",
-        "github.copilot-chat",
-        "angular.ng-template",
-        "dbaeumer.vscode-eslint",
-        "firsttris.vscode-jest-runner",
-        "ms-playwright.playwright",
-        "ritwickdey.liveserver"
-    ]
+  "recommendations": [
+    "github.copilot",
+    "github.copilot-chat",
+    "angular.ng-template",
+    "dbaeumer.vscode-eslint",
+    "firsttris.vscode-jest-runner",
+    "ms-playwright.playwright",
+    "ritwickdey.liveserver",
+    "esbenp.prettier-vscode"
+  ]
 }
