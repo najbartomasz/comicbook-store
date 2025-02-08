@@ -27,8 +27,13 @@
                     }
                 ],
                 "styles": [
-                    "apps/gui/src/styles.scss"
+                    "apps/gui/src/styles/styles.scss"
                 ],
+                "stylePreprocessorOptions": {
+                    "includePaths": [
+                        "apps/gui/src/styles/"
+                    ]
+                },
                 "scripts": [],
                 "server": "apps/gui/src/main.server.ts",
                 "ssr": {
