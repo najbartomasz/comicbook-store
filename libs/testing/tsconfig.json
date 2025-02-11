@@ -1,6 +1,8 @@
 {
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
+        "composite": true,
+        "declaration": true,
         "module": "commonjs",
         "forceConsistentCasingInFileNames": true,
         "strict": true,
@@ -8,7 +10,22 @@
         "noImplicitOverride": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        "noPropertyAccessFromIndexSignature": true
+        "noPropertyAccessFromIndexSignature": true,
+        "baseUrl": "./",
+        "paths": {
+            "@e2e/models": [
+                "./e2e/models/index.ts"
+            ],
+            "@e2e/page-object": [
+                "./e2e/page-object/page-object.ts"
+            ],
+            "@e2e/verifiable-page-object": [
+                "./e2e/page-object/verifiable-page-object.ts"
+            ],
+            "@e2e/page-object-verifier": [
+                "./e2e/page-object/page-object-verifier.ts"
+            ]
+        }
     },
     "files": [],
     "include": [],
