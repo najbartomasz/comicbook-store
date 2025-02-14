@@ -1,0 +1,1 @@
+tests/gui-e2e/specs/visual-regression/main-page/main-page.spec.ts-snapshots/default-view-chromium-linux.png filter=lfs diff=lfs merge=lfs -text
