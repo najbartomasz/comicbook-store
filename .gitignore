@@ -20,5 +20,8 @@ tmp
 # frameworks
 .angular
 
+# storybook
+build-storybook.log
+
 # misc
 coverage
