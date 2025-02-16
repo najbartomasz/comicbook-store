@@ -1,4 +1,4 @@
-import { Element, Selector } from '@e2e/models';
+import { Element, Selector } from '../models';
 import { PlaywrightElement } from './playwright.element';
 import { PlaywrightRawHandle } from './playwright.raw-handle';
 

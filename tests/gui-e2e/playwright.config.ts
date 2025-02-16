@@ -28,10 +28,10 @@ export default defineConfig({
         command: 'npx nx run gui:serve',
         url: 'http://localhost:4200',
         reuseExistingServer: !process.env['CI'],
-        cwd: workspaceRoot,
+        cwd: workspaceRoot
     },
     expect: {
-        timeout: 2 * 1000
+        timeout: 2000
     },
     projects: [
         {
@@ -39,8 +39,8 @@ export default defineConfig({
             use: {
                 ...devices['Desktop Chrome'],
                 viewport: { width: 1920, height: 1080 }
-            },
-        },
+            }
+        }
         // {
         //     name: 'firefox',
         //     use: { ...devices['Desktop Firefox'] },
@@ -69,5 +69,5 @@ export default defineConfig({
         //   name: 'Google Chrome',
         //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
         // }
-    ],
+    ]
 });

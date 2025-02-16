@@ -2,7 +2,7 @@ import {
     AngularNodeAppEngine,
     createNodeRequestHandler,
     isMainModule,
-    writeResponseToNodeResponse,
+    writeResponseToNodeResponse
 } from '@angular/ssr/node';
 import express from 'express';
 import { dirname, resolve } from 'node:path';
@@ -33,7 +33,7 @@ app.use(
     express.static(browserDistFolder, {
         maxAge: '1y',
         index: false,
-        redirect: false,
+        redirect: false
     })
 );
 
@@ -43,9 +43,13 @@ app.use(
 app.use('/**', (req, res, next) => {
     angularApp
         .handle(req)
-        .then((response) =>
-            response ? writeResponseToNodeResponse(response, res) : next()
-        )
+        .then(async (response) => {
+            if (response) {
+                writeResponseToNodeResponse(response, res);
+            } else {
+                next();
+            }
+        })
         .catch(next);
 });
 
@@ -53,9 +57,11 @@ app.use('/**', (req, res, next) => {
  * Start the server if this module is the main entry point.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
+const defaultPort = 4000;
 if (isMainModule(import.meta.url)) {
-    const port = process.env['PORT'] || 4000;
+    const port = process.env['PORT'] ?? defaultPort;
     app.listen(port, () => {
+        // eslint-disable-next-line no-console
         console.log(`Node Express server listening on http://localhost:${port}`);
     });
 }

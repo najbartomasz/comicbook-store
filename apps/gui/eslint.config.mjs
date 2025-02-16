@@ -13,22 +13,30 @@ export default [
                 {
                     type: 'attribute',
                     prefix: 'app',
-                    style: 'camelCase',
-                },
+                    style: 'camelCase'
+                }
             ],
             '@angular-eslint/component-selector': [
                 'error',
                 {
                     type: 'element',
                     prefix: 'app',
-                    style: 'kebab-case',
-                },
-            ],
-        },
+                    style: 'kebab-case'
+                }
+            ]
+        }
     },
     {
         files: ['**/*.html'],
         // Override or add rules here
-        rules: {},
+        rules: {}
     },
+    {
+        files: ['**/*.ts'],
+        languageOptions: {
+            parserOptions: {
+                project: 'apps/gui/tsconfig.*?.json'
+            },
+        }
+    }
 ];

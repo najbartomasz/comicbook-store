@@ -1,5 +1,5 @@
-import { Element, Selector, Verifier } from '@e2e/models';
 import { Locator } from '@playwright/test';
+import { Element, Selector, Verifier } from '../models';
 import { PlaywrightSelector } from './playwright.selector';
 import { PlaywrightVerifier } from './playwright.verifier';
 

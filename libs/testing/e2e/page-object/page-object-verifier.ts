@@ -1,4 +1,4 @@
-import { Verifier } from '@e2e/models';
+import { Verifier } from '../models';
 
 export class PageObjectVerifier {
     public constructor(protected readonly element: Verifier) { }

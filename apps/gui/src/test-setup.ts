@@ -7,5 +7,5 @@ setupZoneTestEnv({
         rethrowErrors: true
     },
     errorOnUnknownElements: true,
-    errorOnUnknownProperties: true,
+    errorOnUnknownProperties: true
 });
