@@ -16,4 +16,12 @@ export default [
             parser: await import('jsonc-eslint-parser'),
         },
     },
+    {
+        files: ['**/*.ts'],
+        languageOptions: {
+            parserOptions: {
+                project: 'libs/testing/tsconfig.*?.json'
+            },
+        }
+    }
 ];

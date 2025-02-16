@@ -1,4 +1,4 @@
-import { Element, Selector } from '@e2e/models';
+import { Element, Selector } from '../models';
 
 export abstract class PageObject {
     protected get element(): Element { return this.createElement(); }

@@ -1,5 +1,5 @@
-import { Verifier } from '@e2e/models';
 import { expect } from '@playwright/test';
+import { Verifier } from '../models';
 import { PlaywrightRawHandle } from './playwright.raw-handle';
 
 export class PlaywrightVerifier extends PlaywrightRawHandle implements Verifier {

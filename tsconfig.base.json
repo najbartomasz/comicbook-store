@@ -18,10 +18,14 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@comicbook-store/testing": [
-                "libs/testing/index.ts"
+            "@comicbook-store/testing/angular": [
+                "libs/testing/angular/index.ts"
+            ],
+            "@comicbook-store/testing/e2e/*": [
+                "libs/testing/e2e/*"
             ]
-        }
+        },
+        "strict": true
     },
     "exclude": [
         "node_modules",

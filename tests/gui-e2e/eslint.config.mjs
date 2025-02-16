@@ -9,4 +9,12 @@ export default [
         // Override or add rules here
         rules: {},
     },
+    {
+        files: ['**/*.ts'],
+        languageOptions: {
+            parserOptions: {
+                project: 'tests/gui-e2e/tsconfig.json'
+            },
+        }
+    }
 ];

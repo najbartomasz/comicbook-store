@@ -3,9 +3,11 @@ import { screen } from '@testing-library/angular';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-    it('should render title', async () => {
-        await setupComponent(AppComponent)
+    test('should render title', async () => {
+        // Given, When
+        await setupComponent(AppComponent);
 
-        expect(screen.getByText('ComicBook Store')).toBeVisible()
+        // Then
+        expect(screen.getByText('ComicBook Store')).toBeVisible();
     });
 });

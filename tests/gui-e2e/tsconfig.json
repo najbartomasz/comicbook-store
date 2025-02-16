@@ -14,29 +14,17 @@
         "baseUrl": "./",
         "paths": {
             "@test": [
-                "./framework/test/index.ts"
+                "framework/test/index.ts"
             ],
             "@page-object": [
-                "./framework/page-objects/index.ts"
+                "framework/page-objects/index.ts"
             ]
         }
     },
-    "references": [
-        {
-            "path": "../../libs/testing/tsconfig.json"
-        }
-    ],
     "include": [
         "**/*.ts",
         "**/*.js",
+        "**/*.d.ts",
         "playwright.config.ts",
-        "src/**/*.spec.ts",
-        "src/**/*.spec.js",
-        "src/**/*.test.ts",
-        "src/**/*.test.js",
-        "src/**/*.d.ts",
-        "../../libs/testing/e2e/page-object/heading/heading.ts",
-        "../../libs/testing/e2e/page-object/heading/heading.verifier.ts",
-        "../../libs/testing/e2e/page-object/heading/index.ts"
     ]
 }
