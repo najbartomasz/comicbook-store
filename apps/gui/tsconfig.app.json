@@ -1,24 +1,15 @@
 {
     "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "outDir": "../../dist/out-tsc",
-        "types": [
-            "node"
-        ]
-    },
+    "compilerOptions": {},
     "files": [
         "src/main.ts",
         "src/main.server.ts",
         "src/server.ts"
     ],
-    "include": [
-        "src/**/*.d.ts"
-    ],
+    "include": [],
     "exclude": [
         "jest.config.ts",
-        "src/**/*.test.ts",
         "src/**/*.spec.ts",
-        "**/*.stories.ts",
-        "**/*.stories.js"
+        "**/*.stories.ts"
     ]
 }
