@@ -35,7 +35,10 @@ export default [
         files: ['**/*.ts'],
         languageOptions: {
             parserOptions: {
-                project: 'apps/gui/tsconfig.*?.json'
+                project: [
+                    'apps/gui/tsconfig.*?.json',
+                    'apps/gui/.storybook/tsconfig.json'
+                ]
             },
         }
     }
