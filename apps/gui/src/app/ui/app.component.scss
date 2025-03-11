@@ -2,4 +2,8 @@
 
 .header-container {
     @include mixins.flex-center;
+
+    .header {
+        width: 100%;
+    }
 }

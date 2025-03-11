@@ -1,13 +1,13 @@
 import { setupComponent } from '@comicbook-store/testing/angular';
-import { screen } from '@testing-library/angular';
+import { screen, within } from '@testing-library/angular';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-    test('should render title', async () => {
+    test('renders header with "ComicBook Store" title', async () => {
         // Given, When
         await setupComponent(AppComponent);
 
         // Then
-        expect(screen.getByText('ComicBook Store')).toBeVisible();
+        expect(within(screen.getByRole('banner')).getByText('ComicBook Store')).toBeVisible();
     });
 });
