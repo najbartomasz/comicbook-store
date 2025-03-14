@@ -1,11 +1,11 @@
 import { setupComponent } from '@comicbook-store/testing/angular';
 import { screen } from '@testing-library/angular';
-import { AppComponent } from './app.component';
+import { HeaderComponent } from './header.component';
 
-describe('AppComponent', () => {
-    test('should render title', async () => {
+describe('HeaderComponent', () => {
+    test('renders "ComicBook Store" title', async () => {
         // Given, When
-        await setupComponent(AppComponent);
+        await setupComponent(HeaderComponent);
 
         // Then
         expect(screen.getByText('ComicBook Store')).toBeVisible();
