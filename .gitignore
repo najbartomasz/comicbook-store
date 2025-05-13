@@ -16,6 +16,7 @@ tmp
 # nx
 .nx/cache
 .nx/workspace-data
+migrations.json
 
 # frameworks
 .angular
